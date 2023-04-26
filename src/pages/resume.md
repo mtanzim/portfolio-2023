@@ -3,12 +3,21 @@ layout: ../layouts/Layout.astro
 title: Hello, World
 ---
 
-# Hi there!
+## Contact
 
-This Markdown file creates a page at `your-domain.com/page-1/`
+- +1 416 660 5498, Toronto, ON
+- mtanzim@gmail.com
+- LinkedIn
+- Github
 
-It probably isn't styled much, but Markdown does support:
-- **bold** and _italics._
-- lists
-- [links](https://astro.build)
-- and more!
+## Technologies
+
+`Typescript`, `NodeJS`, `Go`, `React`, `SQL`, `MongoDB`, `AWS`, `Git`, `Docker`, `Kubernetes`
+
+## Key Skills
+
+Problem solving, software design, mentorships, leadership and communication
+
+## Interests
+
+Technology, music, travel, fitness, video games
