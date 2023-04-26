@@ -2,6 +2,7 @@
 import Coding from "../components/Coding.jsx";
 
 const baseURL = import.meta.env.GUAC_URL;
+let authHeader: undefined | { Authorization: string };
 const login = async () => {
   const username = import.meta.env.GUAC_USER;
   const password = import.meta.env.GUAC_PASS;
@@ -22,9 +23,8 @@ const login = async () => {
 };
 
 const fetchGuac = async (start: string, end: string) => {
-  const authHeader = await login();
   if (!authHeader) {
-    return;
+    authHeader = await login();
   }
   const res = await fetch(`${baseURL}/data?start=${start}&end=${end}`, {
     headers: authHeader,
@@ -35,12 +35,34 @@ const fetchGuac = async (start: string, end: string) => {
   const data = await res.json();
   return data?.languageStats;
 };
-const months =  Number.parseInt(import.meta.env.GUAC_MONTHS, 10);
-const today = new Date().toISOString().split("T")[0];
-let before = new Date();
-before.setMonth(before.getMonth() - months);
-const beforeStr = before.toISOString().split("T")[0];
-const languageData = await fetchGuac(beforeStr, today);
+
+const fetchWithMonths = async (months: number) => {
+  const today = new Date().toISOString().split("T")[0];
+  let before = new Date();
+  before.setMonth(before.getMonth() - months);
+  const beforeStr = before.toISOString().split("T")[0];
+  const languageData = await fetchGuac(beforeStr, today);
+  return languageData?.percentages;
+};
+
+const dataSet = [
+  {
+    months: 3,
+    data: await fetchWithMonths(3),
+  },
+  {
+    months: 6,
+    data: await fetchWithMonths(6),
+  },
+  {
+    months: 12,
+    data: await fetchWithMonths(12),
+  },
+  {
+    months: 18,
+    data: await fetchWithMonths(18),
+  },
+];
 ---
 
-<Coding months={months} client:visible data={languageData?.percentages} topN={5} />
+<Coding client:visible dataSet={dataSet} topN={5} />
