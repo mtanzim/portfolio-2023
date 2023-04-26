@@ -1,0 +1,14 @@
+---
+const pages = [
+  {
+    href: "/",
+    label: "Home",
+  },
+  {
+    href: "/about",
+    label: "About",
+  },
+];
+---
+
+{pages.map((p) => <a href={p.href}>{p.label}</a>)}
