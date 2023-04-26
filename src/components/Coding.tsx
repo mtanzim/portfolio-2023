@@ -38,7 +38,6 @@ export default function Coding({ dataSet, topN }: Props) {
   };
   return (
     <div>
-      <h1 className="text-4xl mb-4 mt-4">My top languages used</h1>
       <div className="tabs mb-4 mt-4">
         {options.map((month) => (
           <button

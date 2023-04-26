@@ -50,19 +50,15 @@ const dataSet = [
     months: 3,
     data: await fetchWithMonths(3),
   },
-  {
-    months: 6,
-    data: await fetchWithMonths(6),
-  },
-  {
-    months: 12,
-    data: await fetchWithMonths(12),
-  },
-  {
-    months: 18,
-    data: await fetchWithMonths(18),
-  },
+  // {
+  //   months: 6,
+  //   data: await fetchWithMonths(6),
+  // },
+  // {
+  //   months: 12,
+  //   data: await fetchWithMonths(12),
+  // },
 ];
 ---
 
-<Coding client:visible dataSet={dataSet} topN={5} />
+<Coding client:visible dataSet={dataSet} topN={7} />
