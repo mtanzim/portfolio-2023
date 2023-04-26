@@ -2,6 +2,18 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main>Hello World</main>
+<Layout title="Welcome">
+  <div class="hero bg-base py-12">
+    <div class="hero-content flex-col lg:flex-row">
+      <img src="/tanzim.jpg" class="max-w-lg rounded-lg shadow-2xl" />
+      <div class="divider lg:divider-horizontal"></div>
+      <div>
+        <h1 class="text-5xl font-bold">Hi, I'm Tanzim!</h1>
+        <p class="py-6">
+          I'm a curious and passionate software engineer. This page is a
+          demonstration of my work and play.
+        </p>
+      </div>
+    </div>
+  </div>
 </Layout>
