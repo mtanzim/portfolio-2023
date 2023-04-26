@@ -36,7 +36,6 @@ const fetchGuac = async (start: string, end: string) => {
   return data?.languageStats;
 };
 const months =  Number.parseInt(import.meta.env.GUAC_MONTHS, 10);
-console.log({ months });
 const today = new Date().toISOString().split("T")[0];
 let before = new Date();
 before.setMonth(before.getMonth() - months);
@@ -44,4 +43,4 @@ const beforeStr = before.toISOString().split("T")[0];
 const languageData = await fetchGuac(beforeStr, today);
 ---
 
-<Coding months={months} client:visible data={languageData?.percentages} />
+<Coding months={months} client:visible data={languageData?.percentages} topN={5} />
