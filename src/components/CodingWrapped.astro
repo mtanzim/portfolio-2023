@@ -44,21 +44,15 @@ const fetchWithMonths = async (months: number) => {
   const languageData = await fetchGuac(beforeStr, today);
   return languageData?.percentages;
 };
-
-const dataSet = [
-  {
-    months: 3,
-    data: await fetchWithMonths(3),
-  },
-  // {
-  //   months: 6,
-  //   data: await fetchWithMonths(6),
-  // },
-  // {
-  //   months: 12,
-  //   data: await fetchWithMonths(12),
-  // },
-];
 ---
 
-<Coding client:visible dataSet={dataSet} topN={7} />
+<Coding
+  client:visible
+  dataSet={[
+    {
+      months: 3,
+      data: await fetchWithMonths(3),
+    },
+  ]}
+  topN={7}
+/>

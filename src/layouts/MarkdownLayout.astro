@@ -18,8 +18,10 @@ const { title } = Astro.props;
   </head>
   <body>
     <Navigation />
-    <div class="container mx-auto px-4">
-      <slot />
+    <div class="container mx-auto px-16 py-16">
+      <article class="prose">
+        <slot />
+      </article>
     </div>
   </body>
 </html>
