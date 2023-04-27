@@ -1,0 +1,23 @@
+---
+---
+
+<footer
+  class="footer items-center p-4 bg-neutral text-neutral-content fixed bottom-0"
+>
+  <div class="items-center grid-flow-col">
+    <a href="https://www.linkedin.com/in/tanzim-mokammel/" target="_blank"
+      >LinkedIn</a
+    >
+    <a href="mailto:mtanzim@gmail.com">Email</a>
+  </div>
+  <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+    <button id="goTop">Back to top</button>
+  </div>
+</footer>
+
+<script>
+  const button = document.querySelector("#goTop");
+  button.addEventListener("click", () =>
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  );
+</script>
