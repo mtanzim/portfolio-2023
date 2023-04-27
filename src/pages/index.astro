@@ -1,5 +1,86 @@
 ---
 import Layout from "../layouts/Layout.astro";
+type TileType = "current" | "past" | "study";
+interface Tile {
+  company: string;
+  title: string;
+  desc: string;
+  link: string;
+  imageSrc: string;
+  type: TileType;
+}
+
+const tileHeaders: Record<TileType, string> = {
+  current: "I'm currently contributing to",
+  past: "I've previously worked on",
+  study: "I stay learning through",
+};
+const tiles: Tile[] = [
+  {
+    company: "Flipp",
+    title: "Senior Software Engineer",
+    desc: "Helping North Americans shop smarter",
+    link: "https://flipp.com/home/",
+    imageSrc: "/flipp.png",
+    type: "current",
+  },
+  {
+    company: "Careerfoundry",
+    title: "Web development mentor",
+    desc: "Mentoring the next generation of web developers",
+    link: "https://careerfoundry.com/",
+    imageSrc: "/cf.jpg",
+    type: "current",
+  },
+  {
+    company: "Moonfare",
+    title: "Software development engineer",
+    desc: "Developed an investment platform for private equity",
+    link: "https://moonfare.com/",
+    imageSrc: "/moonfare.jpeg",
+    type: "past",
+  },
+  {
+    company: "Diginex",
+    title: "Full stack developer",
+    desc: "Developed a cryptocurrency data aggregation and trading platform",
+    link: "https://www.diginex.com/",
+    imageSrc: "/diginex.png",
+    type: "past",
+  },
+  {
+    company: "Relotalent",
+    title: "Contract developer",
+    desc: "Developed an expat compensation and tax calculation engine",
+    link: "https://www.diginex.com/",
+    imageSrc: "/relotalent.png",
+    type: "past",
+  },
+  {
+    company: "",
+    title: "Books",
+    desc: "My reading list of software engineering and adjacent books",
+    link: "https://github.com/users/mtanzim/projects/9",
+    imageSrc: "/books.png",
+    type: "study",
+  },
+  {
+    company: "",
+    title: "Courses",
+    desc: "My list of online courses past and present",
+    link: "https://github.com/users/mtanzim/projects/4",
+    imageSrc: "/courses.png",
+    type: "study",
+  },
+  {
+    company: "",
+    title: "Side projects",
+    desc: "As if I wasn't busy enough",
+    link: "https://github.com/users/mtanzim/projects/5",
+    imageSrc: "/side.png",
+    type: "study",
+  },
+];
 ---
 
 <Layout title="Welcome">
@@ -10,39 +91,41 @@ import Layout from "../layouts/Layout.astro";
       <div>
         <h1 class="text-5xl font-bold">Hi, I'm Tanzim!</h1>
         <p class="py-6">
-          I'm a curious and passionate software engineer. This page is a
-          demonstration of my work and play.
+          I'm a curious and passionate software engineer from Toronto, Canada.
         </p>
       </div>
     </div>
   </div>
-  <h1 class="text-4xl font-bold my-12">I'm currently contributing to</h1>
-  <div class="flex mb-4">
-    <div class="card w-96 bg-base-100 shadow-xl m-4">
-      <a target="_blank" href="https://flipp.com/home/">
-        <figure>
-          <img class="object-cover h-96 w-96" src="/flipp.png" alt="flipp" />
-        </figure>
-      </a>
-      <div>
-        <div class="card-body">
-          <h2 class="card-title">Senior software engineer</h2>
-          <p>Helping North Americans shop smarter</p>
+  {
+    Object.keys(tileHeaders).map((tileType) => (
+      <>
+        <h1 class="text-4xl font-bold my-12">
+          {tileHeaders[tileType as TileType]}
+        </h1>
+        <div class="flex mb-4">
+          {tiles
+            .filter((t) => t.type === tileType)
+            .map((tile) => (
+              <div class="card w-72 bg-base-100 shadow-xl m-4">
+                <a target="_blank" href={tile.link}>
+                  <figure>
+                    <img
+                      class="object-cover h-48 w-48"
+                      src={tile.imageSrc}
+                      alt={tile.company}
+                    />
+                  </figure>
+                </a>
+                <div>
+                  <div class="card-body">
+                    <h2 class="card-title">{tile.title}</h2>
+                    <p>{tile.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
         </div>
-      </div>
-    </div>
-    <div class="card w-96 bg-base-100 shadow-xl m-4">
-      <a target="_blank" href="https://careerfoundry.com/">
-        <figure>
-          <img class="object-cover h-96 w-96" src="/cf.jpg" alt="cf" />
-        </figure>
-      </a>
-      <div>
-        <div class="card-body">
-          <h2 class="card-title">Web development mentor</h2>
-          <p>Mentoring the next generation of web developers</p>
-        </div>
-      </div>
-    </div>
-  </div>
+      </>
+    ))
+  }
 </Layout>
