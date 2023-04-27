@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import CodingWrapped from "../components/CodingWrapped.astro";
 
-type TileType = "current" | "past" | "study" | "side";
+type TileType = "current" | "past" | "study" | "side" | "misc";
 interface Tile {
   company: string;
   title: string;
@@ -17,6 +17,7 @@ const tileHeaders: Record<TileType, string> = {
   past: "I've previously worked on",
   study: "I stay learning through",
   side: "A few recent projects",
+  misc: "There's more...",
 };
 const tiles: Tile[] = [
   {
@@ -99,6 +100,14 @@ const tiles: Tile[] = [
     link: "https://spotify-personal-ybmvkz22xq-uc.a.run.app",
     type: "side",
   },
+  {
+    company: "",
+    title: "Podcast",
+    desc: "Listen to my podcast discussing self studying software engineering, staying productive during long term travel, and the tech startup scene in Berli",
+    imageSrc: "podcast.png",
+    link: "https://open.spotify.com/episode/5u3gXFNGomUkKimQHE9sgG?si=Op9ZjqG-RcuyWr9Uek2TvA",
+    type: "misc",
+  },
 ];
 ---
 
@@ -122,13 +131,13 @@ const tiles: Tile[] = [
                       alt={tile.company}
                     />
                   </figure>
-                </a>
-                <div>
-                  <div class="card-body">
-                    <h2 class="card-title">{tile.title}</h2>
-                    <p>{tile.desc}</p>
+                  <div>
+                    <div class="card-body">
+                      <h2 class="card-title">{tile.title}</h2>
+                      <p>{tile.desc}</p>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
             ))}
         </div>
@@ -136,7 +145,11 @@ const tiles: Tile[] = [
     ))
   }
   <div class="mb-4">
-    <h1 class="text-4xl font-bold my-12">I've been reading and writing in</h1>
-    <CodingWrapped />
+    <h1 class="text-4xl font-bold my-12">
+      I've recently been reading and writing in
+    </h1>
+    <div class="artboard artboard-horizontal phone-1">
+      <CodingWrapped />
+    </div>
   </div>
 </Layout>
