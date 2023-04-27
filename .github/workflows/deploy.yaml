@@ -22,15 +22,15 @@ jobs:
         uses: actions/checkout@v3
       - name: Install, build, and upload your site
         uses: withastro/action@v0
+        env:
+          GUAC_URL: ${{secrets.GUAC_URL}}
+          GUAC_PASS: ${{secrets.GUAC_PASS}}
+          GUAC_USER: ${{secrets.GUAC_USER}}
+          GUAC_MONTHS: ${{secrets.GUAC_MONTHS}}
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    env:
-      GUAC_URL: ${{secrets.GUAC_URL}}
-      GUAC_PASS: ${{secrets.GUAC_PASS}}
-      GUAC_USER: ${{secrets.GUAC_USER}}
-      GUAC_MONTHS: ${{secrets.GUAC_MONTHS}}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
