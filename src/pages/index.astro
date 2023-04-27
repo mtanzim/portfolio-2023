@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-type TileType = "current" | "past" | "study";
+type TileType = "current" | "past" | "study" | "side";
 interface Tile {
   company: string;
   title: string;
@@ -14,6 +14,7 @@ const tileHeaders: Record<TileType, string> = {
   current: "I'm currently contributing to",
   past: "I've previously worked on",
   study: "I stay learning through",
+  side: "A few recent projects",
 };
 const tiles: Tile[] = [
   {
@@ -80,10 +81,26 @@ const tiles: Tile[] = [
     imageSrc: "/side.png",
     type: "study",
   },
+  {
+    company: "",
+    title: "Strong visualizer",
+    desc: "Track how swole you're getting",
+    imageSrc: "muscle.png",
+    link: "https://vis-strong-go-ghfzoy3ovq-ue.a.run.app/",
+    type: "side",
+  },
+  {
+    company: "",
+    title: "Spotify listening habits",
+    desc: "See what you've been listening to",
+    imageSrc: "spotify-side.png",
+    link: "https://spotify-personal-ybmvkz22xq-uc.a.run.app",
+    type: "side",
+  },
 ];
 ---
 
-<Layout title="Welcome">
+<Layout title="Home">
   <div class="hero bg-base py-12">
     <div class="hero-content flex-col lg:flex-row">
       <img src="/tanzim.jpg" class="max-w-lg rounded-lg shadow-2xl" />
@@ -106,11 +123,11 @@ const tiles: Tile[] = [
           {tiles
             .filter((t) => t.type === tileType)
             .map((tile) => (
-              <div class="card w-72 bg-base-100 shadow-xl m-4">
+              <div class="card w-64 bg-base-100 shadow-xl m-4">
                 <a target="_blank" href={tile.link}>
                   <figure>
                     <img
-                      class="object-cover h-48 w-48"
+                      class="object-cover h-36 w-36"
                       src={tile.imageSrc}
                       alt={tile.company}
                     />
