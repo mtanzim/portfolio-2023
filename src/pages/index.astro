@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CodingWrapped from "../components/CodingWrapped.astro";
 ---
 
 <Layout title="Welcome">
@@ -14,6 +13,35 @@ import CodingWrapped from "../components/CodingWrapped.astro";
           I'm a curious and passionate software engineer. This page is a
           demonstration of my work and play.
         </p>
+      </div>
+    </div>
+  </div>
+  <h1 class="text-4xl font-bold my-12">I'm currently contributing to</h1>
+  <div class="flex mb-4">
+    <div class="card w-96 bg-base-100 shadow-xl m-4">
+      <a target="_blank" href="https://flipp.com/home/">
+        <figure>
+          <img class="object-cover h-96 w-96" src="/flipp.png" alt="flipp" />
+        </figure>
+      </a>
+      <div>
+        <div class="card-body">
+          <h2 class="card-title">Senior software engineer</h2>
+          <p>Helping North Americans shop smarter</p>
+        </div>
+      </div>
+    </div>
+    <div class="card w-96 bg-base-100 shadow-xl m-4">
+      <a target="_blank" href="https://careerfoundry.com/">
+        <figure>
+          <img class="object-cover h-96 w-96" src="/cf.jpg" alt="cf" />
+        </figure>
+      </a>
+      <div>
+        <div class="card-body">
+          <h2 class="card-title">Web development mentor</h2>
+          <p>Mentoring the next generation of web developers</p>
+        </div>
       </div>
     </div>
   </div>
