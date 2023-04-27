@@ -1,11 +1,10 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
 import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mtanzim.github.io',
-  base: "/portfolio-2023",
-  integrations: [tailwind(), react()]
+  site: "https://mtanzim.github.io",
+  integrations: [tailwind(), react()],
 });
