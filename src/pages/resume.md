@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/ResumeLayout.astro
-title: Hello, World
+title: Resume
 ---
 
 ## Technologies
