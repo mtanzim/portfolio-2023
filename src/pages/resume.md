@@ -24,7 +24,7 @@ Technology, music, travel, fitness, video games
 - Key challenges include initiating and establishing best practices for building a modern SPA with drag and drop interactions: React hooks, Typescript, NodeJS, MobX, Storybook
 - Developing backend APIs and microservices to support the SPA and integrating it into the company’s network of microservices using Golang, NodeJS, Kafka, AWS and Github Actions
 - Mentoring peers on concepts such as functional reactive programming, atomic design, and component testing through presentations, code reviews and documentations
-- Critically analyzing existing infrastructure to improve efficiency and developer experience: one POC has resulted in reducing 10K+ LOC scattered across Typescript, Ruby and Golang to sub 500 LOC of Typescript; an instance of improvements to concurrent Go code resulted in 35x improvement to endpoint latency; an instance of data structure refactor resulted in halving the size of the frontend
+- Critically analyzing existing infrastructure to improve efficiency and developer experience: one POC has resulted in reducing 10K+ LOC scattered across Typescript, Ruby and Golang to sub 500 LOC of Typescript; an instance of improvements to concurrent Go code resulted in 35x improvement to endpoint latency; an instance of data structure refactor resulted in halving the size of the frontend state store
 
 ### Mentor, [CareerFoundry](https://careerfoundry.com/) | Remote, Feb 2022 - Present
 
