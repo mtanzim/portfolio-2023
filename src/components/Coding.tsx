@@ -37,7 +37,7 @@ export default function Coding({ dataSet, topN }: Props) {
     ],
   };
   return (
-    <div className="mb-12">
+    <div className="mb-4">
       <div className="tabs mb-12 mt-4">
         {options.map((month) => (
           <button
