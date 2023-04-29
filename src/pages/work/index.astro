@@ -10,6 +10,7 @@ interface Tile {
   link: string;
   imageSrc: string;
   type: TileType;
+  internal?: boolean;
 }
 
 const tileHeaders: Record<TileType, string> = {
@@ -107,6 +108,16 @@ const tiles: Tile[] = [
     imageSrc: "/tanzim.jpg",
     link: "/work/story",
     type: "misc",
+    internal: true,
+  },
+  {
+    company: "",
+    title: "My resume",
+    desc: "Get my detailed work history",
+    imageSrc: "/about/berlin/3.jpg",
+    link: "/work/resume",
+    type: "misc",
+    internal: true,
   },
   {
     company: "",
@@ -141,7 +152,10 @@ const tiles: Tile[] = [
                     <h2 class="card-title">{tile.title}</h2>
                     <p>{tile.desc}</p>
                     <div class="card-actions justify-end">
-                      <a target="_blank" href={tile.link}>
+                      <a
+                        target={tile.internal ? "" : "_blank"}
+                        href={tile.link}
+                      >
                         <div class="badge badge-secondary badge-lg">Visit</div>
                       </a>
                     </div>
@@ -153,12 +167,5 @@ const tiles: Tile[] = [
       ))
     }
   </div>
-  <div class="flex flex-col p-4">
-    <div class="mb-4">
-      <h1 class="text-2xl my-12">Recent tools of the trade</h1>
-      <div class="w-96 py-16 bg-base-400 m-4">
-        <CodingWrapped />
-      </div>
-    </div>
-  </div>
+  <CodingWrapped />
 </Layout>
