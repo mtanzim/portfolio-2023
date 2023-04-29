@@ -1,0 +1,13 @@
+---
+const { title, text, imgSrc, imgAlt } = Astro.props;
+---
+
+<div class="card flex-initial w-64 bg-base-400 shadow-xl m-4">
+  <figure>
+    <img class="object-contain" src={imgSrc} alt={imgAlt} />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">{title}</h2>
+    <slot/>
+  </div>
+</div>
