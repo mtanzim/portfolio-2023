@@ -68,7 +68,6 @@ import PhotoCard from "../../components/PhotoCard.astro";
         Thankfully my Python and SQL skills from a past life came clutch.
       </p>
     </PhotoCard>
-
     <p>
       After about a year in Asia, I decided I'd move to Berlin. This was the
       first time I realized how difficult
@@ -93,39 +92,33 @@ import PhotoCard from "../../components/PhotoCard.astro";
       culture have made a big impact to my personal and professional life.
     </p>
     <div class="flex mb-4 flex-wrap">
-      <div class="card w-96 bg-base-200 m-4 shadow-xl">
-        <figure>
-          <img class="object-contain" src="/about/berlin/1.jpeg" alt="berlin" />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">Brandenburg Tor at night</h2>
-          <p>The weird and fantastic city of Berlin</p>
-        </div>
-      </div>
-      <div class="card w-96 bg-base-200 m-4 shadow-xl">
-        <figure>
-          <img class="object-contain" src="/about/berlin/2.jpg" alt="setup" />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">My first office space in Mindspace, Berlin</h2>
-          <p>
-            Jared Leto is not wrong, the coworking space life is much better
-            than cubicles.
-          </p>
-        </div>
-      </div>
-      <div class="card w-96 bg-base-200 m-4 shadow-xl">
-        <figure>
-          <img class="object-contain" src="/about/berlin/3.jpg" alt="profile" />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">Portfolio shoot with Moonfare</h2>
-          <p>
-            I didn't make their website, but it'll be difficult to top this
-            LinkedIn profile photo.
-          </p>
-        </div>
-      </div>
+      <PhotoCard
+        title="Brandenburg Tor at night"
+        imgSrc="/about/berlin/1.jpg"
+        imageAlt="brandenburg tor"
+      >
+        <p>The weird and fantastic city of Berlin</p>
+      </PhotoCard>
+      <PhotoCard
+        title="My first office space in Mindspace, Berlin"
+        imgSrc="/about/berlin/2.jpg"
+        imageAlt="profile pic"
+      >
+        <p>
+          Jared Leto is not wrong, the coworking space life is much better than
+          cubicles.
+        </p>
+      </PhotoCard>
+      <PhotoCard
+        title="Portfolio shoot with Moonfare"
+        imgSrc="/about/berlin/3.jpg"
+        imageAlt="profile pic"
+      >
+        <p>
+          I didn't make their website, but it'll be difficult to top this
+          LinkedIn profile photo.
+        </p>
+      </PhotoCard>
     </div>
     <p>
       At the height of COVID the pandemic, I realized it was time to come back
