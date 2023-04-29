@@ -16,7 +16,7 @@ interface Tile {
 const tileHeaders: Record<TileType, string> = {
   current: "I'm currently contributing to",
   past: "I've previously worked on",
-  study: "I stay learning through",
+  study: "I'm continuously pursuing knowledge",
   side: "A few recent projects",
   misc: "There's more...",
 };
@@ -80,7 +80,7 @@ const tiles: Tile[] = [
   {
     company: "",
     title: "Side projects",
-    desc: "Apply yourself, Jesse!",
+    desc: "Projects to explore new tools, techniques or for fun",
     link: "https://github.com/users/mtanzim/projects/5",
     imageSrc: "/work/side.png",
     type: "study",
@@ -91,6 +91,14 @@ const tiles: Tile[] = [
     desc: "See what you've been listening to",
     imageSrc: "/work/spotify-side.png",
     link: "https://spotify-personal-ybmvkz22xq-uc.a.run.app",
+    type: "side",
+  },
+  {
+    company: "",
+    title: "Wakatime dashboard",
+    desc: "Persist wakatime data and provide a visualization dashboard",
+    imageSrc: "/work/wall-clock.png",
+    link: "https://github.com/mtanzim/guac",
     type: "side",
   },
   {
