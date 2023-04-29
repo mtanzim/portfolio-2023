@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CodingWrapped from "../components/CodingWrapped.astro";
+import Background from "../components/Background.astro";
 
 type TileType = "current" | "past" | "study" | "side" | "misc";
 interface Tile {
@@ -116,14 +117,12 @@ const tiles: Tile[] = [
     {
       Object.keys(tileHeaders).map((tileType) => (
         <div class="flex flex-col p-2">
-          <h1 class="text-2xl font-bold my-12">
-            {tileHeaders[tileType as TileType]}
-          </h1>
+          <h1 class="text-2xl my-12">{tileHeaders[tileType as TileType]}</h1>
           <div class="flex mb-4 flex-wrap">
             {tiles
               .filter((t) => t.type === tileType)
               .map((tile) => (
-                <div class="card m-4 flex-initial w-64 bg-base-400 shadow-xl m-4">
+                <div class="card flex-initial w-64 bg-base-400 shadow-xl m-4">
                   <figure>
                     <img
                       class="object-cover h-36 w-36"
@@ -136,9 +135,7 @@ const tiles: Tile[] = [
                     <p>{tile.desc}</p>
                     <div class="card-actions justify-end">
                       <a target="_blank" href={tile.link}>
-                        <div class="badge badge-secondary badge-lg">
-                          Visit
-                        </div>
+                        <div class="badge badge-secondary badge-lg">Visit</div>
                       </a>
                     </div>
                   </div>
@@ -151,12 +148,13 @@ const tiles: Tile[] = [
   </div>
   <div class="flex flex-col p-4">
     <div class="mb-4">
-      <h1 class="text-2xl font-bold my-12">
-        I've recently been reading and writing in
-      </h1>
+      <h1 class="text-2xl my-12">Recent tools of the trade</h1>
       <div class="w-96 py-16 bg-base-400 m-4">
-        <CodingWrapped />
+        <!-- <CodingWrapped /> -->
       </div>
     </div>
   </div>
+  <div class="mb-24">
+  <Background />
+</div>
 </Layout>
