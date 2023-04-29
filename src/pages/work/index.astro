@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import CodingWrapped from "../components/CodingWrapped.astro";
+import Layout from "../../layouts/Layout.astro";
+import CodingWrapped from "../../components/CodingWrapped.astro";
 
 type TileType = "current" | "past" | "study" | "side" | "misc";
 interface Tile {
@@ -10,12 +10,13 @@ interface Tile {
   link: string;
   imageSrc: string;
   type: TileType;
+  internal?: boolean;
 }
 
 const tileHeaders: Record<TileType, string> = {
   current: "I'm currently contributing to",
   past: "I've previously worked on",
-  study: "I stay learning through",
+  study: "I'm continuously pursuing knowledge",
   side: "A few recent projects",
   misc: "There's more...",
 };
@@ -25,7 +26,7 @@ const tiles: Tile[] = [
     title: "Senior Software Engineer",
     desc: "Helping North Americans shop smarter",
     link: "https://flipp.com/home/",
-    imageSrc: "/flipp.png",
+    imageSrc: "/work/flipp.png",
     type: "current",
   },
   {
@@ -33,7 +34,7 @@ const tiles: Tile[] = [
     title: "Web development mentor",
     desc: "Mentoring the next generation of web developers",
     link: "https://careerfoundry.com/",
-    imageSrc: "/cf.jpg",
+    imageSrc: "/work/cf.jpg",
     type: "current",
   },
   {
@@ -41,7 +42,7 @@ const tiles: Tile[] = [
     title: "Software development engineer",
     desc: "Developed an investment platform for private equity",
     link: "https://moonfare.com/",
-    imageSrc: "/moonfare.jpeg",
+    imageSrc: "/work/moonfare.jpeg",
     type: "past",
   },
   {
@@ -49,7 +50,7 @@ const tiles: Tile[] = [
     title: "Full stack developer",
     desc: "Developed a cryptocurrency data aggregation and trading platform",
     link: "https://www.diginex.com/",
-    imageSrc: "/diginex.png",
+    imageSrc: "/work/diginex.png",
     type: "past",
   },
   {
@@ -57,7 +58,7 @@ const tiles: Tile[] = [
     title: "Contract developer",
     desc: "Developed an expat compensation and tax calculation engine",
     link: "https://www.relotalent.com/salary-calculator",
-    imageSrc: "/relotalent.png",
+    imageSrc: "/work/relotalent.png",
     type: "past",
   },
   {
@@ -65,7 +66,7 @@ const tiles: Tile[] = [
     title: "Books",
     desc: "My reading list of software engineering and adjacent books",
     link: "https://github.com/users/mtanzim/projects/9",
-    imageSrc: "/books.png",
+    imageSrc: "/work/books.png",
     type: "study",
   },
   {
@@ -73,38 +74,64 @@ const tiles: Tile[] = [
     title: "Courses",
     desc: "My list of online courses past and present",
     link: "https://github.com/users/mtanzim/projects/4",
-    imageSrc: "/courses.png",
+    imageSrc: "/work/courses.png",
     type: "study",
   },
   {
     company: "",
     title: "Side projects",
-    desc: "Apply yourself, Jesse!",
+    desc: "Projects to explore new tools, techniques or for fun",
     link: "https://github.com/users/mtanzim/projects/5",
-    imageSrc: "/side.png",
+    imageSrc: "/work/side.png",
     type: "study",
   },
   {
     company: "",
     title: "Spotify listening habits",
     desc: "See what you've been listening to",
-    imageSrc: "/spotify-side.png",
+    imageSrc: "/work/spotify-side.png",
     link: "https://spotify-personal-ybmvkz22xq-uc.a.run.app",
+    type: "side",
+  },
+  {
+    company: "",
+    title: "Wakatime dashboard",
+    desc: "Persist wakatime data and provide a visualization dashboard",
+    imageSrc: "/work/wall-clock.png",
+    link: "https://github.com/mtanzim/guac",
     type: "side",
   },
   {
     company: "",
     title: "Strong visualizer",
     desc: "Visualize progress from Strong app csvs",
-    imageSrc: "/muscle.png",
+    imageSrc: "/work/muscle.png",
     link: "https://vis-strong-go-ghfzoy3ovq-ue.a.run.app/",
     type: "side",
   },
   {
     company: "",
+    title: "My story",
+    desc: "Learn more about my story",
+    imageSrc: "tanzim.jpg",
+    link: "/work/story",
+    type: "misc",
+    internal: true,
+  },
+  {
+    company: "",
+    title: "My resume",
+    desc: "Get my detailed work history",
+    imageSrc: "/work/story/berlin/3.jpg",
+    link: "/work/resume",
+    type: "misc",
+    internal: true,
+  },
+  {
+    company: "",
     title: "Podcast",
     desc: "Listen to my podcast discussing self studying software engineering, staying productive during long term travel, and the tech startup scene in Berlin",
-    imageSrc: "/podcast.png",
+    imageSrc: "/work/podcast.png",
     link: "https://open.spotify.com/episode/5u3gXFNGomUkKimQHE9sgG?si=Op9ZjqG-RcuyWr9Uek2TvA",
     type: "misc",
   },
@@ -116,14 +143,12 @@ const tiles: Tile[] = [
     {
       Object.keys(tileHeaders).map((tileType) => (
         <div class="flex flex-col p-2">
-          <h1 class="text-2xl font-bold my-12">
-            {tileHeaders[tileType as TileType]}
-          </h1>
+          <h1 class="text-2xl my-12">{tileHeaders[tileType as TileType]}</h1>
           <div class="flex mb-4 flex-wrap">
             {tiles
               .filter((t) => t.type === tileType)
               .map((tile) => (
-                <div class="card m-4 flex-initial w-64 bg-base-400 shadow-xl m-4">
+                <div class="card flex-initial w-64 bg-base-400 shadow-xl m-4">
                   <figure>
                     <img
                       class="object-cover h-36 w-36"
@@ -135,10 +160,11 @@ const tiles: Tile[] = [
                     <h2 class="card-title">{tile.title}</h2>
                     <p>{tile.desc}</p>
                     <div class="card-actions justify-end">
-                      <a target="_blank" href={tile.link}>
-                        <div class="badge badge-secondary badge-lg">
-                          Visit
-                        </div>
+                      <a
+                        target={tile.internal ? "" : "_blank"}
+                        href={tile.link}
+                      >
+                        <div class="badge badge-secondary badge-lg">Visit</div>
                       </a>
                     </div>
                   </div>
@@ -149,14 +175,5 @@ const tiles: Tile[] = [
       ))
     }
   </div>
-  <div class="flex flex-col p-4">
-    <div class="mb-4">
-      <h1 class="text-2xl font-bold my-12">
-        I've recently been reading and writing in
-      </h1>
-      <div class="w-96 py-16 bg-base-400 m-4">
-        <CodingWrapped />
-      </div>
-    </div>
-  </div>
+  <CodingWrapped />
 </Layout>

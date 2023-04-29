@@ -44,23 +44,33 @@ const fetchWithMonths = async (months: number) => {
   const languageData = await fetchGuac(beforeStr, today);
   return languageData?.percentages;
 };
+
+let dataSet;
+try {
+  const data = await Promise.all([3, 6, 12].map((n) => fetchWithMonths(n)));
+  dataSet = [3, 6, 12].map((n, idx) => ({ months: n, data: data[idx] }));
+} catch (err) {
+  console.log(err);
+}
 ---
 
-<Coding
-  client:visible
-  dataSet={[
-    {
-      months: 3,
-      data: await fetchWithMonths(3),
-    },
-    {
-      months: 6,
-      data: await fetchWithMonths(6),
-    },
-    {
-      months: 12,
-      data: await fetchWithMonths(12),
-    },
-  ]}
-  topN={7}
-/>
+{
+  dataSet && (
+    <div class="flex flex-col p-4">
+      <h1 class="text-2xl my-4">Recent tools of the trade</h1>
+      <div class="w-96 py-4 bg-base-400 m-4">
+        <Coding client:visible dataSet={dataSet} topN={7} />
+      </div>
+      <small>
+        Powered by{" "}
+        <a target="_blank" href="https://wakatime.com/">
+          Wakatime
+        </a>
+        and
+        <a href="https://github.com/mtanzim/guac" target="_blank">
+          Guac
+        </a>
+      </small>
+    </div>
+  )
+}
