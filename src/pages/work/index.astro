@@ -1,7 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import CodingWrapped from "../components/CodingWrapped.astro";
-import Background from "../components/Background.astro";
+import Layout from "../../layouts/Layout.astro";
+import CodingWrapped from "../../components/CodingWrapped.astro";
 
 type TileType = "current" | "past" | "study" | "side" | "misc";
 interface Tile {
@@ -103,6 +102,14 @@ const tiles: Tile[] = [
   },
   {
     company: "",
+    title: "My story",
+    desc: "Learn more about my story",
+    imageSrc: "/tanzim.jpg",
+    link: "/work/story",
+    type: "misc",
+  },
+  {
+    company: "",
     title: "Podcast",
     desc: "Listen to my podcast discussing self studying software engineering, staying productive during long term travel, and the tech startup scene in Berlin",
     imageSrc: "/podcast.png",
@@ -150,11 +157,8 @@ const tiles: Tile[] = [
     <div class="mb-4">
       <h1 class="text-2xl my-12">Recent tools of the trade</h1>
       <div class="w-96 py-16 bg-base-400 m-4">
-        <!-- <CodingWrapped /> -->
+        <CodingWrapped />
       </div>
     </div>
   </div>
-  <div class="mb-24">
-  <Background />
-</div>
 </Layout>

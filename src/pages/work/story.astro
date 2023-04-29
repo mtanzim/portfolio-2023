@@ -1,0 +1,135 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PhotoCard from "../../components/PhotoCard.astro";
+---
+
+<Layout title="My story">
+  <h1 class="text-2xl mb-4">My story</h1>
+  <p class="text-base">
+    I stumbled on web development by coincidence. I was chatting with a stranger
+    at a party, and they mentioned they were going through the
+    <a
+      class="text-blue-600 visited:text-purple-600"
+      href="https://www.freecodecamp.org/"
+      target="_blank">freecodecamp</a
+    > curriculum to make a career switch. At the time, I was working as a product
+    engineer, wearing many different hats. However, throughout the years I became
+    conflicted by the lack of technical challeges of my position. Inspired by the
+    stranger's story, I thought I'd give freecodecamp a try as well!
+    <br />
+    <br />
+    It was not exactly love at first sight, but by the time I made it to the <code
+      >React</code
+    > part of the curriculum, I was hooked! I'd always enjoyed software development,
+    however I was plagued by imposter syndrome. Making steady progress on the curriculum
+    started to give me confidence.
+    <br />
+    <br />
+    A few months down the road, I decided I would leave my career, and try my hand
+    at being a digital nomad. I did not plan to be earning money, but I felt getting
+    through the curriculum would provide a sense of progress and productivity. I
+    set sail for Hanoi, Vietnam. The year long backpacking and digital nomading become
+    a pivotal point in my life and career. I was able to get through critical parts
+    of the curriculum, build a few projects, and even land a contract position. My
+    initial projects' <code>Heroku</code> deploys are now dead, but here are a few
+    pictures:
+  </p>
+  <!-- TODO: make these components -->
+  <div class="flex mb-4 flex-wrap my-6">
+    <PhotoCard
+      title="Freecodecamp meetup Hanoi"
+      imgSrc="/about/hanoi/1.jpg"
+      imageAlt="fcc hanoi"
+    >
+      <p>
+        Google translate is great at translating documentation! I had worked on
+        a blog project with these guys, and it helped me realize how little
+        React and Javascript I knew at the time
+      </p>
+    </PhotoCard>
+    <PhotoCard
+      title='Remote "Work" from Pai'
+      imgSrc="/about/hanoi/2.jpg"
+      imageAlt="hanoi"
+    >
+      <p>
+        I was probably building my very first full stack SPA: a recipe app. The
+        roost stand and the Dell XPS took me far.
+      </p>
+    </PhotoCard>
+    <PhotoCard
+      title="Dinner with the Relotalent team and friends"
+      imgSrc="/about/hanoi/3.jpg"
+      imageAlt="hanoi dinner"
+    >
+      <p>
+        I really have to thank the Relotalent team for giving me a shot. All I
+        had to do was keenly listen to the issues of Italian politics.
+        Thankfully my Python and SQL skills from a past life came clutch.
+      </p>
+    </PhotoCard>
+
+    <p>
+      After about a year in Asia, I decided I'd move to Berlin. This was the
+      first time I realized how difficult
+      <a
+        class="text-blue-600 visited:text-purple-600"
+        href="https://www.crackingthecodinginterview.com/"
+        target="_blank">cracking the coding intreview</a
+      >
+      would be. Unfortunately, I was not aware of the book at the time, and also
+      did not have the background in computer science. After many failed attempts,
+      I landed my first full time software engineering job at Diginex. Once again,
+      on the job, I realized how little I actually knew. Thankfully, there was enough
+      downtime at work to support my thirst for deeper knowlegde. I really have to
+      thank
+      <a
+        class="text-blue-600 visited:text-purple-600"
+        href="https://www.coursera.org/"
+        target="_blank">Coursera</a
+      > for giving me access to university level courses for free. The knowledge
+      and experience I gathered through these courses have made a big difference
+      in my career. Similarly, my experience working in Berlin and the city's tech
+      culture have made a big impact to my personal and professional life.
+    </p>
+    <div class="flex mb-4 flex-wrap">
+      <div class="card w-96 bg-base-200 m-4 shadow-xl">
+        <figure>
+          <img class="object-contain" src="/about/berlin/1.jpeg" alt="berlin" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Brandenburg Tor at night</h2>
+          <p>The weird and fantastic city of Berlin</p>
+        </div>
+      </div>
+      <div class="card w-96 bg-base-200 m-4 shadow-xl">
+        <figure>
+          <img class="object-contain" src="/about/berlin/2.jpg" alt="setup" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">My first office space in Mindspace, Berlin</h2>
+          <p>
+            Jared Leto is not wrong, the coworking space life is much better
+            than cubicles.
+          </p>
+        </div>
+      </div>
+      <div class="card w-96 bg-base-200 m-4 shadow-xl">
+        <figure>
+          <img class="object-contain" src="/about/berlin/3.jpg" alt="profile" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Portfolio shoot with Moonfare</h2>
+          <p>
+            I didn't make their website, but it'll be difficult to top this
+            LinkedIn profile photo.
+          </p>
+        </div>
+      </div>
+    </div>
+    <p>
+      At the height of COVID the pandemic, I realized it was time to come back
+      home to Toronto, Canada. I am currently writing the next chapters here.
+    </p>
+  </div>
+</Layout>
