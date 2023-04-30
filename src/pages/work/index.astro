@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import CodingWrapped from "../../components/CodingWrapped.astro";
 
-type TileType = "current" | "past" | "study" | "side" | "misc";
+type TileType = "current" | "past" | "study" | "side" | "background";
 interface Tile {
   company: string;
   title: string;
@@ -14,11 +14,11 @@ interface Tile {
 }
 
 const tileHeaders: Record<TileType, string> = {
+  background: "Background",
   current: "I'm currently contributing to",
   past: "I've previously worked on",
   study: "I'm continuously pursuing knowledge",
   side: "A few recent projects",
-  misc: "There's more...",
 };
 const tiles: Tile[] = [
   {
@@ -112,10 +112,10 @@ const tiles: Tile[] = [
   {
     company: "",
     title: "My story",
-    desc: "Learn more about my story",
+    desc: "Learn about my career switch to web development",
     imageSrc: "/tanzim.jpg",
     link: "/work/story",
-    type: "misc",
+    type: "background",
     internal: true,
   },
   {
@@ -124,7 +124,7 @@ const tiles: Tile[] = [
     desc: "Get my detailed work history",
     imageSrc: "/work/story/berlin/3.jpg",
     link: "/work/resume",
-    type: "misc",
+    type: "background",
     internal: true,
   },
   {
@@ -133,7 +133,7 @@ const tiles: Tile[] = [
     desc: "Listen to my podcast discussing self studying software engineering, staying productive during long term travel, and the tech startup scene in Berlin",
     imageSrc: "/work/podcast.png",
     link: "https://open.spotify.com/episode/5u3gXFNGomUkKimQHE9sgG?si=Op9ZjqG-RcuyWr9Uek2TvA",
-    type: "misc",
+    type: "background",
   },
 ];
 ---

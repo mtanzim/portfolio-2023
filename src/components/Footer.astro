@@ -5,22 +5,35 @@
   class="footer mt-36 items-center p-4 bg-neutral text-neutral-content fixed bottom-0"
 >
   <div class="items-center grid-flow-col">
-    <a class="mx-2" href="mailto:mtanzim@gmail.com">mtanzim@gmail.com</a>
+    <a class="mx-2" href="mailto:mtanzim@gmail.com">
+      <img class="w-6 h-6" src="/icons/mail.svg" />
+    </a>
     <a
       class="mx-2"
       href="https://www.linkedin.com/in/tanzim-mokammel/"
-      target="_blank">LinkedIn</a
+      target="_blank"
     >
-    <a class="mx-2" href="https://github.com/mtanzim" target="_blank">Github</a>
+      <img class="w-6 h-6" src="/icons/linkedin.svg" />
+    </a>
+    <a class="mx-2" href="https://github.com/mtanzim" target="_blank">
+      <img class="w-6 h-6" src="/icons/github.svg" />
+    </a>
+    <button class="md:hidden goTop"
+      ><img class="w-6 h-6" src="/icons/up.svg" /></button
+    >
   </div>
-  <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-    <button id="goTop">Back to top</button>
+  <div
+    class="grid-flow-col gap-4 hidden md:place-self-center md:justify-self-end md:block"
+  >
+    <button class="goTop"><img class="w-6 h-6" src="/icons/up.svg" /></button>
   </div>
 </footer>
 
 <script>
-  const button = document.querySelector("#goTop");
-  button?.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior: "smooth" })
+  const buttons = document.querySelectorAll(".goTop");
+  buttons.forEach((b) =>
+    b.addEventListener("click", () =>
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    )
   );
 </script>
