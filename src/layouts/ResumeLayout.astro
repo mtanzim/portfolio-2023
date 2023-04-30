@@ -18,11 +18,11 @@ export interface Props {
   <body>
     <Navigation />
     <div class="container mx-8 md:mx-auto pb-24">
-      <button class="btn btn-info my-4">
-        <a href="/work/resume.pdf" download>
+      <a href="/work/resume.pdf" download>
+        <button class="btn btn-info my-4">
           <img class="w-6 h-6" src="/icons/download.svg" />
-        </a>
-      </button>
+        </button>
+      </a>
       <article class="prose prose-sm">
         <slot />
       </article>
