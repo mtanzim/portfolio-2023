@@ -3,6 +3,14 @@ layout: ../../layouts/ResumeLayout.astro
 title: Resume
 ---
 
+# Tanzim Mokammel
+
+<sub>
+
+## Contact
+
+mtanzim@gmail.com | [LinkedIn](https://www.linkedin.com/in/tanzim-mokammel/) | +1 416-660-5498 | Toronto, ON
+
 ## Technologies
 
 `Typescript` `NodeJS` `Go` `React` `SQL` `MongoDB` `AWS` `Git` `Docker` `Kubernetes`
@@ -14,6 +22,8 @@ Problem solving, software design, mentorship, leadership and communication
 ## Interests
 
 Technology, music, travel, fitness, video games
+
+</sub>
 
 ## Work Experience <small>[References](https://drive.google.com/open?id=15agbvNipo2pTSTO-WwNx_R2ukPlOu_yN)</small>
 
