@@ -7,7 +7,8 @@ interface Tile {
   company: string;
   title: string;
   desc: string;
-  link: string;
+  links: string[];
+  linkTitles: string[];
   imageSrc: string;
   type: TileType;
   internal?: boolean;
@@ -20,12 +21,14 @@ const tileHeaders: Record<TileType, string> = {
   study: "I'm continuously pursuing knowledge",
   side: "A few recent projects",
 };
+
 const tiles: Tile[] = [
   {
     company: "Flipp",
     title: "Senior Software Engineer",
     desc: "Helping North Americans shop smarter",
-    link: "https://flipp.com/home/",
+    links: ["https://flipp.com/home/"],
+    linkTitles: ["Visit"],
     imageSrc: "/work/flipp.png",
     type: "current",
   },
@@ -33,7 +36,9 @@ const tiles: Tile[] = [
     company: "Careerfoundry",
     title: "Web development mentor",
     desc: "Mentoring the next generation of web developers",
-    link: "https://careerfoundry.com/",
+    links: ["https://careerfoundry.com/"],
+    linkTitles: ["Visit"],
+
     imageSrc: "/work/cf.jpg",
     type: "current",
   },
@@ -41,7 +46,9 @@ const tiles: Tile[] = [
     company: "Moonfare",
     title: "Software development engineer",
     desc: "Developed an investment platform for private equity",
-    link: "https://moonfare.com/",
+    links: ["https://moonfare.com/"],
+    linkTitles: ["Visit"],
+
     imageSrc: "/work/moonfare.jpeg",
     type: "past",
   },
@@ -49,7 +56,9 @@ const tiles: Tile[] = [
     company: "Diginex",
     title: "Full stack developer",
     desc: "Developed a cryptocurrency data aggregation and trading platform",
-    link: "https://www.diginex.com/",
+    links: ["https://www.diginex.com/"],
+    linkTitles: ["Visit"],
+
     imageSrc: "/work/diginex.png",
     type: "past",
   },
@@ -57,7 +66,9 @@ const tiles: Tile[] = [
     company: "Relotalent",
     title: "Contract developer",
     desc: "Developed an expat compensation and tax calculation engine",
-    link: "https://www.relotalent.com/salary-calculator",
+    links: ["https://www.relotalent.com/salary-calculator"],
+    linkTitles: ["Visit"],
+
     imageSrc: "/work/relotalent.png",
     type: "past",
   },
@@ -65,7 +76,9 @@ const tiles: Tile[] = [
     company: "",
     title: "Books",
     desc: "My reading list of software engineering and adjacent books",
-    link: "https://github.com/users/mtanzim/projects/9",
+    links: ["https://github.com/users/mtanzim/projects/9"],
+    linkTitles: ["Visit"],
+
     imageSrc: "/work/books.png",
     type: "study",
   },
@@ -73,7 +86,9 @@ const tiles: Tile[] = [
     company: "",
     title: "Courses",
     desc: "My list of online courses past and present",
-    link: "https://github.com/users/mtanzim/projects/4",
+    links: ["https://github.com/users/mtanzim/projects/4"],
+    linkTitles: ["Visit"],
+
     imageSrc: "/work/courses.png",
     type: "study",
   },
@@ -81,7 +96,9 @@ const tiles: Tile[] = [
     company: "",
     title: "Side projects",
     desc: "Projects to explore new tools, techniques or for fun",
-    link: "https://github.com/users/mtanzim/projects/5",
+    links: ["https://github.com/users/mtanzim/projects/5"],
+    linkTitles: ["Visit"],
+
     imageSrc: "/work/side.png",
     type: "study",
   },
@@ -90,15 +107,12 @@ const tiles: Tile[] = [
     title: "Spotify listening habits",
     desc: "See what you've been listening to",
     imageSrc: "/work/spotify-side.png",
-    link: "https://spotify-personal-ybmvkz22xq-uc.a.run.app",
-    type: "side",
-  },
-  {
-    company: "",
-    title: "Wakatime dashboard",
-    desc: "Persist wakatime data and provide a visualization dashboard",
-    imageSrc: "/work/wall-clock.png",
-    link: "https://github.com/mtanzim/guac",
+    links: [
+      "https://github.com/mtanzim/spotify-data",
+      "https://spotify-personal-ybmvkz22xq-uc.a.run.app",
+    ],
+    linkTitles: ["Code", "App"],
+
     type: "side",
   },
   {
@@ -106,7 +120,21 @@ const tiles: Tile[] = [
     title: "Strong visualizer",
     desc: "Visualize progress from Strong app csvs",
     imageSrc: "/work/muscle.png",
-    link: "https://vis-strong-go-ghfzoy3ovq-ue.a.run.app/",
+    links: [
+      "https://github.com/mtanzim/vis-strong-go",
+      "https://vis-strong-go-ghfzoy3ovq-ue.a.run.app/",
+    ],
+    linkTitles: ["Code", "App"],
+    type: "side",
+  },
+  {
+    company: "",
+    title: "Wakatime dashboard",
+    desc: "Persist wakatime data and provide a visualization dashboard",
+    imageSrc: "/work/wall-clock.png",
+    links: ["https://github.com/mtanzim/guac"],
+    linkTitles: ["Code"],
+
     type: "side",
   },
   {
@@ -114,7 +142,9 @@ const tiles: Tile[] = [
     title: "My story",
     desc: "Learn about my career switch to web development",
     imageSrc: "/tanzim.jpg",
-    link: "/work/story",
+    links: ["/work/story"],
+    linkTitles: ["Visit"],
+
     type: "background",
     internal: true,
   },
@@ -123,16 +153,21 @@ const tiles: Tile[] = [
     title: "My resume",
     desc: "Get my detailed work history",
     imageSrc: "/work/story/berlin/3.jpg",
-    link: "/work/resume",
+    links: ["/work/resume"],
+    linkTitles: ["Visit"],
     type: "background",
     internal: true,
   },
   {
     company: "",
     title: "Podcast",
-    desc: "Listen to my podcast discussing self studying software engineering, staying productive during long term travel, and the tech startup scene in Berlin",
+    desc: "Listen to a podcast episode where I discuss self studying software engineering, staying productive during long term travel, and the tech scene in Berlin",
     imageSrc: "/work/podcast.png",
-    link: "https://open.spotify.com/episode/5u3gXFNGomUkKimQHE9sgG?si=Op9ZjqG-RcuyWr9Uek2TvA",
+    links: [
+      "https://open.spotify.com/episode/5u3gXFNGomUkKimQHE9sgG?si=Op9ZjqG-RcuyWr9Uek2TvA",
+    ],
+    linkTitles: ["Visit"],
+
     type: "background",
   },
 ];
@@ -160,12 +195,13 @@ const tiles: Tile[] = [
                     <h2 class="card-title">{tile.title}</h2>
                     <p>{tile.desc}</p>
                     <div class="card-actions justify-end">
-                      <a
-                        target={tile.internal ? "" : "_blank"}
-                        href={tile.link}
-                      >
-                        <div class="badge badge-secondary badge-lg">Visit</div>
-                      </a>
+                      {tile.links.map((link, idx) => (
+                        <a target={tile.internal ? "" : "_blank"} href={link}>
+                          <div class="badge badge-secondary badge-lg">
+                            {tile.linkTitles?.[idx] || "Visit"}
+                          </div>
+                        </a>
+                      ))}
                     </div>
                   </div>
                 </div>
