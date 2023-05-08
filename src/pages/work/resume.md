@@ -9,7 +9,7 @@ title: Resume
 
 ## Contact
 
-mtanzim@gmail.com | [LinkedIn](https://www.linkedin.com/in/tanzim-mokammel/) | +1 416-660-5498 | Toronto, ON
+mtanzim@gmail.com | [LinkedIn](https://www.linkedin.com/in/tanzim-mokammel/) | +1 416-660-5498 | Toronto, ON | [Website](https://www.mtanzim.com)
 
 ## Technologies
 

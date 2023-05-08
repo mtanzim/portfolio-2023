@@ -15,7 +15,7 @@ const login = async () => {
     }),
   });
   if (res?.status !== 200) {
-    console.error(res);
+    console.error(await res.text());
     return;
   }
   const { token } = await res.json();
@@ -30,6 +30,7 @@ const fetchGuac = async (start: string, end: string) => {
     headers: authHeader,
   });
   if (res?.status !== 200) {
+    console.log(await res.text());
     throw new Error("Failed to get data from guac api");
   }
   const data = await res.json();
@@ -47,7 +48,12 @@ const fetchWithMonths = async (months: number) => {
 
 let dataSet;
 try {
-  const data = await Promise.all([3, 6, 12].map((n) => fetchWithMonths(n)));
+  const data = await Promise.all(
+    [3, 6, 12].map(async (n) => {
+      await new Promise((r) => setTimeout(r, 500));
+      return fetchWithMonths(n);
+    })
+  );
   dataSet = [3, 6, 12].map((n, idx) => ({ months: n, data: data[idx] }));
 } catch (err) {
   console.log(err);
