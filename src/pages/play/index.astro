@@ -6,11 +6,25 @@ import type { SpotifyArtists } from "../../types/spotify-artists";
 ---
 
 <Layout title="Play">
-  <h1 class="text-base my-12">
-    When not working, a few things I keep busy with are music, traveling,
-    fitness, and video games.
-  </h1>
-  <div class="h-1/2 max-w-full">
-    <Genres data={json as SpotifyArtists} client:only />
-  </div>
+  <p class="text-base">
+    When not working, a few things I keep busy with are <a
+      class="badge badge-primary"
+      href={"/play#music"}>music</a
+    >, <a class="badge badge-secondary" href={"/play#travel"}>travel</a>,
+    fitness, and <a class="badge badge-accent" href={"/play#games"}
+      >video games</a
+    >
+
+    <h1 id="music" class="text-2xl mt-12">Music</h1>
+    <p class="text-base mt-6">
+      Following is a glimpse into my affinity towards musical genres.
+    </p>
+    <div class="my-12 h-1/2 max-w-full">
+      <Genres data={json as SpotifyArtists} client:only />
+    </div>
+    <h1 id="travel" class="text-2xl mt-12">Travel</h1>
+    <p class="text-base mt-6">Lorem ipsum travel</p>
+    <h1 id="games" class="text-2xl mt-12">Video games</h1>
+    <p class="text-base mt-6">Lorem ipsum video games</p>
+  </p>
 </Layout>
