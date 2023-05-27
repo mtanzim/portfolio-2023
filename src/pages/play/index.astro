@@ -1,7 +1,16 @@
 ---
+import Genres from "../../components/Genres.svelte";
 import Layout from "../../layouts/Layout.astro";
+import json from "./spotify-artists.json";
+import type { SpotifyArtists } from "../../types/spotify-artists";
 ---
 
 <Layout title="Play">
-  <h1 class="text-2xl my-12">Play!</h1>
+  <h1 class="text-base my-12">
+    When not working, a few things I keep busy with are music, traveling,
+    fitness, and video games.
+  </h1>
+  <div class="h-1/2 max-w-full">
+    <Genres data={json as SpotifyArtists} client:only />
+  </div>
 </Layout>
