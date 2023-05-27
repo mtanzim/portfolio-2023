@@ -211,5 +211,13 @@ const tiles: Tile[] = [
       ))
     }
   </div>
-  <!-- <CodingWrapped /> -->
+  {
+    import.meta.env.MODE === "development" ? (
+      <p class="text-9xl">
+        Guac will go here but lets not blow up my cheap serverless setup
+      </p>
+    ) : (
+      <CodingWrapped />
+    )
+  }
 </Layout>
