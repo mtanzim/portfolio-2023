@@ -3,6 +3,24 @@ import Genres from "../../components/MusicGenres/Genres.svelte";
 import Layout from "../../layouts/Layout.astro";
 import json from "./spotify-artists.json";
 import type { SpotifyArtists } from "../../types/spotify-artists";
+import type { CarouselImage } from "../../components/Carousel";
+import Carousel from "../../components/Carousel";
+
+// TODO: move this to a dynamic location
+const TopAlbumImgs: CarouselImage[] = [
+  {
+    url: "/albums/call-me.jpeg",
+    alt: "burger",
+  },
+  {
+    url: "public/albums/midnights.jpeg",
+    alt: "burger",
+  },
+  {
+    url: "public/albums/kaytramine.jpeg",
+    alt: "burger",
+  },
+];
 ---
 
 <Layout title="Play">
@@ -17,11 +35,29 @@ import type { SpotifyArtists } from "../../types/spotify-artists";
 
     <h1 id="music" class="text-2xl mt-12">Music</h1>
     <p class="text-base mt-6">
-      Following is a glimpse into my affinity towards musical genres.
+      I've always loved listening to music. Recently, I've started collecting
+      vinyls and CDs. Vinyls are a magical experience, and the sound quality of
+      CDs paired with a good system is hard to match. Here are a few albums I
+      currently have on repeat.
     </p>
-    <div class="my-12 h-1/2 max-w-full">
+    <div class="my-6 h-1/2 max-w-full">
+      <Carousel images={TopAlbumImgs} />
+    </div>
+    <p>
+      However, the convenience of streaming services is unmatched. In addition,
+      it's easy to collect data on yourself with them! For example, following is
+      a glimpse into my affinity towards musical genres from the last few years.
+    </p>
+    <div class="my-6 h-1/2 max-w-full">
       <Genres data={json as SpotifyArtists} client:only />
     </div>
+
+    This is based on my data on Spotify and you can generate a similar one
+    through my <a
+      class="badge badge-secondary"
+      target="_blank"
+      href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
+    >.
     <h1 id="travel" class="text-2xl mt-12">Travel</h1>
     <p class="text-base mt-6">Lorem ipsum travel</p>
     <h1 id="games" class="text-2xl mt-12">Video games</h1>
