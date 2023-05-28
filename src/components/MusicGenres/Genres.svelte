@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { SpotifyArtists } from "../types/spotify-artists";
+  import type { SpotifyArtists } from "../../types/spotify-artists";
   import WordCloud from "./WordCloud.svelte";
 
   export let data: SpotifyArtists;
