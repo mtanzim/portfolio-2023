@@ -1,24 +1,25 @@
 ---
 import Genres from "../../components/MusicGenres/Genres.svelte";
 import Layout from "../../layouts/Layout.astro";
+// TODO: move this to a dynamic location/api
 import json from "./spotify-artists.json";
 import type { SpotifyArtists } from "../../types/spotify-artists";
 import type { CarouselImage } from "../../components/Carousel";
 import Carousel from "../../components/Carousel";
 
-// TODO: move this to a dynamic location
+// TODO: move this to a dynamic location/api
 const TopAlbumImgs: CarouselImage[] = [
   {
     url: "/albums/call-me.jpeg",
-    alt: "burger",
+    alt: "Tyler the Creator - Call me if you get lost",
   },
   {
     url: "public/albums/midnights.jpeg",
-    alt: "burger",
+    alt: "Taylor Swift - Midnights",
   },
   {
     url: "public/albums/kaytramine.jpeg",
-    alt: "burger",
+    alt: "Kaytramine - Kaytramine",
   },
 ];
 ---
