@@ -1,0 +1,70 @@
+---
+import Genres from "../../components/MusicGenres/Genres.svelte";
+import Layout from "../../layouts/Layout.astro";
+// TODO: move this to a dynamic location/api
+import json from "./spotify-artists.json";
+import type { SpotifyArtists } from "../../types/spotify-artists";
+import type { CarouselImage } from "../../components/Carousel";
+import Carousel from "../../components/Carousel";
+import UnderConstruction from "../../components/UnderConstruction.astro";
+
+// TODO: move this to a dynamic location/api
+const TopAlbumImgs: CarouselImage[] = [
+  {
+    url: "public/albums/midnights.jpeg",
+    alt: "Taylor Swift - Midnights",
+  },
+  {
+    url: "/albums/call-me.jpeg",
+    alt: "Tyler the Creator - Call me if you get lost",
+  },
+
+  {
+    url: "public/albums/asphalt-meadows.webp",
+    alt: "Death Cab for Cutie - Asphalt Meadows",
+  },
+];
+---
+
+<Layout title="Play">
+  <p class="text-base">
+    When not working, a few things I keep busy with are <a
+      class="badge badge-primary"
+      href={"/play#music"}>music</a
+    >, <a class="badge badge-secondary" href={"/play#travel"}>travel</a>,
+    fitness, and <a class="badge badge-accent" href={"/play#games"}
+      >video games</a
+    >
+
+    <h1 id="music" class="text-2xl my-6">Music</h1>
+    <p class="text-base mt-6">
+      I've always loved listening to music. Recently, I've started collecting
+      vinyls and CDs. Vinyls are a magical experience, and the sound quality of
+      CDs paired with a good system is hard to match. Here are a few albums I
+      currently have on repeat:
+    </p>
+    <div class="my-6 h-1/2 max-w-full">
+      <Carousel images={TopAlbumImgs} />
+    </div>
+    <p>
+      However, the convenience of streaming services is unmatched. In addition,
+      it's easy to collect data on yourself with them! For example, following is
+      a glimpse into my affinity towards musical genres from the last few years:
+    </p>
+    <div class="my-6 h-1/2 max-w-full">
+      <Genres data={json as SpotifyArtists} client:only />
+    </div>
+
+    This is based on my data on Spotify and you can generate a similar one
+    through my <a
+      class="badge badge-secondary"
+      target="_blank"
+      href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
+    >.
+    <h1 id="travel" class="text-2xl my-6">Travel</h1>
+    <UnderConstruction msg="Still working on it..." />
+
+    <h1 id="games" class="text-2xl my-6">Video games</h1>
+    <UnderConstruction msg="Still working on it..." />
+  </p>
+</Layout>
