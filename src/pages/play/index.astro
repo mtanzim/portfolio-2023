@@ -27,44 +27,46 @@ const TopAlbumImgs: CarouselImage[] = [
 ---
 
 <Layout title="Play">
-  <p class="text-base">
-    When not working, a few things I keep busy with are <a
-      class="badge badge-primary"
-      href={"/play#music"}>music</a
-    >, <a class="badge badge-secondary" href={"/play#travel"}>travel</a>,
-    fitness, and <a class="badge badge-accent" href={"/play#games"}
-      >video games</a
-    >
+  <h1 class="text-4xl mb-4">Play</h1>
+  <div class="mb-4 justify-center">
+    <p class="text-base">
+      My interests outside work include <a
+        class="badge badge-primary"
+        href="#music">music</a
+      >, <a class="badge badge-secondary" href="#travel">travel</a>, fitness,
+      and <a class="badge badge-info" href="#games">video games</a>
 
-    <h1 id="music" class="text-2xl my-6">Music</h1>
-    <p class="text-base mt-6">
-      I've always loved listening to music. Recently, I've started collecting
-      vinyls and CDs. Vinyls are a magical experience, and the sound quality of
-      CDs paired with a good system is hard to match. Here are a few albums I
-      currently have on repeat:
+      <h1 id="music" class="text-2xl my-6">Music</h1>
+      <p class="text-base mt-6">
+        I've always loved listening to music. Recently, I've started collecting
+        vinyls and CDs. Vinyls are a magical experience, and the sound quality
+        of CDs paired with a good system is hard to match. Here are a few albums
+        I currently have on repeat:
+      </p>
+      <div class="my-6 h-1/2 max-w-full">
+        <Carousel images={TopAlbumImgs} />
+      </div>
+      <p>
+        However, the convenience of streaming services is unbeatable. In
+        addition, it's easy to collect data on yourself with them! For example,
+        following is a glimpse of my affinity towards musical genres from the
+        last few years:
+      </p>
+      <div class="my-6 h-1/2 max-w-full">
+        <Genres data={json as SpotifyArtists} client:only />
+      </div>
+
+      This is based on my data on Spotify and you can generate a similar one
+      through my <a
+        class="badge badge-secondary"
+        target="_blank"
+        href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
+      >.
+      <h1 id="travel" class="text-2xl my-6">Travel</h1>
+      <UnderConstruction />
+
+      <h1 id="games" class="text-2xl my-6">Video games</h1>
+      <UnderConstruction />
     </p>
-    <div class="my-6 h-1/2 max-w-full">
-      <Carousel images={TopAlbumImgs} />
-    </div>
-    <p>
-      However, the convenience of streaming services is unmatched. In addition,
-      it's easy to collect data on yourself with them! For example, following is
-      a glimpse into my affinity towards musical genres from the last few years:
-    </p>
-    <div class="my-6 h-1/2 max-w-full">
-      <Genres data={json as SpotifyArtists} client:only />
-    </div>
-
-    This is based on my data on Spotify and you can generate a similar one
-    through my <a
-      class="badge badge-secondary"
-      target="_blank"
-      href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
-    >.
-    <h1 id="travel" class="text-2xl my-6">Travel</h1>
-    <UnderConstruction msg="Still working on it..." />
-
-    <h1 id="games" class="text-2xl my-6">Video games</h1>
-    <UnderConstruction msg="Still working on it..." />
-  </p>
+  </div>
 </Layout>
