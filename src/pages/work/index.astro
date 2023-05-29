@@ -15,12 +15,16 @@ interface Tile {
 }
 
 const tileHeaders: Record<TileType, string> = {
-  background: "Background",
-  current: "I'm currently contributing to",
-  past: "I've previously worked on",
-  study: "I'm continuously pursuing knowledge",
-  side: "A few recent projects",
+  background: "My background",
+  current: "Currently contributing to",
+  past: "Previously worked on",
+  study: "Continuously pursuing knowledge",
+  side: "Recent side projects",
 };
+
+const tileSectionIds: Record<TileType, string> = Object.fromEntries(
+  Object.keys(tileHeaders).map((k) => [k as TileType, k])
+) as Record<TileType, string>;
 
 const tiles: Tile[] = [
   {
@@ -171,14 +175,30 @@ const tiles: Tile[] = [
     type: "background",
   },
 ];
+
+const progLangHeader = "Languages in current use";
+const progLangId = "languages";
 ---
 
 <Layout title="Work">
+  <h1 class="text-4xl mb-4">Work</h1>
+  <div class="tabs justify-center">
+    {
+      Object.keys(tileHeaders).map((id) => (
+        <a class="tab" href={`#${id}`}>
+          {tileHeaders[id as TileType]}
+        </a>
+      ))
+    }
+    <a class="tab" href={`#${progLangId}`}>{progLangHeader}</a>
+  </div>
   <div class="flex mb-4 flex-wrap">
     {
       Object.keys(tileHeaders).map((tileType) => (
-        <div class="flex flex-col p-2">
-          <h1 class="text-2xl my-12">{tileHeaders[tileType as TileType]}</h1>
+        <div class="flex flex-col p-2 my-6">
+          <h1 id={tileSectionIds[tileType as TileType]} class="text-2xl my-12">
+            {tileHeaders[tileType as TileType]}
+          </h1>
           <div class="flex mb-4 flex-wrap">
             {tiles
               .filter((t) => t.type === tileType)
@@ -212,12 +232,19 @@ const tiles: Tile[] = [
     }
   </div>
   {
-    import.meta.env.MODE === "development" ? (
-      <p class="text-9xl">
-        Guac will go here but lets not blow up my cheap serverless setup
-      </p>
-    ) : (
-      <CodingWrapped />
+    (
+      <div class="flex flex-col p-2 my-6">
+        <h1 id={progLangId} class="text-2xl my-6">
+          {progLangHeader}
+        </h1>
+        {false ? (
+          <p class="text-9xl">
+            Guac will go here but lets not blow up my cheap serverless setup
+          </p>
+        ) : (
+          <CodingWrapped />
+        )}
+      </div>
     )
   }
 </Layout>
