@@ -1,6 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import PhotoCard from "../../components/PhotoCard.astro";
+import type { CarouselImage } from "../../components/Carousel";
+import Carousel from "../../components/Carousel";
+
+const hanoiImages: CarouselImage[] = [
+  "/work/story/hanoi/1.jpg",
+  "/work/story/hanoi/2.jpg",
+  "/work/story/hanoi/3.jpg",
+].map((url, idx) => ({ url, alt: `hanoi-${idx}` }));
 ---
 
 <Layout title="My story">
@@ -35,7 +43,7 @@ import PhotoCard from "../../components/PhotoCard.astro";
     pictures:
   </p>
   <!-- TODO: make these components -->
-  <div class="flex mb-4 flex-wrap my-6">
+  <div class="flex mb-4 flex-wrap my-6 justify-center">
     <PhotoCard
       title="Freecodecamp meetup Hanoi"
       imgSrc="/work/story/hanoi/1.jpg"
@@ -91,43 +99,43 @@ import PhotoCard from "../../components/PhotoCard.astro";
       in my career. Similarly, my experience working in Berlin and the city's tech
       culture have made a big impact to my personal and professional life.
     </p>
-    <div class="flex mb-4 flex-wrap">
-      <PhotoCard
-        title="Brandenburg Tor at night"
-        imgSrc="/work/story/berlin/1.jpg"
-        imageAlt="brandenburg tor"
-      >
-        <p>The weird and fantastic city of Berlin.</p>
-      </PhotoCard>
-      <PhotoCard
-        title="My first office space in Mindspace, Berlin"
-        imgSrc="/work/story/berlin/2.jpg"
-        imageAlt="profile pic"
-      >
-        <p>
-          Jared Leto is not wrong, the coworking life is much better than
-          cubicles.
-        </p>
-      </PhotoCard>
-      <PhotoCard
-        title="Portfolio shoot with Moonfare"
-        imgSrc="/work/story/berlin/3.jpg"
-        imageAlt="profile pic"
-      >
-        <p>
-          I didn't make the <code>Meet the Team</code> page, but it'll be difficult to top this
-          LinkedIn profile photo.
-        </p>
-      </PhotoCard>
+    <PhotoCard
+      title="Brandenburg Tor at night"
+      imgSrc="/work/story/berlin/1.jpg"
+      imageAlt="brandenburg tor"
+    >
+      <p>The weird and fantastic city of Berlin.</p>
+    </PhotoCard>
+    <PhotoCard
+      title="My first office space in Mindspace, Berlin"
+      imgSrc="/work/story/berlin/2.jpg"
+      imageAlt="profile pic"
+    >
+      <p>
+        Jared Leto is not wrong, the coworking life is much better than
+        cubicles.
+      </p>
+    </PhotoCard>
+    <PhotoCard
+      title="Portfolio shoot with Moonfare"
+      imgSrc="/work/story/berlin/3.jpg"
+      imageAlt="profile pic"
+    >
+      <p>
+        I didn't make the <code>Meet the Team</code> page, but it'll be difficult
+        to top this LinkedIn profile photo.
+      </p>
+    </PhotoCard>
+    <div>
+      <p>
+        At the height of COVID the pandemic, I realized it was time to come back
+        home to Toronto, Canada. I am currently writing the next chapters here.
+      </p>
+      <img
+        class="object-contain my-6 shadow-xl rounded-2xl"
+        src="/work/story/toronto.jpg"
+        alt="Toronto"
+      />
     </div>
-    <p>
-      At the height of COVID the pandemic, I realized it was time to come back
-      home to Toronto, Canada. I am currently writing the next chapters here.
-    </p>
-    <img
-      class="object-contain my-6 shadow-xl rounded-2xl"
-      src="/work/story/toronto.jpg"
-      alt="Toronto"
-    />
   </div>
 </Layout>
