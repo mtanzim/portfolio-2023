@@ -1,14 +1,6 @@
 ---
-import Layout from "../../layouts/Layout.astro";
 import PhotoCard from "../../components/PhotoCard.astro";
-import type { CarouselImage } from "../../components/Carousel";
-import Carousel from "../../components/Carousel";
-
-const hanoiImages: CarouselImage[] = [
-  "/work/story/hanoi/1.jpg",
-  "/work/story/hanoi/2.jpg",
-  "/work/story/hanoi/3.jpg",
-].map((url, idx) => ({ url, alt: `hanoi-${idx}` }));
+import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="My story">
