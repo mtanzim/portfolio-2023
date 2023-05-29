@@ -30,10 +30,10 @@ const TopAlbumImgs: CarouselImage[] = [
   <p class="text-base">
     When not working, a few things I keep busy with are <a
       class="badge badge-primary"
-      href={"/play#music"}>music</a
-    >, <a class="badge badge-secondary" href={"/play#travel"}>travel</a>,
-    fitness, and <a class="badge badge-accent" href={"/play#games"}
-      >video games</a
+      href="#music">music</a
+    >, <a class="badge badge-secondary" href="#travel">travel</a>, fitness, and <a
+      class="badge badge-accent"
+      href="#games">video games</a
     >
 
     <h1 id="music" class="text-2xl my-6">Music</h1>
@@ -47,9 +47,9 @@ const TopAlbumImgs: CarouselImage[] = [
       <Carousel images={TopAlbumImgs} />
     </div>
     <p>
-      However, the convenience of streaming services is unmatched. In addition,
+      However, the convenience of streaming services is unbeatable. In addition,
       it's easy to collect data on yourself with them! For example, following is
-      a glimpse into my affinity towards musical genres from the last few years:
+      a glimpse of my affinity towards musical genres from the last few years:
     </p>
     <div class="my-6 h-1/2 max-w-full">
       <Genres data={json as SpotifyArtists} client:only />
