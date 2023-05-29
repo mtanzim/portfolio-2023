@@ -19,7 +19,7 @@ const tileHeaders: Record<TileType, string> = {
   current: "Currently contributing to",
   past: "Previously worked on",
   study: "Continuously pursuing knowledge",
-  side: "Recent side projects",
+  side: "Highlighted side projects",
 };
 
 const tileSectionIds: Record<TileType, string> = Object.fromEntries(
@@ -237,7 +237,7 @@ const progLangId = "languages";
         <h1 id={progLangId} class="text-2xl my-6">
           {progLangHeader}
         </h1>
-        {false ? (
+        {import.meta.env.MODE === "development" ? (
           <p class="text-9xl">
             Guac will go here but lets not blow up my cheap serverless setup
           </p>
