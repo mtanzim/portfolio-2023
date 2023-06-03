@@ -29,8 +29,7 @@ function shuffle(array: Array<any>) {
   return array;
 }
 
-// TODO: move this to a dynamic location/api
-const topAlbumImgsSeed: CarouselImage[] = [
+const topAlbumSeed: CarouselImage[] = [
   {
     url: "/albums/midnights.jpeg",
     title: "Taylor Swift - Midnights",
@@ -76,7 +75,8 @@ const gameScreensSeed: CarouselImage[] = [
   },
 ].map((item) => ({ ...item, alt: item.title }));
 
-const topAlbumImgs = shuffle(topAlbumImgsSeed.slice()).slice(0, 3);
+// TODO: move these to a dynamic location/api
+const topAlbumImgs = shuffle(topAlbumSeed.slice()).slice(0, 3);
 const gameScreens = shuffle(gameScreensSeed.slice()).slice(0, 3);
 ---
 
@@ -122,7 +122,8 @@ const gameScreens = shuffle(gameScreensSeed.slice()).slice(0, 3);
         I've grown up with video games! The Switch has been the perfect device
         in jumping in here and there to satisfy the gaming itch with a busy
         life. Here are a few top class experiences that have kept me thrilled in
-        the last couple years, with screenshots from my Switch:
+        the last couple years, with screenshots from my Switch. Sorry for the
+        spoilers &#x1F61B
       </p>
       <div class="my-6 h-1/2 max-w-full">
         <Carousel images={gameScreens} />
