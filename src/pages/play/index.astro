@@ -8,8 +8,29 @@ import type { CarouselImage } from "../../components/Carousel";
 import Carousel from "../../components/Carousel";
 import UnderConstruction from "../../components/UnderConstruction.astro";
 
+// Copied, see https://stackoverflow.com/a/2450976/9641551
+function shuffle(array: Array<any>) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
 // TODO: move this to a dynamic location/api
-const TopAlbumImgs: CarouselImage[] = [
+const topAlbumImgsSeed: CarouselImage[] = [
   {
     url: "/albums/midnights.jpeg",
     title: "Taylor Swift - Midnights",
@@ -26,6 +47,37 @@ const TopAlbumImgs: CarouselImage[] = [
     desc: "a wonderful comeback; haunting lyrics and signature catchy riffs",
   },
 ].map((item) => ({ ...item, alt: item.title }));
+
+const gameScreensSeed: CarouselImage[] = [
+  {
+    url: "/game-screens/hk-moth.jpg",
+    title: "Hollow Knight",
+    desc: "One day I will beat this darned moth",
+  },
+  {
+    url: "/game-screens/hk-king.jpg",
+    title: "Hollow Knight",
+    desc: "Look at me, I'm the king now",
+  },
+  {
+    url: "/game-screens/celeste.jpg",
+    title: "Celeste",
+    desc: "Self acceptance, how beautiful",
+  },
+  {
+    url: "/game-screens/celeste-torture.jpg",
+    title: "Celeste",
+    desc: "This is how you reward me after the torture?",
+  },
+  {
+    url: "/game-screens/bowser.jpg",
+    title: "Super Mario Bros U",
+    desc: "Jack Black is just about to break into song",
+  },
+].map((item) => ({ ...item, alt: item.title }));
+
+const topAlbumImgs = shuffle(topAlbumImgsSeed.slice()).slice(0, 3);
+const gameScreens = shuffle(gameScreensSeed.slice()).slice(0, 3);
 ---
 
 <Layout title="Play">
@@ -46,7 +98,7 @@ const TopAlbumImgs: CarouselImage[] = [
         I currently have on repeat:
       </p>
       <div class="my-6 h-1/2 max-w-full">
-        <Carousel images={TopAlbumImgs} />
+        <Carousel images={topAlbumImgs} />
       </div>
       <p>
         However, the convenience of streaming services is unbeatable. In
@@ -64,10 +116,19 @@ const TopAlbumImgs: CarouselImage[] = [
         target="_blank"
         href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
       >.
-      <h1 id="travel" class="text-2xl my-6">Travel</h1>
-      <UnderConstruction />
 
       <h1 id="games" class="text-2xl my-6">Video games</h1>
+      <p class="text-base mt-6">
+        I've grown up with video games! The Switch has been the perfect device
+        in jumping in here and there to satisfy the gaming itch with a busy
+        life. Here are a few top class experiences that have kept me thrilled in
+        the last couple years, with screenshots from my Switch:
+      </p>
+      <div class="my-6 h-1/2 max-w-full">
+        <Carousel images={gameScreens} />
+      </div>
+
+      <h1 id="travel" class="text-2xl my-6">Travel</h1>
       <UnderConstruction />
     </p>
   </div>

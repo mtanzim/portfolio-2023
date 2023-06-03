@@ -24,7 +24,9 @@ export const CarouselImageItem = ({ img }: { img: CarouselImage }) => {
 };
 
 export default function Carousel({ images }: Props) {
-  const len = images.length;
+  if (images.length !== 3) {
+    throw new Error("ugly, please fix");
+  }
   return (
     <div className="carousel carousel-center rounded-box">
       {images.map((img: CarouselImage) => (
