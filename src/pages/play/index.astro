@@ -33,7 +33,7 @@ const topAlbumSeed: CarouselImage[] = [
   {
     url: "/albums/midnights.jpeg",
     title: "Taylor Swift - Midnights",
-    desc: "addictive to say the least; beautiful production and vocal performance",
+    desc: "Addictive to say the least, beautiful production and vocal performance",
   },
   {
     url: "/albums/call-me.jpeg",
@@ -43,7 +43,7 @@ const topAlbumSeed: CarouselImage[] = [
   {
     url: "/albums/asphalt-meadows.webp",
     title: "Death Cab for Cutie - Asphalt Meadows",
-    desc: "a wonderful comeback; haunting lyrics and signature catchy riffs",
+    desc: "A wonderful comeback, haunting lyrics and signature catchy riffs",
   },
 ].map((item) => ({ ...item, alt: item.title }));
 
@@ -116,7 +116,8 @@ const gameScreens = shuffle(gameScreensSeed.slice()).slice(0, 3);
         target="_blank"
         href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
       >.
-
+      <h1 id="travel" class="text-2xl my-6">Travel</h1>
+      <UnderConstruction />
       <h1 id="games" class="text-2xl my-6">Video games</h1>
       <p class="text-base mt-6">
         I've grown up with video games! The Switch has been the perfect device
@@ -128,9 +129,6 @@ const gameScreens = shuffle(gameScreensSeed.slice()).slice(0, 3);
       <div class="my-6 h-1/2 max-w-full">
         <Carousel images={gameScreens} />
       </div>
-
-      <h1 id="travel" class="text-2xl my-6">Travel</h1>
-      <UnderConstruction />
     </p>
   </div>
 </Layout>
