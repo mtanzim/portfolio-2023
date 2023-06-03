@@ -12,18 +12,17 @@ import UnderConstruction from "../../components/UnderConstruction.astro";
 const TopAlbumImgs: CarouselImage[] = [
   {
     url: "/albums/midnights.jpeg",
-    alt: "Taylor Swift - Midnights",
+    title: "Taylor Swift - Midnights",
   },
   {
     url: "/albums/call-me.jpeg",
-    alt: "Tyler the Creator - Call me if you get lost",
+    title: "Tyler the Creator - Call Me If You Get Lost",
   },
-
   {
     url: "/albums/asphalt-meadows.webp",
-    alt: "Death Cab for Cutie - Asphalt Meadows",
+    title: "Death Cab for Cutie - Asphalt Meadows",
   },
-];
+].map((item) => ({ ...item, alt: item.title }));
 ---
 
 <Layout title="Play">
