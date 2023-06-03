@@ -17,7 +17,7 @@ export const CarouselImageItem = ({ img }: { img: CarouselImage }) => {
       <div className="divider"></div>
       <div>
         <p className="ml-4 text-base">{img.title}</p>
-        <p className="ml-8 text-xs">{img.desc ?? ""}</p>
+        <p className="ml-4 text-xs">{img.desc ?? ""}</p>
       </div>
     </div>
   );
