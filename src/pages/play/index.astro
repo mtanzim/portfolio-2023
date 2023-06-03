@@ -8,22 +8,84 @@ import type { CarouselImage } from "../../components/Carousel";
 import Carousel from "../../components/Carousel";
 import UnderConstruction from "../../components/UnderConstruction.astro";
 
-// TODO: move this to a dynamic location/api
-const TopAlbumImgs: CarouselImage[] = [
+// Copied, see https://stackoverflow.com/a/2450976/9641551
+function shuffle<T>(array: T[]): T[] {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
+const topAlbumSeed: CarouselImage[] = [
   {
     url: "/albums/midnights.jpeg",
-    alt: "Taylor Swift - Midnights",
+    title: "Taylor Swift - Midnights",
+    desc: "Addictive to say the least, beautiful production and vocal performance",
   },
   {
     url: "/albums/call-me.jpeg",
-    alt: "Tyler the Creator - Call me if you get lost",
+    title: "Tyler the Creator - Call Me If You Get Lost",
+    desc: "Tyler is braggadocious without remorse, but with near perfect delivery",
   },
-
   {
     url: "/albums/asphalt-meadows.webp",
-    alt: "Death Cab for Cutie - Asphalt Meadows",
+    title: "Death Cab for Cutie - Asphalt Meadows",
+    desc: "A wonderful comeback, haunting lyrics and signature catchy riffs",
   },
-];
+].map((item) => ({ ...item, alt: item.title }));
+
+const gameScreensSeed: CarouselImage[] = [
+  {
+    url: "/game-screens/hk-moth.jpg",
+    title: "Hollow Knight",
+    desc: "One day I will beat this darned moth",
+  },
+  {
+    url: "/game-screens/hk-king.jpg",
+    title: "Hollow Knight",
+    desc: "Look at me, I'm the king now",
+  },
+  {
+    url: "/game-screens/celeste.jpg",
+    title: "Celeste",
+    desc: "Self acceptance, how beautiful",
+  },
+  {
+    url: "/game-screens/celeste-torture.jpg",
+    title: "Celeste",
+    desc: "This is how you reward me after the torture?",
+  },
+  {
+    url: "/game-screens/bowser.jpg",
+    title: "Super Mario Bros U",
+    desc: "Jack Black is just about to break into song",
+  },
+].map((item) => ({ ...item, alt: item.title }));
+
+// TODO: move these to a dynamic location/api
+const len = 3;
+const topAlbumImgs = shuffle<CarouselImage>(topAlbumSeed.slice()).slice(0, len);
+const gameScreens = shuffle<CarouselImage>(gameScreensSeed.slice()).slice(
+  0,
+  len
+);
+
+const gameTitleSet = new Set<string>();
+gameScreens.forEach((g) => gameTitleSet.add(g.title));
+const gameTitles = Array.from(gameTitleSet).join(", ");
 ---
 
 <Layout title="Play">
@@ -44,7 +106,7 @@ const TopAlbumImgs: CarouselImage[] = [
         I currently have on repeat:
       </p>
       <div class="my-6 h-1/2 max-w-full">
-        <Carousel images={TopAlbumImgs} />
+        <Carousel images={topAlbumImgs} />
       </div>
       <p>
         However, the convenience of streaming services is unbeatable. In
@@ -64,9 +126,29 @@ const TopAlbumImgs: CarouselImage[] = [
       >.
       <h1 id="travel" class="text-2xl my-6">Travel</h1>
       <UnderConstruction />
-
       <h1 id="games" class="text-2xl my-6">Video games</h1>
-      <UnderConstruction />
+      <p class="text-base mt-6">
+        I've grown up with video games! The Switch has been the perfect device
+        in jumping in here and there to satisfy the gaming itch with a busy
+        life. Here are a few top class experiences that have kept me thrilled in
+        the last couple years, with screenshots from my Switch. Click on the
+        disclaimer for the screenshots.
+      </p>
+      <div
+        tabindex="0"
+        class="collapse collapse-plus border border-base-300 bg-base-200"
+      >
+        <input type="checkbox" />
+
+        <div class="collapse-title text-xl font-medium">
+          I'm okay with spoilers for {gameTitles}
+        </div>
+        <div class="collapse-content">
+          <div class="my-6 h-1/2 max-w-full">
+            <Carousel images={gameScreens} />
+          </div>
+        </div>
+      </div>
     </p>
   </div>
 </Layout>
