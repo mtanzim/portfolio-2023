@@ -112,10 +112,10 @@ const tiles: Tile[] = [
     desc: "See what you've been listening to",
     imageSrc: "/work/spotify-side.png",
     links: [
-      "https://github.com/mtanzim/spotify-data",
       "https://spotify-personal-ybmvkz22xq-uc.a.run.app",
+      "https://github.com/mtanzim/spotify-data",
     ],
-    linkTitles: ["Code", "App"],
+    linkTitles: ["App", "Code"],
 
     type: "side",
   },
@@ -125,10 +125,10 @@ const tiles: Tile[] = [
     desc: "Visualize progress from Strong app csvs",
     imageSrc: "/work/muscle.png",
     links: [
-      "https://github.com/mtanzim/vis-strong-go",
       "https://vis-strong-go-ghfzoy3ovq-ue.a.run.app/",
+      "https://github.com/mtanzim/vis-strong-go",
     ],
-    linkTitles: ["Code", "App"],
+    linkTitles: ["App", "Code"],
     type: "side",
   },
   {
@@ -205,11 +205,16 @@ const progLangId = "languages";
               .map((tile) => (
                 <div class="card flex-initial w-64 bg-base-400 shadow-xl m-4">
                   <figure>
-                    <img
-                      class="object-cover h-36 w-36"
-                      src={tile.imageSrc}
-                      alt={tile.company}
-                    />
+                    <a
+                      target={tile.internal ? "" : "_blank"}
+                      href={tile.links[0] ?? "/"}
+                    >
+                      <img
+                        class="object-cover h-36 w-36"
+                        src={tile.imageSrc}
+                        alt={tile.company}
+                      />
+                    </a>
                   </figure>
                   <div class="card-body">
                     <h2 class="card-title">{tile.title}</h2>
@@ -217,7 +222,11 @@ const progLangId = "languages";
                     <div class="card-actions justify-end">
                       {tile.links.map((link, idx) => (
                         <a target={tile.internal ? "" : "_blank"} href={link}>
-                          <div class="badge badge-secondary badge-lg">
+                          <div
+                            class={`badge badge-${
+                              idx === 0 ? "secondary" : "info"
+                            } badge-lg`}
+                          >
                             {tile.linkTitles?.[idx] || "Visit"}
                           </div>
                         </a>
