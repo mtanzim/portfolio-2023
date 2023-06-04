@@ -20,6 +20,24 @@ const asiaImages: CarouselImage[] = [
     desc: "I really have to thank the Relotalent team for giving me a shot. All I had to do was keenly listen to the issues of Italian politics. Thankfully my Python and SQL skills from a past life came clutch.",
   },
 ].map((img) => ({ ...img, alt: img.title }));
+
+const berlinImages: CarouselImage[] = [
+  {
+    url: "/work/story/berlin/3.jpg",
+    title: "Portfolio shoot with Moonfare",
+    desc: `I didn't make the "Meet the Team" page, but it'll be difficult to top this LinkedIn profile photo.`,
+  },
+  {
+    url: "/work/story/berlin/1.jpg",
+    title: "Brandenburg Tor at night",
+    desc: "The weird and fantastic city of Berlin.",
+  },
+  {
+    url: "/work/story/berlin/2.jpg",
+    title: "My first office space in Mindspace, Berlin",
+    desc: "Jared Leto is not wrong, the coworking life is much better than cubicles.",
+  },
+].map((img) => ({ ...img, alt: img.title }));
 ---
 
 <Layout title="My story">
@@ -56,7 +74,7 @@ const asiaImages: CarouselImage[] = [
     </p>
     <!-- TODO: make these components -->
 
-    <div class="my-8">
+    <div class="my-8 ">
       <Carousel customImgClasses="h-96 object-contain" images={asiaImages} />
     </div>
 
@@ -83,43 +101,22 @@ const asiaImages: CarouselImage[] = [
       in my career. Similarly, my experience working in Berlin and the city's tech
       culture have made a big impact to my personal and professional life.
     </p>
-    <PhotoCard
-      title="Brandenburg Tor at night"
-      imgSrc="/work/story/berlin/1.jpg"
-      imageAlt="brandenburg tor"
-    >
-      <p>The weird and fantastic city of Berlin.</p>
-    </PhotoCard>
-    <PhotoCard
-      title="My first office space in Mindspace, Berlin"
-      imgSrc="/work/story/berlin/2.jpg"
-      imageAlt="profile pic"
-    >
-      <p>
-        Jared Leto is not wrong, the coworking life is much better than
-        cubicles.
-      </p>
-    </PhotoCard>
-    <PhotoCard
-      title="Portfolio shoot with Moonfare"
-      imgSrc="/work/story/berlin/3.jpg"
-      imageAlt="profile pic"
-    >
-      <p>
-        I didn't make the <code>Meet the Team</code> page, but it'll be difficult
-        to top this LinkedIn profile photo.
-      </p>
-    </PhotoCard>
-    <div>
-      <p>
-        At the height of COVID the pandemic, I realized it was time to come back
-        home to Toronto, Canada. I am currently writing the next chapters here.
-      </p>
-      <img
-        class="object-contain my-6 shadow-xl rounded-2xl"
-        src="/work/story/toronto.jpg"
-        alt="Toronto"
+    <div class="my-8">
+      <Carousel
+        customImgClasses="h-96 object-contain p-2"
+        images={berlinImages}
       />
     </div>
+  </div>
+  <div>
+    <p>
+      At the height of COVID the pandemic, I realized it was time to come back
+      home to Toronto, Canada. I am currently writing the next chapters here.
+    </p>
+    <img
+      class="object-contain my-6 shadow-xl rounded-2xl"
+      src="/work/story/toronto.jpg"
+      alt="Toronto"
+    />
   </div>
 </Layout>
