@@ -1,6 +1,25 @@
 ---
 import PhotoCard from "../../components/PhotoCard.astro";
 import Layout from "../../layouts/Layout.astro";
+import Carousel, { CarouselImage } from "../../components/Carousel";
+
+const asiaImages: CarouselImage[] = [
+  {
+    url: "/work/story/hanoi/1.jpg",
+    title: "Freecodecamp meetup Hanoi",
+    desc: "Google translate is great at translating documentation! I had worked on a blog project with these guys, and it helped me realize how little React and Javascript I knew at the time.",
+  },
+  {
+    url: "/work/story/hanoi/2.jpg",
+    title: `Remote "Work" from Pai`,
+    desc: "I was probably building my very first full stack SPA: a recipe app. The Roost stand and the Dell XPS took me far.",
+  },
+  {
+    url: "/work/story/hanoi/3.jpg",
+    title: `Dinner with the Relotalent team and friends`,
+    desc: "I really have to thank the Relotalent team for giving me a shot. All I had to do was keenly listen to the issues of Italian politics. Thankfully my Python and SQL skills from a past life came clutch.",
+  },
+].map((img) => ({ ...img, alt: img.title }));
 ---
 
 <Layout title="My story">
@@ -36,38 +55,11 @@ import Layout from "../../layouts/Layout.astro";
       a few pictures:
     </p>
     <!-- TODO: make these components -->
-    <PhotoCard
-      title="Freecodecamp meetup Hanoi"
-      imgSrc="/work/story/hanoi/1.jpg"
-      imageAlt="fcc hanoi"
-    >
-      <p>
-        Google translate is great at translating documentation! I had worked on
-        a blog project with these guys, and it helped me realize how little
-        React and Javascript I knew at the time.
-      </p>
-    </PhotoCard>
-    <PhotoCard
-      title='Remote "Work" from Pai'
-      imgSrc="/work/story/hanoi/2.jpg"
-      imageAlt="pai"
-    >
-      <p>
-        I was probably building my very first full stack SPA: a recipe app. The
-        roost stand and the Dell XPS took me far.
-      </p>
-    </PhotoCard>
-    <PhotoCard
-      title="Dinner with the Relotalent team and friends"
-      imgSrc="/work/story/hanoi/3.jpg"
-      imageAlt="hanoi dinner"
-    >
-      <p>
-        I really have to thank the Relotalent team for giving me a shot. All I
-        had to do was keenly listen to the issues of Italian politics.
-        Thankfully my Python and SQL skills from a past life came clutch.
-      </p>
-    </PhotoCard>
+
+    <div class="my-8">
+      <Carousel customImgClasses="h-96 object-contain" images={asiaImages} />
+    </div>
+
     <p>
       After about a year in Asia, I decided I'd move to Berlin. This was the
       first time I realized how difficult

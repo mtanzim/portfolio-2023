@@ -1,4 +1,4 @@
-import React from "react";
+import { HTMLProps } from "react";
 
 export type CarouselImage = {
   url: string;
@@ -8,12 +8,19 @@ export type CarouselImage = {
 };
 type Props = {
   images: CarouselImage[];
+  customImgClasses?: HTMLProps<HTMLElement>["className"];
 };
 
-export const CarouselImageItem = ({ img }: { img: CarouselImage }) => {
+export const CarouselImageItem = ({
+  img,
+  customImgClasses,
+}: {
+  img: CarouselImage;
+  customImgClasses?: HTMLProps<HTMLElement>["className"];
+}) => {
   return (
     <div className="flex flex-col">
-      <img src={img.url} alt={img.alt} />
+      <img className={customImgClasses ?? ""} src={img.url} alt={img.alt} />
       <div className="divider"></div>
       <div>
         <p className="ml-4 text-base">{img.title}</p>
@@ -23,7 +30,7 @@ export const CarouselImageItem = ({ img }: { img: CarouselImage }) => {
   );
 };
 
-export default function Carousel({ images }: Props) {
+export default function Carousel({ images, customImgClasses }: Props) {
   if (images.length !== 3) {
     throw new Error("ugly, please fix");
   }
@@ -31,7 +38,7 @@ export default function Carousel({ images }: Props) {
     <div className="carousel carousel-center rounded-box">
       {images.map((img: CarouselImage) => (
         <div key={img.alt} className={`carousel-item w-1/3`}>
-          <CarouselImageItem img={img} />
+          <CarouselImageItem customImgClasses={customImgClasses} img={img} />
         </div>
       ))}
     </div>
