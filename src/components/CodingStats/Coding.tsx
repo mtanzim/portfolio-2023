@@ -6,7 +6,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { Pie } from "react-chartjs-2";
-import colors from "./colors.json";
+import colors from "../../data/colors.json";
 import { useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
