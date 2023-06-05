@@ -47,7 +47,7 @@ const berlinImages: CarouselImage[] = [
       I stumbled on web development by coincidence. I was chatting with a
       stranger at a party, and they mentioned they were going through the
       <a
-        class="text-blue-600 visited:text-purple-600"
+        class="badge badge-info"
         href="https://www.freecodecamp.org/"
         target="_blank">freecodecamp</a
       > curriculum to make a career switch. At the time, I was working as a product
@@ -72,17 +72,19 @@ const berlinImages: CarouselImage[] = [
       My initial projects' <code>Heroku</code> deploys are now dead, but here are
       a few pictures:
     </p>
-    <!-- TODO: make these components -->
 
-    <div class="my-8">
-      <Carousel customImgClasses="h-96 object-contain" images={asiaImages} />
+    <div class="my-6 shadow-xl rounded-2xl bg-base-200 p-8">
+      <Carousel
+        customImgClasses="h-96 w-100 object-contain"
+        images={asiaImages}
+      />
     </div>
 
     <p>
       After about a year in Asia, I decided I'd move to Berlin. This was the
       first time I realized how difficult
       <a
-        class="text-blue-600 visited:text-purple-600"
+        class="badge badge-info"
         href="https://www.crackingthecodinginterview.com/"
         target="_blank">cracking the coding intreview</a
       >
@@ -93,7 +95,7 @@ const berlinImages: CarouselImage[] = [
       downtime at work to support my thirst for deeper knowlegde. I really have to
       thank
       <a
-        class="text-blue-600 visited:text-purple-600"
+        class="badge badge-info"
         href="https://www.coursera.org/"
         target="_blank">Coursera</a
       > for giving me access to university level courses for free. The knowledge
@@ -101,9 +103,9 @@ const berlinImages: CarouselImage[] = [
       in my career. Similarly, my experience working in Berlin and the city's tech
       culture have made a big impact to my personal and professional life.
     </p>
-    <div class="my-8">
+    <div class="my-6 shadow-xl rounded-2xl bg-base-200 p-8">
       <Carousel
-        customImgClasses="h-96 object-contain p-2"
+        customImgClasses="h-96 w-100 object-contain"
         images={berlinImages}
       />
     </div>
@@ -114,7 +116,7 @@ const berlinImages: CarouselImage[] = [
       home to Toronto, Canada. I am currently writing the next chapters here.
     </p>
     <img
-      class="object-contain my-6 shadow-xl rounded-2xl"
+      class="object-contain my-6 shadow-xl rounded-2xl bg-base-300 p-4"
       src="/work/story/toronto.jpg"
       alt="Toronto"
     />
