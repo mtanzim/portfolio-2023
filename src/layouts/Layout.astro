@@ -24,7 +24,14 @@ const { title, hideHeader } = Astro.props;
   <body>
     <Navigation />
     <div class="container mx-auto px-4 mb-24">
-      {!hideHeader && <h1 class="text-4xl mb-4">{title}</h1>}
+      {
+        !hideHeader && (
+          <>
+            <h1 class="text-4xl mb-4">{title}</h1>
+            <div class="divider" />
+          </>
+        )
+      }
       <div class="mb-4 justify-center">
         <slot />
       </div>
