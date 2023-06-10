@@ -181,16 +181,15 @@ const progLangId = "languages";
 ---
 
 <Layout title="Work">
-  <h1 class="text-4xl mb-4">Work</h1>
-  <div class="tabs justify-center">
+  <div class="tabs tabs-boxed justify-center">
     {
       Object.keys(tileHeaders).map((id) => (
-        <a class="tab" href={`#${id}`}>
+        <a class="tab mx-2" href={`#${id}`}>
           {tileHeaders[id as TileType]}
         </a>
       ))
     }
-    <a class="tab" href={`#${progLangId}`}>{progLangHeader}</a>
+    <a class="mx-2 tab" href={`#${progLangId}`}>{progLangHeader}</a>
   </div>
   <div class="flex mb-4 flex-wrap justify-center">
     {
@@ -199,11 +198,11 @@ const progLangId = "languages";
           <h1 id={tileSectionIds[tileType as TileType]} class="text-2xl my-12">
             {tileHeaders[tileType as TileType]}
           </h1>
-          <div class="flex mb-4 flex-wrap">
+          <div class="mb-4 flex flex-wrap mx-auto">
             {tiles
               .filter((t) => t.type === tileType)
               .map((tile) => (
-                <div class="card flex-initial w-64 bg-base-400 shadow-xl m-4">
+                <div class="card flex-initial w-64 bg-base-400 shadow-xl m-4 mx-auto">
                   <figure>
                     <a
                       target={tile.internal ? "" : "_blank"}
@@ -239,23 +238,21 @@ const progLangId = "languages";
         </div>
       ))
     }
-  </div>
-  {
-    (
-      <div class="flex mb-4 flex-wrap justify-center">
+    {
+      (
         <div class="flex flex-col p-2 my-6">
-          <h1 id={progLangId} class="text-2xl my-6">
+          <h1 id={progLangId} class="text-2xl my-12">
             {progLangHeader}
           </h1>
           {import.meta.env.MODE === "development" ? (
-            <p class="text-9xl">
+            <p class="text-6xl">
               Guac will go here but lets not blow up my cheap serverless setup
             </p>
           ) : (
             <CodingWrapped />
           )}
         </div>
-      </div>
-    )
-  }
+      )
+    }
+  </div>
 </Layout>
