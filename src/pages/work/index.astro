@@ -181,8 +181,7 @@ const progLangId = "languages";
 ---
 
 <Layout title="Work">
-  <h1 class="text-4xl mb-4">Work</h1>
-  <div class="tabs justify-center">
+  <div class="tabs sm:justify-center">
     {
       Object.keys(tileHeaders).map((id) => (
         <a class="tab" href={`#${id}`}>
@@ -192,14 +191,14 @@ const progLangId = "languages";
     }
     <a class="tab" href={`#${progLangId}`}>{progLangHeader}</a>
   </div>
-  <div class="flex mb-4 flex-wrap justify-center">
+  <div class="md:flex mb-4 flex-wrap justify-center">
     {
       Object.keys(tileHeaders).map((tileType) => (
         <div class="flex flex-col p-2 my-6">
           <h1 id={tileSectionIds[tileType as TileType]} class="text-2xl my-12">
             {tileHeaders[tileType as TileType]}
           </h1>
-          <div class="flex mb-4 flex-wrap">
+          <div class="mb-4 md:flex md:flex-wrap mx-auto">
             {tiles
               .filter((t) => t.type === tileType)
               .map((tile) => (
