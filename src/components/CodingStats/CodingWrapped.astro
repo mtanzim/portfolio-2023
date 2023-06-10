@@ -62,17 +62,25 @@ try {
 
 {
   dataSet && (
-    <div class="text-center">
-      <div class="md:w-96 py-4 bg-base-400 m-4">
+    <div class="text-center shadow-xl rounded-2xl bg-base-200 p-4">
+      <div class="md:w-96 py-4  my-4 mx-auto">
         <Coding client:visible dataSet={dataSet} topN={7} />
       </div>
-      <small >
+      <small>
         Powered by{" "}
-        <a class="badge badge-primary" target="_blank" href="https://wakatime.com/">
+        <a
+          class="badge badge-primary"
+          target="_blank"
+          href="https://wakatime.com/"
+        >
           Wakatime
         </a>
         and
-        <a class="badge badge-info" href="https://github.com/mtanzim/guac" target="_blank">
+        <a
+          class="badge badge-info"
+          href="https://github.com/mtanzim/guac"
+          target="_blank"
+        >
           Guac
         </a>
       </small>
