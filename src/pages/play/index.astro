@@ -7,7 +7,7 @@ import type { SpotifyArtists } from "../../types/spotify-artists";
 import type { CarouselImage } from "../../components/Carousel";
 import Carousel from "../../components/Carousel";
 import UnderConstruction from "../../components/UnderConstruction.astro";
-import FullCarousel from "../../components/FullCarousel";
+import FullCarousel, { FullCarouselImage } from "../../components/FullCarousel";
 
 // Copied, see https://stackoverflow.com/a/2450976/9641551
 function shuffle<T>(array: T[]): T[] {
@@ -89,7 +89,7 @@ gameScreens.forEach((g) => gameTitleSet.add(g.title));
 const gameTitles = Array.from(gameTitleSet).join(", ");
 
 // TODO: move these to a CDN?
-const travelImages = [
+const travelImages: FullCarouselImage[] = [
   "/travel/canyonlands.jpg",
   "/travel/delicate-arch.jpg",
   "/travel/lisbon-street.jpg",
@@ -98,7 +98,11 @@ const travelImages = [
   "/travel/morocco-rugs.jpg",
   "/travel/zion-road.jpg",
   "/travel/zion-valley.jpg",
-];
+].map((url) => ({
+  title: "lorem ipsum",
+  description: "longer lorem",
+  url,
+}));
 ---
 
 <Layout title="Play">
@@ -137,7 +141,10 @@ const travelImages = [
       href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
     >.
     <h1 id="travel" class="text-2xl my-6">Travel</h1>
-    <FullCarousel images={travelImages} />
+    <p class="text-base mt-6">
+      A few of my recent favorite travel photos are below.
+    </p>
+    <FullCarousel sectionPrefix="travel" images={travelImages} />
     <h1 id="games" class="text-2xl my-6">Video games</h1>
     <p class="text-base mt-6">
       I've grown up with video games! The Switch has been the perfect device in

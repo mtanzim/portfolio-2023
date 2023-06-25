@@ -1,25 +1,29 @@
-type Props = {
-  images: string[];
+export type FullCarouselImage = {
+  url: string;
+  title: string;
+  description?: string;
 };
-export default function FullCarousel({ images }: Props) {
+
+type Props = {
+  images: FullCarouselImage[];
+  sectionPrefix: string;
+};
+export default function FullCarousel({ images, sectionPrefix }: Props) {
   function genSlideName(idx: number) {
-    return `slide-${idx + 1}`;
+    return `${sectionPrefix}-slide-${idx + 1}`;
   }
   return (
     <>
-      <div className="carousel w-full h-[512px]">
-        {images.map((imgLink, idx) => (
-          <div id={genSlideName(idx)} className="carousel-item relative w-full">
-            <img src={imgLink} className="w-full h-full object-contain" />
+      <div className="carousel w-full h-[768px]">
+        {images.map((image, idx) => (
+          <div id={genSlideName(idx)} className="carousel-item w-full h-full">
+            <img
+              src={image.url}
+              alt={image.title}
+              className="w-full object-contain py-8"
+            />
           </div>
         ))}
-        <div className="flex justify-center w-full py-2 gap-2">
-          {images.map((_, idx) => (
-            <a href={`#${genSlideName(idx)}`} className="btn btn-xs">
-              1
-            </a>
-          ))}
-        </div>
       </div>
       <div className="flex justify-center w-full py-2 gap-2">
         {images.map((_, idx) => (
