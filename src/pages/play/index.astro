@@ -7,6 +7,7 @@ import type { SpotifyArtists } from "../../types/spotify-artists";
 import type { CarouselImage } from "../../components/Carousel";
 import Carousel from "../../components/Carousel";
 import UnderConstruction from "../../components/UnderConstruction.astro";
+import FullCarousel from "../../components/FullCarousel";
 
 // Copied, see https://stackoverflow.com/a/2450976/9641551
 function shuffle<T>(array: T[]): T[] {
@@ -86,67 +87,79 @@ const gameScreens = shuffle<CarouselImage>(gameScreensSeed.slice()).slice(
 const gameTitleSet = new Set<string>();
 gameScreens.forEach((g) => gameTitleSet.add(g.title));
 const gameTitles = Array.from(gameTitleSet).join(", ");
+
+// TODO: move these to a CDN?
+const travelImages = [
+  "/travel/canyonlands.jpg",
+  "/travel/delicate-arch.jpg",
+  "/travel/lisbon-street.jpg",
+  "/travel/lisbon-tram.jpg",
+  "/travel/marrakech-street.jpg",
+  "/travel/morocco-rugs.jpg",
+  "/travel/zion-road.jpg",
+  "/travel/zion-valley.jpg",
+];
 ---
 
 <Layout title="Play">
-    <p class="text-base">
-      My interests outside work include <a
-        class="badge badge-primary"
-        href="#music">music</a
-      >, <a class="badge badge-secondary" href="#travel">travel</a>, fitness,
-      and <a class="badge badge-info" href="#games">video games</a>
+  <p class="text-base">
+    My interests outside work include <a
+      class="badge badge-primary"
+      href="#music">music</a
+    >, <a class="badge badge-secondary" href="#travel">travel</a>, fitness, and <a
+      class="badge badge-info"
+      href="#games">video games</a
+    >
 
-      <h1 id="music" class="text-2xl my-6">Music</h1>
-      <p class="text-base mt-6">
-        I've always loved listening to music. Recently, I've started collecting
-        vinyls and CDs. Vinyls are a magical experience, and the sound quality
-        of CDs paired with a good system is hard to match. Here are a few albums
-        I currently have on repeat:
-      </p>
-      <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
-        <Carousel images={topAlbumImgs} />
-      </div>
-      <p>
-        However, the convenience of streaming services is unbeatable. In
-        addition, it's easy to collect data on yourself with them! For example,
-        following is a glimpse of my affinity towards musical genres from the
-        last few years:
-      </p>
-      <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
-        <Genres data={json as SpotifyArtists} client:only />
-      </div>
-
-      This is based on my data on Spotify and you can generate a similar one
-      through my <a
-        class="badge badge-secondary"
-        target="_blank"
-        href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
-      >.
-      <h1 id="travel" class="text-2xl my-6">Travel</h1>
-      <UnderConstruction />
-      <h1 id="games" class="text-2xl my-6">Video games</h1>
-      <p class="text-base mt-6">
-        I've grown up with video games! The Switch has been the perfect device
-        in jumping in here and there to satisfy the gaming itch with a busy
-        life. Here are a few top class experiences that have kept me thrilled in
-        the last couple years, with screenshots from my Switch. Click on the
-        disclaimer for the screenshots.
-      </p>
-      <div
-        tabindex="0"
-        class="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
-      >
-        <input type="checkbox" />
-
-        <div class="collapse-title text-xl font-medium">
-          I'm okay with spoilers for {gameTitles}
-        </div>
-        <div class="collapse-content">
-          <div class="my-6 h-1/2 max-w-full">
-            <Carousel images={gameScreens} />
-          </div>
-        </div>
-      </div>
+    <h1 id="music" class="text-2xl my-6">Music</h1>
+    <p class="text-base mt-6">
+      I've always loved listening to music. Recently, I've started collecting
+      vinyls and CDs. Vinyls are a magical experience, and the sound quality of
+      CDs paired with a good system is hard to match. Here are a few albums I
+      currently have on repeat:
     </p>
-  </div>
+    <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
+      <Carousel images={topAlbumImgs} />
+    </div>
+    <p>
+      However, the convenience of streaming services is unbeatable. In addition,
+      it's easy to collect data on yourself with them! For example, following is
+      a glimpse of my affinity towards musical genres from the last few years:
+    </p>
+    <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
+      <Genres data={json as SpotifyArtists} client:only />
+    </div>
+
+    This is based on my data on Spotify and you can generate a similar one
+    through my <a
+      class="badge badge-secondary"
+      target="_blank"
+      href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
+    >.
+    <h1 id="travel" class="text-2xl my-6">Travel</h1>
+    <FullCarousel images={travelImages} />
+    <h1 id="games" class="text-2xl my-6">Video games</h1>
+    <p class="text-base mt-6">
+      I've grown up with video games! The Switch has been the perfect device in
+      jumping in here and there to satisfy the gaming itch with a busy life.
+      Here are a few top class experiences that have kept me thrilled in the
+      last couple years, with screenshots from my Switch. Click on the
+      disclaimer for the screenshots.
+    </p>
+    <div
+      tabindex="0"
+      class="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
+    >
+      <input type="checkbox" />
+
+      <div class="collapse-title text-xl font-medium">
+        I'm okay with spoilers for {gameTitles}
+      </div>
+      <div class="collapse-content">
+        <div class="my-6 h-1/2 max-w-full">
+          <Carousel images={gameScreens} />
+        </div>
+      </div>
+    </div>
+  </p>
 </Layout>
