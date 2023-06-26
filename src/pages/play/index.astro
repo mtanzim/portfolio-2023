@@ -10,6 +10,7 @@ import UnderConstruction from "../../components/UnderConstruction.astro";
 import FullCarousel, { FullCarouselImage } from "../../components/FullCarousel";
 
 // Copied, see https://stackoverflow.com/a/2450976/9641551
+// warning: mutates
 function shuffle<T>(array: T[]): T[] {
   let currentIndex = array.length,
     randomIndex;
@@ -88,21 +89,24 @@ const gameTitleSet = new Set<string>();
 gameScreens.forEach((g) => gameTitleSet.add(g.title));
 const gameTitles = Array.from(gameTitleSet).join(", ");
 
-// TODO: move these to a CDN?
+// TODO: move these to a dynamic location/api
 const travelImages: FullCarouselImage[] = [
-  "/travel/canyonlands.jpg",
-  "/travel/delicate-arch.jpg",
-  "/travel/lisbon-street.jpg",
-  "/travel/lisbon-tram.jpg",
-  "/travel/marrakech-street.jpg",
-  "/travel/morocco-rugs.jpg",
-  "/travel/zion-road.jpg",
-  "/travel/zion-valley.jpg",
-].map((url) => ({
-  title: "lorem ipsum",
-  description: "longer lorem",
+  ["/travel/canyonlands.jpg", "Canyonlands NP, Utah"],
+  ["/travel/delicate-arch.jpg", "Delicate Arches trail in Arches NP, Utah"],
+  [
+    "/travel/lisbon-street.jpg",
+    "Few more minutes to the ocean, Lisbon, Portugal",
+  ],
+  ["/travel/lisbon-tram.jpg", "A classic tram, Lisbon, Portugal"],
+  ["/travel/marrakech-street.jpg", "Pedestrians, Marrakech, Morocco"],
+  ["/travel/morocco-rugs.jpg", "Rugs, Marrakech, Morocco"],
+  ["/travel/zion-valley.jpg", "An epic valley, Zion NP, Utah"],
+].map(([url, title], _) => ({
+  title,
   url,
 }));
+
+const topTravelImages = shuffle(travelImages.slice()).slice(0, 5);
 ---
 
 <Layout title="Play">
@@ -142,9 +146,10 @@ const travelImages: FullCarouselImage[] = [
     >.
     <h1 id="travel" class="text-2xl my-6">Travel</h1>
     <p class="text-base mt-6">
-      A few of my recent favorite travel photos are below.
+      I thoroughly enjoy travel, and by consequence: photography. Following are
+      a few of my favourite photos from recent trips.
     </p>
-    <FullCarousel sectionPrefix="travel" images={travelImages} />
+    <FullCarousel sectionPrefix="travel" images={topTravelImages} />
     <h1 id="games" class="text-2xl my-6">Video games</h1>
     <p class="text-base mt-6">
       I've grown up with video games! The Switch has been the perfect device in
