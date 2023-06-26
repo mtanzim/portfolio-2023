@@ -7,8 +7,10 @@ import type { SpotifyArtists } from "../../types/spotify-artists";
 import type { CarouselImage } from "../../components/Carousel";
 import Carousel from "../../components/Carousel";
 import UnderConstruction from "../../components/UnderConstruction.astro";
+import FullCarousel, { FullCarouselImage } from "../../components/FullCarousel";
 
 // Copied, see https://stackoverflow.com/a/2450976/9641551
+// warning: mutates
 function shuffle<T>(array: T[]): T[] {
   let currentIndex = array.length,
     randomIndex;
@@ -33,17 +35,46 @@ const topAlbumSeed: CarouselImage[] = [
   {
     url: "/albums/midnights.jpeg",
     title: "Taylor Swift - Midnights",
-    desc: "Addictive to say the least, beautiful production and vocal performance",
   },
   {
     url: "/albums/call-me.jpeg",
     title: "Tyler the Creator - Call Me If You Get Lost",
-    desc: "Tyler is braggadocious without remorse, but with near perfect delivery",
   },
   {
     url: "/albums/asphalt-meadows.webp",
     title: "Death Cab for Cutie - Asphalt Meadows",
-    desc: "A wonderful comeback, haunting lyrics and signature catchy riffs",
+  },
+  {
+    url: "/albums/4-44.png",
+    title: "Jay Z - 4:44",
+  },
+  {
+    url: "/albums/dawn-fm.jpeg",
+    title: "The Weeknd - Dawn FM",
+  },
+  {
+    url: "/albums/dawn.jpeg",
+    title: "Yebba - Dawn",
+  },
+  {
+    url: "/albums/golden-hour.webp",
+    title: "Kacey Musgraves - Golden Hour",
+  },
+  {
+    url: "/albums/heroes-villains.jpeg",
+    title: "Metro Boomin - Heroes and Villains",
+  },
+  {
+    url: "/albums/kaytramine.jpeg",
+    title: "Kaytramine - Kaytramine",
+  },
+  {
+    url: "/albums/mylo-xyloto.jpeg",
+    title: "Coldplay - Mylo Xyloto",
+  },
+  {
+    url: "/albums/sos.jpeg",
+    title: "SZA - SOS",
   },
 ].map((item) => ({ ...item, alt: item.title }));
 
@@ -86,67 +117,90 @@ const gameScreens = shuffle<CarouselImage>(gameScreensSeed.slice()).slice(
 const gameTitleSet = new Set<string>();
 gameScreens.forEach((g) => gameTitleSet.add(g.title));
 const gameTitles = Array.from(gameTitleSet).join(", ");
+
+// TODO: move these to a dynamic location/api
+const travelImages: FullCarouselImage[] = [
+  ["/travel/canyonlands.jpg", "Canyonlands NP, Utah"],
+  ["/travel/delicate-arch.jpg", "Delicate Arches trail in Arches NP, Utah"],
+  [
+    "/travel/lisbon-street.jpg",
+    "Few more minutes to the ocean, Lisbon, Portugal",
+  ],
+  ["/travel/lisbon-tram.jpg", "A classic tram, Lisbon, Portugal"],
+  ["/travel/marrakech-street.jpg", "Pedestrians, Marrakech, Morocco"],
+  ["/travel/morocco-rugs.jpg", "Rugs, Marrakech, Morocco"],
+  ["/travel/zion-valley.jpg", "An epic valley, Zion NP, Utah"],
+].map(([url, title], _) => ({
+  title,
+  url,
+}));
+
+const topTravelImages = shuffle(travelImages.slice()).slice(0, 5);
 ---
 
 <Layout title="Play">
-    <p class="text-base">
-      My interests outside work include <a
-        class="badge badge-primary"
-        href="#music">music</a
-      >, <a class="badge badge-secondary" href="#travel">travel</a>, fitness,
-      and <a class="badge badge-info" href="#games">video games</a>
+  <p class="text-base">
+    My interests outside work include <a
+      class="badge badge-primary"
+      href="#music">music</a
+    >, <a class="badge badge-secondary" href="#travel">travel</a>, fitness, and <a
+      class="badge badge-info"
+      href="#games">video games</a
+    >
 
-      <h1 id="music" class="text-2xl my-6">Music</h1>
-      <p class="text-base mt-6">
-        I've always loved listening to music. Recently, I've started collecting
-        vinyls and CDs. Vinyls are a magical experience, and the sound quality
-        of CDs paired with a good system is hard to match. Here are a few albums
-        I currently have on repeat:
-      </p>
-      <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
-        <Carousel images={topAlbumImgs} />
-      </div>
-      <p>
-        However, the convenience of streaming services is unbeatable. In
-        addition, it's easy to collect data on yourself with them! For example,
-        following is a glimpse of my affinity towards musical genres from the
-        last few years:
-      </p>
-      <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
-        <Genres data={json as SpotifyArtists} client:only />
-      </div>
-
-      This is based on my data on Spotify and you can generate a similar one
-      through my <a
-        class="badge badge-secondary"
-        target="_blank"
-        href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
-      >.
-      <h1 id="travel" class="text-2xl my-6">Travel</h1>
-      <UnderConstruction />
-      <h1 id="games" class="text-2xl my-6">Video games</h1>
-      <p class="text-base mt-6">
-        I've grown up with video games! The Switch has been the perfect device
-        in jumping in here and there to satisfy the gaming itch with a busy
-        life. Here are a few top class experiences that have kept me thrilled in
-        the last couple years, with screenshots from my Switch. Click on the
-        disclaimer for the screenshots.
-      </p>
-      <div
-        tabindex="0"
-        class="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
-      >
-        <input type="checkbox" />
-
-        <div class="collapse-title text-xl font-medium">
-          I'm okay with spoilers for {gameTitles}
-        </div>
-        <div class="collapse-content">
-          <div class="my-6 h-1/2 max-w-full">
-            <Carousel images={gameScreens} />
-          </div>
-        </div>
-      </div>
+    <h1 id="music" class="text-2xl my-6">Music</h1>
+    <p class="text-base mt-6">
+      I've always loved listening to music. Recently, I've started collecting
+      vinyls and CDs. Vinyls are a magical experience, and the sound quality of
+      CDs paired with a good system is hard to match. Here are a few albums I
+      currently have on repeat:
     </p>
-  </div>
+    <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
+      <Carousel images={topAlbumImgs} />
+    </div>
+    <p>
+      However, the convenience of streaming services is unbeatable. In addition,
+      it's easy to collect data on yourself with them! For example, following is
+      a glimpse of my affinity towards musical genres from the last few years:
+    </p>
+    <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
+      <Genres data={json as SpotifyArtists} client:only />
+    </div>
+
+    This is based on my data on Spotify and you can generate a similar one
+    through my <a
+      class="badge badge-secondary"
+      target="_blank"
+      href={"https://spotify-personal-ybmvkz22xq-uc.a.run.app/"}>web app</a
+    >.
+    <h1 id="travel" class="text-2xl my-6">Travel</h1>
+    <p class="text-base mt-6">
+      I thoroughly enjoy travel, and by consequence: photography. Following are
+      a few of my favourite photos from recent trips.
+    </p>
+    <FullCarousel sectionPrefix="travel" images={topTravelImages} />
+    <h1 id="games" class="text-2xl my-6">Video games</h1>
+    <p class="text-base mt-6">
+      I've grown up with video games! The Switch has been the perfect device in
+      jumping in here and there to satisfy the gaming itch with a busy life.
+      Here are a few top class experiences that have kept me thrilled in the
+      last couple years, with screenshots from my Switch. Click on the
+      disclaimer for the screenshots.
+    </p>
+    <div
+      tabindex="0"
+      class="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
+    >
+      <input type="checkbox" />
+
+      <div class="collapse-title text-xl font-medium">
+        I'm okay with spoilers for {gameTitles}
+      </div>
+      <div class="collapse-content">
+        <div class="my-6 h-1/2 max-w-full">
+          <Carousel images={gameScreens} />
+        </div>
+      </div>
+    </div>
+  </p>
 </Layout>
