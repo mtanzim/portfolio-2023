@@ -42,6 +42,8 @@ export const Chat: React.FC<{}> = () => {
       if (err instanceof Error) {
         setErr(err.message);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
