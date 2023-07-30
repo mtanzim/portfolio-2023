@@ -20,22 +20,30 @@ async function callAPI(question: string): Promise<unknown> {
   ).then((response) => response.json());
 }
 
+const sampleQuestions = [
+  "What can you tell me?",
+  "Describe Tanzim's story towards web dev",
+  "Summarize Tanzim's resume in 500 words",
+  "What are some of Tanzim's hobbies?",
+];
+
 export const Chat: React.FC<{}> = () => {
   const [query, setQuery] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [res, setRes] = useState<null | string>(null);
   const [err, setErr] = useState<null | string>(null);
 
-  const onSubmit = async () => {
-    setErr(null);
-    setRes(null);
-    if (!query) {
+  const onSubmit = async (submittedQuery: string | null) => {
+    if (!submittedQuery) {
       return;
     }
+    setErr(null);
+    setRes(null);
+
     setLoading(true);
 
     try {
-      const apiRes = (await callAPI(query)) as string;
+      const apiRes = (await callAPI(submittedQuery)) as string;
       setRes(apiRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -58,11 +66,36 @@ export const Chat: React.FC<{}> = () => {
         />
         <button
           disabled={!!loading}
-          onClick={onSubmit}
+          onClick={() => onSubmit(query)}
           className="ml-4 btn btn-primary"
         >
           Ask away
         </button>
+        {!loading && (
+          <div className="dropdown dropdown-hover">
+            <label tabIndex={0} className="ml-4 btn btn-secondary">
+              Sample Questions
+            </label>
+            <ul
+              tabIndex={0}
+              className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52"
+            >
+              {sampleQuestions.map((q) => (
+                <li key={q}>
+                  <button
+                    disabled={loading}
+                    onClick={() => {
+                      setQuery(q);
+                      onSubmit(q);
+                    }}
+                  >
+                    {q}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       {query && (
         <div className="mockup-code mt-8">
