@@ -4,11 +4,15 @@ import { Chat } from "../../components/Chat";
 ---
 
 <Layout title="Chat with AI" badgeText="Beta">
-  <p class="text-base mb-4">
+  <div class="badge badge-lg badge-outline badge-warning my-4">
+    Disclaimer: AI may produce incorrect information
+  </div>
+  <p class="text-base mb-8">
     You can ask an AI questions about this website and a few affiliated pages.
     Please beware that this is quite experimental and the performance, stability
     and reliability are still being worked on.
   </p>
+
   <Chat client:only="react" />
   <div
     tabindex="0"
