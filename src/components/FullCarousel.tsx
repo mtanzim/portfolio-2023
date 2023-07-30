@@ -19,6 +19,7 @@ export default function FullCarousel({ images, sectionPrefix }: Props) {
           <div
             id={genSlideName(idx)}
             className="carousel-item w-full h-full relative"
+            key={image.title}
           >
             <img
               src={image.url}
