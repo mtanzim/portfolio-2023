@@ -35,9 +35,8 @@ export const Chat: React.FC<{}> = () => {
     setLoading(true);
 
     try {
-      const apiRes = await callAPI(query);
-      const parsed = JSON.parse(apiRes as any) as string;
-      setRes(parsed);
+      const apiRes = (await callAPI(query)) as string;
+      setRes(apiRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErr(err.message);
@@ -76,9 +75,14 @@ export const Chat: React.FC<{}> = () => {
             </pre>
           )}
           {res && (
-            <pre data-prefix=">" className="text-info">
-              <code>{res}</code>
-            </pre>
+            <>
+              <pre data-prefix=">" className="text-info">
+                gippity gave the following answer:
+              </pre>
+              <div className="m-8">
+                <code>{res}</code>
+              </div>
+            </>
           )}
           {err && (
             <pre data-prefix=">" className="bg-warning text-warning-content">
