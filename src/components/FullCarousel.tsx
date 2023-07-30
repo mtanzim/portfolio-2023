@@ -35,6 +35,7 @@ export default function FullCarousel({ images, sectionPrefix }: Props) {
             href={`#${genSlideName(idx)}`}
             className="tooltip"
             data-tip={img.title}
+            key={img.title}
           >
             <button className="btn btn-xs">{idx + 1}</button>
           </a>
