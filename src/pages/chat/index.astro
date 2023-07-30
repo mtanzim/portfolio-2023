@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Chat } from "../../components/Chat";
+---
+
+<Layout title="Chat with AI" badgeText="Beta">
+  <p class="text-base mb-4">
+    You can ask an AI questions about this website and a few affiliated pages.
+    Please beware that this is quite experimental and the performance, stability
+    and reliability are still being worked on.
+  </p>
+  <Chat client:only="react" />
+  <div
+    tabindex="0"
+    class="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
+  >
+    <input type="checkbox" />
+
+    <div class="collapse-title text-xl font-medium">How does this work?</div>
+    <div class="collapse-content">
+      <p>
+        I'm using <a
+          class="badge badge-info"
+          href="https://openai.com"
+          target="_blank">OpenAI</a
+        > embeddings and LLMs alongside a vector database from <a
+          class="badge badge-info"
+          href="https://www.pinecone.io/"
+          target="_blank">Pinecone</a
+        >. The backend is a lightweight <a
+          class="badge badge-info"
+          href="https://workers.cloudflare.com/"
+          target="_blank">Cloudflare Worker</a
+        >. Additional shout out to <a
+          class="badge badge-info"
+          href="https://js.langchain.com/docs/get_started/introduction"
+          target="_blank">Langchain</a
+        > for making all of this relatively easy. Additional details will be posted
+        on my <a class="badge badge-info" href="/blog">Blog</a> once I get around
+        to it.
+      </p>
+    </div>
+  </div>
+</Layout>
