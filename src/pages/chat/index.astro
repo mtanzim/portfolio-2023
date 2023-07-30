@@ -1,8 +1,8 @@
 ---
-import UnderConstruction from "../../components/UnderConstruction.astro";
 import Layout from "../../layouts/Layout.astro";
+import { Chat } from "../../components/Chat";
 ---
 
 <Layout title="Chat with AI" badgeText="Beta">
-  <UnderConstruction />
+  <Chat client:only="react" />
 </Layout>
