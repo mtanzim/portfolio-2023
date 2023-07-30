@@ -1,12 +1,48 @@
 import { useState } from "react";
 
+async function callAPI(question: string): Promise<unknown> {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const raw = JSON.stringify({
+    question,
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+  };
+
+  return fetch(
+    "https://personal-portfolio-chat-worker.mtanzim.workers.dev",
+    requestOptions
+  ).then((response) => response.json());
+}
+
 export const Chat: React.FC<{}> = () => {
   const [query, setQuery] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [res, setRes] = useState<null | string>(null);
+  const [err, setErr] = useState<null | string>(null);
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    setErr(null);
+    setRes(null);
+    if (!query) {
+      return;
+    }
     setLoading(true);
+
+    try {
+      const apiRes = await callAPI(query);
+      const parsed = JSON.parse(apiRes as any) as string;
+      setRes(parsed);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setErr(err.message);
+      }
+    }
   };
 
   return (
@@ -19,7 +55,11 @@ export const Chat: React.FC<{}> = () => {
           value={query || ""}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={onSubmit} className="ml-4 btn btn-primary">
+        <button
+          disabled={!!loading}
+          onClick={onSubmit}
+          className="ml-4 btn btn-primary"
+        >
           Ask away
         </button>
       </div>
@@ -30,9 +70,17 @@ export const Chat: React.FC<{}> = () => {
           </pre>
           {loading && (
             <pre data-prefix=">" className="text-warning">
-              <code>
-                calling the gippity, this can take a while...
-              </code>
+              <code>calling the gippity, this can take a while...</code>
+            </pre>
+          )}
+          {res && (
+            <pre data-prefix=">" className="text-info">
+              <code>{res}</code>
+            </pre>
+          )}
+          {err && (
+            <pre data-prefix=">" className="bg-warning text-warning-content">
+              <code>{err}</code>
             </pre>
           )}
         </div>
