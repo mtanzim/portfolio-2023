@@ -4,5 +4,24 @@ import { Chat } from "../../components/Chat";
 ---
 
 <Layout title="Chat with AI" badgeText="Beta">
+  <p class="text-base mb-4">
+    You can ask an AI questions about this website and a few affiliated pages.
+    Please beware that this is quite experimental and the performance and
+    stability is still being tweaked.
+  </p>
   <Chat client:only="react" />
+  <div
+    tabindex="0"
+    class="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
+  >
+    <input type="checkbox" />
+
+    <div class="collapse-title text-xl font-medium">How does this work?</div>
+    <div class="collapse-content">
+      <p>
+        I'm using OpenAI embeddings and LLMs alongside a vector database from
+        Pinecone. The backend is a lightweight Cloudflare Worker.
+      </p>
+    </div>
+  </div>
 </Layout>
