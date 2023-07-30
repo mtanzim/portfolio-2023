@@ -70,9 +70,12 @@ export const Chat: React.FC<{}> = () => {
             <code>gippity ask {query}</code>
           </pre>
           {loading && (
-            <pre data-prefix=">" className="text-warning">
-              <code>calling the gippity, this can take a while...</code>
-            </pre>
+            <>
+              <pre data-prefix=">" className="text-warning">
+                <code>calling the gippity, this can take a while...</code>
+              </pre>
+              <progress className="progress w-96 progress-info ml-8"></progress>
+            </>
           )}
           {res && (
             <>
