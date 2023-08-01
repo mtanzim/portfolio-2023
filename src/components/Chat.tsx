@@ -56,7 +56,7 @@ export const Chat: React.FC<{}> = () => {
 
   return (
     <div>
-      <div className="flex">
+      <div className="md:flex">
         <input
           type="text"
           placeholder="Ask your question here"
@@ -67,7 +67,7 @@ export const Chat: React.FC<{}> = () => {
         <button
           disabled={!!loading}
           onClick={() => onSubmit(query)}
-          className="ml-4 btn btn-primary"
+          className="mt-4 md:mt-0 md:ml-4 btn btn-primary"
         >
           Ask away
         </button>
@@ -98,14 +98,14 @@ export const Chat: React.FC<{}> = () => {
         )}
       </div>
       {query && (
-        <div className="mockup-code mt-8">
+        <div className="mockup-code mt-8 max-w-full">
           <pre data-prefix=">">
             <code>gippity ask {query}</code>
           </pre>
           {loading && (
             <>
               <pre data-prefix=">" className="text-warning">
-                <code>calling the gippity, this can take a while...</code>
+                <code>calling gippity, this can take a while...</code>
               </pre>
               <progress className="progress w-96 progress-info ml-8"></progress>
             </>
