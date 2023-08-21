@@ -14,8 +14,10 @@ async function callAPI(question: string): Promise<unknown> {
     body: raw,
   };
 
-  // const url = "https://personal-portfolio-chat-worker.mtanzim.workers.dev";
-  const url = "http://127.0.0.1:8787/";
+  const url =
+    import.meta.env.MODE === "development"
+      ? "http://127.0.0.1:8787/"
+      : "https://personal-portfolio-chat-worker.mtanzim.workers.dev";
 
   const res = await fetch(url, requestOptions);
   const reader = res.body?.getReader();
@@ -24,8 +26,7 @@ async function callAPI(question: string): Promise<unknown> {
     if (done) {
       return;
     }
-    // Otherwise do something here to process current chunk
-    console.log({ value });
+    console.log({ value: new TextDecoder().decode(value) });
   }
 }
 
