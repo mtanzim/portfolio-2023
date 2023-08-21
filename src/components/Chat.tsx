@@ -67,7 +67,6 @@ export const Chat: React.FC<{}> = () => {
 
     try {
       await callAPI(submittedQuery, addToRes);
-      // setRes(apiRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErr(err.message);
