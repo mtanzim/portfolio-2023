@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-async function callAPI(question: string): Promise<unknown> {
+async function callAPI(question: string, cb: any): Promise<unknown> {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -26,7 +26,9 @@ async function callAPI(question: string): Promise<unknown> {
     if (done) {
       return;
     }
-    console.log({ value: new TextDecoder().decode(value) });
+    const strChunk = new TextDecoder().decode(value);
+    cb(strChunk);
+    console.log(strChunk);
   }
 }
 
@@ -52,9 +54,13 @@ export const Chat: React.FC<{}> = () => {
 
     setLoading(true);
 
+    const addToRes = (chunk: string) => {
+      setRes((cur) => (cur || "").concat(chunk));
+    };
+
     try {
-      const apiRes = (await callAPI(submittedQuery)) as string;
-      setRes(apiRes);
+      await callAPI(submittedQuery, addToRes)
+      // setRes(apiRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErr(err.message);
