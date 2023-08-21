@@ -56,7 +56,7 @@ export const Chat: React.FC<{}> = () => {
     setLoading(true);
 
     const addToRes = (chunk: string) => {
-      setStreaming(true);
+      !streaming && setStreaming(true);
       setRes((cur) => (cur || "").concat(chunk));
     };
 
