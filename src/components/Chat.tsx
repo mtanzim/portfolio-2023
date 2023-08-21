@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-async function callAPI(question: string, cb: any): Promise<unknown> {
+async function callAPI(
+  question: string,
+  cb: (chunk: string) => void
+): Promise<void> {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -28,15 +31,17 @@ async function callAPI(question: string, cb: any): Promise<unknown> {
     }
     const strChunk = new TextDecoder().decode(value);
     cb(strChunk);
-    console.log(strChunk);
   }
 }
 
 const sampleQuestions = [
   "What can you tell me?",
-  "Describe Tanzim's story towards web dev",
+  "Describe Tanzim's story towards becoming a web develope",
   "Summarize Tanzim's resume in 500 words",
-  "What are some of Tanzim's hobbies?",
+  "Summarize Tanzim's contributions to Flipp, Careerfoundry and Moonfare",
+  "What are some of Tanzim's hobbies? Elaborate on one of them.",
+  "What albums are mentioned on the site?",
+  "Where are the travel pictures from?",
 ];
 
 export const Chat: React.FC<{}> = () => {
@@ -121,7 +126,7 @@ export const Chat: React.FC<{}> = () => {
           <pre data-prefix=">">
             <code>gippity ask {query}</code>
           </pre>
-          {(loading && !streaming) && (
+          {loading && !streaming && (
             <>
               <pre data-prefix=">" className="text-warning">
                 <code>Booting gippity...</code>
@@ -141,6 +146,7 @@ export const Chat: React.FC<{}> = () => {
               )}
               <div className="m-8">
                 <code>{res}</code>
+                {streaming && <code className="animate-ping"> | </code>}
               </div>
             </>
           )}
