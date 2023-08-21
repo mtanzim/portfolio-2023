@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-async function callAPI(question: string): Promise<unknown> {
+async function callAPI(
+  question: string,
+  cb: (chunk: string) => void
+): Promise<void> {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -14,22 +17,37 @@ async function callAPI(question: string): Promise<unknown> {
     body: raw,
   };
 
-  return fetch(
-    "https://personal-portfolio-chat-worker.mtanzim.workers.dev",
-    requestOptions
-  ).then((response) => response.json());
+  const url =
+    import.meta.env.MODE === "development"
+      ? "http://127.0.0.1:8787/"
+      : "https://personal-portfolio-chat-worker.mtanzim.workers.dev";
+
+  const res = await fetch(url, requestOptions);
+  const reader = res.body?.getReader();
+  while (reader) {
+    const { done, value } = await reader?.read();
+    if (done) {
+      return;
+    }
+    const strChunk = new TextDecoder().decode(value);
+    cb(strChunk);
+  }
 }
 
 const sampleQuestions = [
   "What can you tell me?",
-  "Describe Tanzim's story towards web dev",
+  "Describe Tanzim's story towards becoming a web developer",
   "Summarize Tanzim's resume in 500 words",
-  "What are some of Tanzim's hobbies?",
+  "Summarize Tanzim's contributions to Flipp, CareerFoundry and Moonfare",
+  "What are some of Tanzim's hobbies? Elaborate on one of them.",
+  "What albums are mentioned on the site?",
+  "Where are the travel pictures from?",
 ];
 
 export const Chat: React.FC<{}> = () => {
   const [query, setQuery] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [streaming, setStreaming] = useState(false);
   const [res, setRes] = useState<null | string>(null);
   const [err, setErr] = useState<null | string>(null);
 
@@ -42,15 +60,20 @@ export const Chat: React.FC<{}> = () => {
 
     setLoading(true);
 
+    const addToRes = (chunk: string) => {
+      !streaming && setStreaming(true);
+      setRes((cur) => (cur || "").concat(chunk));
+    };
+
     try {
-      const apiRes = (await callAPI(submittedQuery)) as string;
-      setRes(apiRes);
+      await callAPI(submittedQuery, addToRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErr(err.message);
       }
     } finally {
       setLoading(false);
+      setStreaming(false);
     }
   };
 
@@ -102,21 +125,27 @@ export const Chat: React.FC<{}> = () => {
           <pre data-prefix=">">
             <code>gippity ask {query}</code>
           </pre>
-          {loading && (
+          {loading && !streaming && (
             <>
               <pre data-prefix=">" className="text-warning">
-                <code>calling gippity, this can take a while...</code>
+                <code>Booting gippity...</code>
               </pre>
               <progress className="progress w-96 progress-info ml-8"></progress>
             </>
           )}
           {res && (
             <>
-              <pre data-prefix=">" className="text-info">
-                gippity gave the following answer:
-              </pre>
+              {streaming && (
+                <>
+                  <pre data-prefix=">" className="text-info">
+                    {streaming ? "gippity is thinking:" : ""}
+                  </pre>
+                  <progress className="progress w-96 progress-info ml-8"></progress>
+                </>
+              )}
               <div className="m-8">
                 <code>{res}</code>
+                {streaming && <code className="animate-ping"> | </code>}
               </div>
             </>
           )}
