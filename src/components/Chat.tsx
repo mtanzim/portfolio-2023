@@ -42,6 +42,7 @@ const sampleQuestions = [
 export const Chat: React.FC<{}> = () => {
   const [query, setQuery] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [streaming, setStreaming] = useState(false);
   const [res, setRes] = useState<null | string>(null);
   const [err, setErr] = useState<null | string>(null);
 
@@ -55,11 +56,12 @@ export const Chat: React.FC<{}> = () => {
     setLoading(true);
 
     const addToRes = (chunk: string) => {
+      setStreaming(true);
       setRes((cur) => (cur || "").concat(chunk));
     };
 
     try {
-      await callAPI(submittedQuery, addToRes)
+      await callAPI(submittedQuery, addToRes);
       // setRes(apiRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -67,6 +69,7 @@ export const Chat: React.FC<{}> = () => {
       }
     } finally {
       setLoading(false);
+      setStreaming(false);
     }
   };
 
@@ -118,19 +121,24 @@ export const Chat: React.FC<{}> = () => {
           <pre data-prefix=">">
             <code>gippity ask {query}</code>
           </pre>
-          {loading && (
+          {(loading && !streaming) && (
             <>
               <pre data-prefix=">" className="text-warning">
-                <code>calling gippity, this can take a while...</code>
+                <code>Booting gippity...</code>
               </pre>
               <progress className="progress w-96 progress-info ml-8"></progress>
             </>
           )}
           {res && (
             <>
-              <pre data-prefix=">" className="text-info">
-                gippity gave the following answer:
-              </pre>
+              {streaming && (
+                <>
+                  <pre data-prefix=">" className="text-info">
+                    {streaming ? "gippity is thinking:" : ""}
+                  </pre>
+                  <progress className="progress w-96 progress-info ml-8"></progress>
+                </>
+              )}
               <div className="m-8">
                 <code>{res}</code>
               </div>
