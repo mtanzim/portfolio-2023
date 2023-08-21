@@ -36,9 +36,9 @@ async function callAPI(
 
 const sampleQuestions = [
   "What can you tell me?",
-  "Describe Tanzim's story towards becoming a web develope",
+  "Describe Tanzim's story towards becoming a web developer",
   "Summarize Tanzim's resume in 500 words",
-  "Summarize Tanzim's contributions to Flipp, Careerfoundry and Moonfare",
+  "Summarize Tanzim's contributions to Flipp, CareerFoundry and Moonfare",
   "What are some of Tanzim's hobbies? Elaborate on one of them.",
   "What albums are mentioned on the site?",
   "Where are the travel pictures from?",
