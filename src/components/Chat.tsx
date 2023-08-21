@@ -14,10 +14,19 @@ async function callAPI(question: string): Promise<unknown> {
     body: raw,
   };
 
-  return fetch(
-    "https://personal-portfolio-chat-worker.mtanzim.workers.dev",
-    requestOptions
-  ).then((response) => response.json());
+  // const url = "https://personal-portfolio-chat-worker.mtanzim.workers.dev";
+  const url = "http://127.0.0.1:8787/";
+
+  const res = await fetch(url, requestOptions);
+  const reader = res.body?.getReader();
+  while (reader) {
+    const { done, value } = await reader?.read();
+    if (done) {
+      return;
+    }
+    // Otherwise do something here to process current chunk
+    console.log({ value });
+  }
 }
 
 const sampleQuestions = [
