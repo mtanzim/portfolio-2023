@@ -2,15 +2,13 @@ import { useState } from "react";
 
 async function callAPI(
   question: string,
-  chatHistory: string,
   cb: (chunk: string) => void
-): Promise<string> {
+): Promise<void> {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   const raw = JSON.stringify({
     question,
-    chatHistory,
   });
 
   const requestOptions = {
@@ -26,15 +24,13 @@ async function callAPI(
 
   const res = await fetch(url, requestOptions);
   const reader = res.body?.getReader();
-  let localCopy = "";
   while (reader) {
     const { done, value } = await reader?.read();
     if (done) {
-      return localCopy;
+      return;
     }
     const strChunk = new TextDecoder().decode(value);
     cb(strChunk);
-    localCopy += strChunk;
   }
 }
 
@@ -54,7 +50,6 @@ export const Chat: React.FC<{}> = () => {
   const [streaming, setStreaming] = useState(false);
   const [res, setRes] = useState<null | string>(null);
   const [err, setErr] = useState<null | string>(null);
-  const [chatHistory, setChatHistory] = useState([]);
 
   const onSubmit = async (submittedQuery: string | null) => {
     if (!submittedQuery) {
@@ -62,6 +57,7 @@ export const Chat: React.FC<{}> = () => {
     }
     setErr(null);
     setRes(null);
+
     setLoading(true);
 
     const addToRes = (chunk: string) => {
@@ -70,14 +66,7 @@ export const Chat: React.FC<{}> = () => {
     };
 
     try {
-      const prevRes = await callAPI(
-        submittedQuery,
-        chatHistory.map(({ q, a }) => `question:${q}\nanswer:${a}\n`).join(`\n`),
-        addToRes
-      );
-      const q = submittedQuery;
-      const a = prevRes;
-      setChatHistory((cur) => cur.concat({ q, a }));
+      await callAPI(submittedQuery, addToRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErr(err.message);
@@ -167,30 +156,6 @@ export const Chat: React.FC<{}> = () => {
           )}
         </div>
       )}
-      <div className="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
-        <div className="flex gap-4 my-4">
-          <h1 id="travel" className="text-xl font-medium">
-            Chat History
-          </h1>
-          <button
-            disabled={chatHistory.length === 0 || loading || streaming}
-            onClick={() => setChatHistory([])}
-            className="btn btn-outline btn-sm btn-error"
-          >
-            Clear
-          </button>
-        </div>
-        {chatHistory.map(({ q, a }) => (
-          <>
-            <div className="chat chat-end">
-              <div className="chat-bubble">{q}</div>
-            </div>
-            <div className="chat chat-start">
-              <div className="chat-bubble">{a}</div>
-            </div>
-          </>
-        ))}
-      </div>
     </div>
   );
 };
