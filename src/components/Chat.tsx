@@ -2,13 +2,15 @@ import { useState } from "react";
 
 async function callAPI(
   question: string,
+  chatHistory: string,
   cb: (chunk: string) => void
-): Promise<void> {
+): Promise<string> {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   const raw = JSON.stringify({
     question,
+    chatHistory,
   });
 
   const requestOptions = {
@@ -24,13 +26,15 @@ async function callAPI(
 
   const res = await fetch(url, requestOptions);
   const reader = res.body?.getReader();
+  let localCopy = "";
   while (reader) {
     const { done, value } = await reader?.read();
     if (done) {
-      return;
+      return localCopy;
     }
     const strChunk = new TextDecoder().decode(value);
     cb(strChunk);
+    localCopy += strChunk;
   }
 }
 
@@ -50,6 +54,7 @@ export const Chat: React.FC<{}> = () => {
   const [streaming, setStreaming] = useState(false);
   const [res, setRes] = useState<null | string>(null);
   const [err, setErr] = useState<null | string>(null);
+  const [chatHistory, setChatHistory] = useState("");
 
   const onSubmit = async (submittedQuery: string | null) => {
     if (!submittedQuery) {
@@ -57,7 +62,6 @@ export const Chat: React.FC<{}> = () => {
     }
     setErr(null);
     setRes(null);
-
     setLoading(true);
 
     const addToRes = (chunk: string) => {
@@ -66,7 +70,10 @@ export const Chat: React.FC<{}> = () => {
     };
 
     try {
-      await callAPI(submittedQuery, addToRes);
+      const prevRes = await callAPI(submittedQuery, chatHistory, addToRes);
+      setChatHistory((cur) =>
+        cur.concat(`question: ${submittedQuery}\nanswer: ${prevRes}\n`)
+      );
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErr(err.message);
