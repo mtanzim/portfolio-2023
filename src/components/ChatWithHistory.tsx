@@ -8,6 +8,17 @@ type Message = {
   content?: string;
 };
 
+const gatherHistory = (messages: Message[]) => {
+  return messages
+    .map((m) => {
+      if (m.sender === "human") {
+        return `question: ${m.content}`;
+      }
+      return `answer: ${m.content}`;
+    })
+    .join("\n\n");
+};
+
 export const ChatWithHistory: React.FC = () => {
   const [query, setQuery] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -58,15 +69,7 @@ export const ChatWithHistory: React.FC = () => {
     };
 
     try {
-      const history = messages
-        .map((m) => {
-          if (m.sender === "human") {
-            return `question: ${m.content}`;
-          }
-          return `answer: ${m.content}`;
-        })
-        .join("\n\n");
-      await callAPI(submittedQuery, addToRes, history);
+      await callAPI(submittedQuery, addToRes, gatherHistory(messages));
       // await mockApi(submittedQuery, addToRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -129,19 +132,44 @@ export const ChatWithHistory: React.FC = () => {
         })}
       </>
       {streaming && <progress className="progress w-full"></progress>}
-      <input
-        type="text"
-        placeholder="Send a message to gippity"
-        className="input input-bordered w-full max-w my-4"
-        disabled={loading || streaming}
-        value={query || ""}
-        onChange={(e) => setQuery(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            onSubmit(query);
-          }
+      <div className="flex">
+        <input
+          type="text"
+          placeholder="Send a message to gippity"
+          className="input input-bordered w-5/6 max-w my-4 mx-2"
+          disabled={loading || streaming}
+          value={query || ""}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onSubmit(query);
+            }
+          }}
+        />
+        <button
+          disabled={loading || streaming}
+          className="btn btn-outline w-1/6 max-w my-4"
+          onClick={() => onSubmit(query)}
+        >
+          Submit
+        </button>
+      </div>
+      <button
+        disabled={loading || streaming || messages.length === 0}
+        className="btn btn-outline btn-info mx-2"
+        onClick={() => {
+          navigator.clipboard.writeText(gatherHistory(messages));
         }}
-      />
+      >
+        Copy
+      </button>
+      <button
+        disabled={loading || streaming || messages.length === 0}
+        className="btn btn-outline btn-error"
+        onClick={() => setMessages([])}
+      >
+        Clear History
+      </button>
     </div>
   );
 };
