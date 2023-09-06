@@ -2,7 +2,8 @@ import { useState } from "react";
 
 export async function mockApi(
   _question: string,
-  cb: (chunk: string) => void
+  cb: (chunk: string) => void,
+  _history = ""
 ): Promise<void> {
   const lorem = "lorems ipsums ".repeat(10);
   for (const char of lorem) {
@@ -13,13 +14,15 @@ export async function mockApi(
 
 export async function callAPI(
   question: string,
-  cb: (chunk: string) => void
+  cb: (chunk: string) => void,
+  history = ""
 ): Promise<void> {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   const raw = JSON.stringify({
     question,
+    chatHistory: history,
   });
 
   const requestOptions = {

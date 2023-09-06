@@ -58,7 +58,15 @@ export const ChatWithHistory: React.FC = () => {
     };
 
     try {
-      await callAPI(submittedQuery, addToRes);
+      const history = messages
+        .map((m) => {
+          if (m.sender === "human") {
+            return `question: ${m.content}`;
+          }
+          return `answer: ${m.content}`;
+        })
+        .join("\n\n");
+      await callAPI(submittedQuery, addToRes, history);
       // await mockApi(submittedQuery, addToRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
