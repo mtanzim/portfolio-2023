@@ -35,12 +35,10 @@ async function callAPI(
 }
 
 const sampleQuestions = [
-  "What can you tell me?",
   "Describe Tanzim's story towards becoming a web developer",
-  "Summarize Tanzim's resume in 500 words",
+  "Summarize Tanzim's resume in 500 words; focus on software engineering",
   "Summarize Tanzim's contributions to Flipp, CareerFoundry and Moonfare",
   "What are some of Tanzim's hobbies? Elaborate on one of them.",
-  "What albums are mentioned on the site?",
   "Where are the travel pictures from?",
 ];
 
@@ -145,6 +143,16 @@ export const Chat: React.FC<{}> = () => {
               )}
               <div className="m-8">
                 <code>{res}</code>
+                {!streaming && (
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(`${query}\n\n${res}`);
+                    }}
+                    className="btn btn-outline btn-xs mx-2"
+                  >
+                    Copy
+                  </button>
+                )}
                 {streaming && <code className="animate-ping"> | </code>}
               </div>
             </>
