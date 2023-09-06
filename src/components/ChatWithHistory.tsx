@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { callAPI, sampleQuestions } from "./Chat";
+import { callAPI, mockApi, sampleQuestions } from "./Chat";
 
 type Message = {
   id: number;
-  timeStamp: string;
+  timeStamp: Date;
   sender: "human" | "bot";
-  content: string;
+  content?: string;
 };
 
 export const ChatWithHistory: React.FC = () => {
@@ -22,16 +22,44 @@ export const ChatWithHistory: React.FC = () => {
     }
     setErr(null);
     setRes(null);
-
     setLoading(true);
+    setQuery(null);
+    setMessages((cur) =>
+      cur.concat([
+        {
+          content: submittedQuery,
+          id: cur.length,
+          sender: "human",
+          timeStamp: new Date(),
+        },
+        {
+          id: cur.length,
+          sender: "bot",
+          content: "",
+          timeStamp: new Date(),
+        },
+      ])
+    );
 
     const addToRes = (chunk: string) => {
       !streaming && setStreaming(true);
-      setRes((cur) => (cur || "").concat(chunk));
+      setMessages((cur) => {
+        const last = cur.at(-1);
+        if (last?.sender === "bot") {
+          return cur.slice(0, -1).concat([
+            {
+              ...last,
+              content: last.content + chunk,
+            },
+          ]);
+        }
+        return cur;
+      });
     };
 
     try {
       await callAPI(submittedQuery, addToRes);
+      // await mockApi(submittedQuery, addToRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErr(err.message);
@@ -44,33 +72,68 @@ export const ChatWithHistory: React.FC = () => {
 
   return (
     <div className="shadow-xl rounded-2xl bg-base-200 p-8">
-      <div className="chat chat-start">
-        <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
-            <img src="public/icons/robot.png" />
-          </div>
-        </div>
-        <div className="chat-header">
-          Gippity
-          <time className="text-xs opacity-50 mx-2">12:45</time>
-        </div>
-        <div className="chat-bubble">You were the Chosen One!</div>
-        <div className="chat-footer opacity-50">Delivered</div>
-      </div>
-      <div className="chat chat-end">
-        <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
-            <img src="public/icons/female.png" />
-          </div>
-        </div>
-        <div className="chat-header">
-          Me
-          <time className="text-xs opacity-50 mx-2">12:46</time>
-        </div>
-        <div className="chat-bubble">I hate you!</div>
-        <div className="chat-footer opacity-50">Seen at 12:46</div>
-      </div>
-      <input type="text" placeholder="Send a message to gippity" className="input input-bordered w-full max-w my-4" />
+      <>
+        {messages.map((message, idx) => {
+          if (message.sender === "human") {
+            return (
+              <div className="chat chat-end">
+                <div className="chat-image avatar">
+                  <div className="w-10 rounded-full">
+                    <img src="public/icons/female.png" />
+                  </div>
+                </div>
+                <div className="chat-header">
+                  Me
+                  <time className="text-xs opacity-50 mx-2">
+                    {message.timeStamp.toLocaleTimeString()}
+                  </time>
+                </div>
+                <div className="chat-bubble">{message.content}</div>
+              </div>
+            );
+          }
+          return (
+            <div className="chat chat-start">
+              <div className="chat-image avatar">
+                <div className="w-10 rounded-full">
+                  <img src="public/icons/robot.png" />
+                </div>
+              </div>
+              <div className="chat-header">
+                Gippity
+                <time className="text-xs opacity-50 mx-2">
+                  {message.timeStamp.toLocaleTimeString()}
+                </time>
+              </div>
+              <div className="chat-bubble max-w-fit">
+                {message.content === "" ? (
+                  <code className="animate-ping"> ... </code>
+                ) : (
+                  message.content
+                )}
+                {streaming && idx === messages.length - 1 && (
+                  <code className="animate-ping"> | </code>
+                )}
+              </div>
+              <div className="chat-footer opacity-50"></div>
+            </div>
+          );
+        })}
+      </>
+      {streaming && <progress className="progress w-full"></progress>}
+      <input
+        type="text"
+        placeholder="Send a message to gippity"
+        className="input input-bordered w-full max-w my-4"
+        disabled={loading || streaming}
+        value={query || ""}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            onSubmit(query);
+          }
+        }}
+      />
     </div>
   );
 };
