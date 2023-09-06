@@ -143,6 +143,16 @@ export const Chat: React.FC<{}> = () => {
               )}
               <div className="m-8">
                 <code>{res}</code>
+                {!streaming && (
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(`${query}\n\n${res}`);
+                    }}
+                    className="btn btn-outline btn-xs mx-2"
+                  >
+                    Copy
+                  </button>
+                )}
                 {streaming && <code className="animate-ping"> | </code>}
               </div>
             </>
