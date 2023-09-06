@@ -1,6 +1,17 @@
 import { useState } from "react";
 
-async function callAPI(
+export async function mockApi(
+  _question: string,
+  cb: (chunk: string) => void
+): Promise<void> {
+  const lorem = "lorems ipsums ".repeat(10);
+  for (const char of lorem) {
+    cb(char);
+    await new Promise((r) => setTimeout(r, 10));
+  }
+}
+
+export async function callAPI(
   question: string,
   cb: (chunk: string) => void
 ): Promise<void> {
@@ -34,7 +45,7 @@ async function callAPI(
   }
 }
 
-const sampleQuestions = [
+export const sampleQuestions = [
   "Describe Tanzim's story towards becoming a web developer",
   "Summarize Tanzim's resume in 500 words; focus on software engineering",
   "Summarize Tanzim's contributions to Flipp, CareerFoundry and Moonfare",
@@ -64,7 +75,8 @@ export const Chat: React.FC<{}> = () => {
     };
 
     try {
-      await callAPI(submittedQuery, addToRes);
+      // await callAPI(submittedQuery, addToRes);
+      await mockApi(submittedQuery, addToRes);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErr(err.message);
@@ -74,7 +86,6 @@ export const Chat: React.FC<{}> = () => {
       setStreaming(false);
     }
   };
-
   return (
     <div>
       <div className="md:flex">
