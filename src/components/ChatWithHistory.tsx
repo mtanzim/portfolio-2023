@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { callAPI, sampleQuestions } from "./Chat";
 
+type Message = {
+  id: number;
+  timeStamp: string;
+  sender: "human" | "bot";
+  content: string;
+};
+
 export const ChatWithHistory: React.FC = () => {
   const [query, setQuery] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [streaming, setStreaming] = useState(false);
   const [res, setRes] = useState<null | string>(null);
   const [err, setErr] = useState<null | string>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const onSubmit = async (submittedQuery: string | null) => {
     if (!submittedQuery) {
@@ -39,12 +47,12 @@ export const ChatWithHistory: React.FC = () => {
       <div className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img src="public/icons/robot.png" />
           </div>
         </div>
         <div className="chat-header">
-          Obi-Wan Kenobi
-          <time className="text-xs opacity-50">12:45</time>
+          Gippity
+          <time className="text-xs opacity-50 mx-2">12:45</time>
         </div>
         <div className="chat-bubble">You were the Chosen One!</div>
         <div className="chat-footer opacity-50">Delivered</div>
@@ -52,16 +60,17 @@ export const ChatWithHistory: React.FC = () => {
       <div className="chat chat-end">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img src="public/icons/female.png" />
           </div>
         </div>
         <div className="chat-header">
-          Anakin
-          <time className="text-xs opacity-50">12:46</time>
+          Me
+          <time className="text-xs opacity-50 mx-2">12:46</time>
         </div>
         <div className="chat-bubble">I hate you!</div>
         <div className="chat-footer opacity-50">Seen at 12:46</div>
       </div>
+      <input type="text" placeholder="Send a message to gippity" className="input input-bordered w-full max-w my-4" />
     </div>
   );
 };

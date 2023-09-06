@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { Chat } from "../../components/Chat";
+import { ChatWithHistory } from "../../components/ChatWithHistory";
 ---
 
 <Layout title="Chat with AI" badgeText="Beta">
@@ -13,7 +14,8 @@ import { Chat } from "../../components/Chat";
     and reliability are still being worked on.
   </p>
 
-  <Chat client:only="react" />
+  <ChatWithHistory client:only="react" />
+  <!-- <Chat client:only="react" /> -->
   <div
     tabindex="0"
     class="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
