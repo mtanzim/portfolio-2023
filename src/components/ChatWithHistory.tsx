@@ -173,7 +173,7 @@ export const ChatWithHistory: React.FC = () => {
           {messages.map((message, idx) => {
             if (message.sender === "human") {
               return (
-                <div key={`${message.sender}-${idx}`} className="chat chat-end">
+                <div key={message.id} className="chat chat-end">
                   <div className="chat-image avatar invisible md:visible">
                     <div className="w-10 rounded-full">
                       <img src="public/icons/female.png" />
@@ -184,7 +184,7 @@ export const ChatWithHistory: React.FC = () => {
               );
             }
             return (
-              <div key={`${message.sender}-${idx}`} className="chat chat-start">
+              <div key={message.id} className="chat chat-start">
                 <div className="chat-image avatar invisible md:visible">
                   <div className="w-10 rounded-full">
                     <img src="public/icons/robot.png" />
