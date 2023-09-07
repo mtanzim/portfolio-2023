@@ -145,7 +145,7 @@ export const ChatWithHistory: React.FC = () => {
             timeStamp: new Date(),
           },
           {
-            id: cur.length,
+            id: cur.length + 1,
             sender: "bot",
             content: "",
             timeStamp: new Date(),
