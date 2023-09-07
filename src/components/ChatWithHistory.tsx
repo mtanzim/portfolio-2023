@@ -1,5 +1,60 @@
 import { useState } from "react";
-import { callAPI, mockApi, sampleQuestions } from "./Chat";
+
+export async function mockApi(
+  _question: string,
+  cb: (chunk: string) => void,
+  _history = ""
+): Promise<void> {
+  const lorem = "lorems ipsums ".repeat(10);
+  for (const char of lorem) {
+    cb(char);
+    await new Promise((r) => setTimeout(r, 10));
+  }
+}
+
+export async function callAPI(
+  question: string,
+  cb: (chunk: string) => void,
+  history = ""
+): Promise<void> {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const raw = JSON.stringify({
+    question,
+    chatHistory: history,
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+  };
+
+  const url =
+    import.meta.env.MODE === "development"
+      ? "http://127.0.0.1:8787/"
+      : "https://personal-portfolio-chat-worker.mtanzim.workers.dev";
+
+  const res = await fetch(url, requestOptions);
+  const reader = res.body?.getReader();
+  while (reader) {
+    const { done, value } = await reader?.read();
+    if (done) {
+      return;
+    }
+    const strChunk = new TextDecoder().decode(value);
+    cb(strChunk);
+  }
+}
+
+export const sampleQuestions = [
+  "Describe Tanzim's story towards becoming a web developer",
+  "Summarize Tanzim's resume in 500 words; focus on software engineering",
+  "Summarize Tanzim's contributions to Flipp, CareerFoundry and Moonfare",
+  "What are some of Tanzim's hobbies? Elaborate on one of them.",
+  "Where are the travel pictures from?",
+];
 
 type Message = {
   id: number;
@@ -7,6 +62,8 @@ type Message = {
   sender: "human" | "bot";
   content: string;
 };
+
+const MAX_CHARS = 20_000;
 
 export const ChatWithHistory: React.FC = () => {
   const [query, setQuery] = useState<string | null>(null);
@@ -55,22 +112,47 @@ export const ChatWithHistory: React.FC = () => {
 
     setLoading(true);
     setQuery(null);
-    setMessages((cur) =>
-      cur.concat([
+
+    console.log({ contentLen: gatherHistory(messages).length });
+    if (gatherHistory(messages).length > MAX_CHARS) {
+      setMessages([
+        {
+          id: 0,
+          sender: "bot",
+          content: "Sorry, I had to remove old messages to save space.",
+          timeStamp: new Date(),
+        },
         {
           content: submittedQuery,
-          id: cur.length,
+          id: 1,
           sender: "human",
           timeStamp: new Date(),
         },
         {
-          id: cur.length,
+          id: 2,
           sender: "bot",
           content: "",
           timeStamp: new Date(),
         },
-      ])
-    );
+      ]);
+    } else {
+      setMessages((cur) =>
+        cur.concat([
+          {
+            content: submittedQuery,
+            id: cur.length,
+            sender: "human",
+            timeStamp: new Date(),
+          },
+          {
+            id: cur.length,
+            sender: "bot",
+            content: "",
+            timeStamp: new Date(),
+          },
+        ])
+      );
+    }
 
     try {
       const pastMessages = hasHistory ? gatherHistory(messages) : "";
@@ -91,8 +173,8 @@ export const ChatWithHistory: React.FC = () => {
           {messages.map((message, idx) => {
             if (message.sender === "human") {
               return (
-                <div className="chat chat-end">
-                  <div className="chat-image avatar">
+                <div key={`${message.sender}-${idx}`} className="chat chat-end">
+                  <div className="chat-image avatar invisible md:visible">
                     <div className="w-10 rounded-full">
                       <img src="public/icons/female.png" />
                     </div>
@@ -102,8 +184,8 @@ export const ChatWithHistory: React.FC = () => {
               );
             }
             return (
-              <div className="chat chat-start">
-                <div className="chat-image avatar">
+              <div key={`${message.sender}-${idx}`} className="chat chat-start">
+                <div className="chat-image avatar invisible md:visible">
                   <div className="w-10 rounded-full">
                     <img src="public/icons/robot.png" />
                   </div>
@@ -123,12 +205,12 @@ export const ChatWithHistory: React.FC = () => {
             );
           })}
         </>
-        {streaming && <progress className="progress w-full"></progress>}
-        <div className="flex">
+        {isBusy && <progress className="progress w-full"></progress>}
+        <div className="">
           <input
             type="text"
             placeholder="Ask gippity a question"
-            className="input input-bordered w-5/6 my-4"
+            className="input input-bordered w-full my-4"
             disabled={isBusy}
             value={query || ""}
             onChange={(e) => setQuery(e.target.value)}
@@ -138,14 +220,7 @@ export const ChatWithHistory: React.FC = () => {
               }
             }}
           />
-          <button
-            disabled={isBusy || !query}
-            className="btn btn-outline my-4 mx-2"
-            onClick={() => onSubmit(query)}
-          >
-            Submit
-          </button>
-          <div className={isBusy ? "invisible dropdown" : "dropdown"}>
+          <div className="dropdown ml-2">
             <label tabIndex={0} className="btn btn-secondary btn-outline my-4">
               Sample Questions
             </label>
@@ -153,7 +228,7 @@ export const ChatWithHistory: React.FC = () => {
               tabIndex={0}
               className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box"
             >
-              {sampleQuestions.map((q) => (
+              {(isBusy ? ["Currently busy..."] : sampleQuestions).map((q) => (
                 <li key={q}>
                   <button
                     disabled={isBusy}
@@ -168,6 +243,13 @@ export const ChatWithHistory: React.FC = () => {
               ))}
             </ul>
           </div>
+          <button
+            disabled={isBusy || !query}
+            className="btn btn-outline my-4 mx-2"
+            onClick={() => onSubmit(query)}
+          >
+            Submit
+          </button>
         </div>
       </div>
       <div
@@ -175,24 +257,11 @@ export const ChatWithHistory: React.FC = () => {
         className="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
       >
         <input type="checkbox" />
-
         <div className="collapse-title text-xl font-medium">Settings</div>
         <div className="collapse-content">
-          <label className="mx-2 label cursor-pointer w-2/6">
-            <span className="label-text">
-              Use session history for added context
-            </span>
-            <input
-              type="checkbox"
-              onClick={() => setHasHistory((cur) => !cur)}
-              className="toggle"
-              checked={hasHistory}
-              disabled={isBusy}
-            />
-          </label>
           <button
             disabled={isBusy || messages.length === 0}
-            className="btn btn-xs btn-outline btn-info mx-2"
+            className="btn btn-xs btn-outline btn-info mr-2"
             onClick={() => {
               navigator.clipboard.writeText(gatherHistory(messages));
             }}
@@ -206,6 +275,18 @@ export const ChatWithHistory: React.FC = () => {
           >
             Clear chat
           </button>
+          <label className=" label cursor-pointer">
+            <span className="label-text">
+              Use session chat history to provide added context for gippity
+            </span>
+            <input
+              type="checkbox"
+              onChange={() => setHasHistory((cur) => !cur)}
+              className="toggle"
+              checked={hasHistory}
+              disabled={isBusy}
+            />
+          </label>
         </div>
       </div>
     </>
