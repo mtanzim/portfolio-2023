@@ -174,22 +174,12 @@ export const ChatWithHistory: React.FC = () => {
             if (message.sender === "human") {
               return (
                 <div key={message.id} className="chat chat-end">
-                  <div className="chat-image avatar invisible md:visible">
-                    <div className="w-10 rounded-full">
-                      <img src="public/icons/female.png" />
-                    </div>
-                  </div>
                   <div className="chat-bubble">{message.content}</div>
                 </div>
               );
             }
             return (
               <div key={message.id} className="chat chat-start">
-                <div className="chat-image avatar invisible md:visible">
-                  <div className="w-10 rounded-full">
-                    <img src="public/icons/robot.png" />
-                  </div>
-                </div>
                 <div className="chat-bubble max-w-fit">
                   {message.content === "" ? (
                     <code className="animate-ping"> ... </code>
