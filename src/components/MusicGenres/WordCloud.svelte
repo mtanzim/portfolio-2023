@@ -13,21 +13,16 @@
   const vh = Math.max(document.documentElement.clientHeight || 0);
 
   let scalingFactor: number;
-  let width: number;
 
   if (vw >= 1440) {
     scalingFactor = 300;
-    width = 0.5 * vw;
   } else if (vw >= 768) {
     scalingFactor = 200;
-    width = 0.6 * vw;
   } else {
     scalingFactor = 50;
-    width = 0.75 * vw;
   }
-  console.log({ vw, vh, scalingFactor, width });
 
-  const WIDTH = width;
+  const WIDTH = vw * 0.5;
   const LENGTH = 0.5 * vh;
   const MIN_FONT_SIZE = 4;
 
@@ -55,7 +50,7 @@
       return d.size;
     })
 
-    .spiral("archimedean")
+    .spiral("rectangular")
     .on("end", draw);
 
   function draw(words) {
