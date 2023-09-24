@@ -9,25 +9,26 @@
   const fillColor = "#3ABFF8";
   const DIV_ID = "word-cloud";
 
-  const vw = Math.max(
-    document.documentElement.clientWidth || 0,
-    window.innerWidth || 0
-  );
-  const vh = Math.max(
-    document.documentElement.clientHeight || 0,
-    window.innerHeight || 0
-  );
+  const vw = Math.max(document.documentElement.clientWidth || 0);
+  const vh = Math.max(document.documentElement.clientHeight || 0);
 
-  let scalingFactor = 200;
+  let scalingFactor: number;
+  let width: number;
 
-  if (vw >= 768) {
+  if (vw >= 1440) {
+    scalingFactor = 300;
+    width = 0.5 * vw;
+  } else if (vw >= 768) {
     scalingFactor = 200;
+    width = 0.6 * vw;
   } else {
     scalingFactor = 50;
+    width = 0.75 * vw;
   }
+  console.log({ vw, vh, scalingFactor, width });
 
-  const WIDTH = 0.8 * vw;
-  const LENGTH = 0.66 * vh;
+  const WIDTH = width;
+  const LENGTH = 0.5 * vh;
   const MIN_FONT_SIZE = 4;
 
   const words = Object.keys(genreMap);
@@ -90,10 +91,4 @@
   });
 </script>
 
-<div class="word-container" id={DIV_ID} />
-
-<style>
-  .word-container {
-    overflow: visible;
-  }
-</style>
+<div class="mx-auto" id={DIV_ID} />

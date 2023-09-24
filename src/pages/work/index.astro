@@ -194,16 +194,6 @@ const progLangId = "languages";
 ---
 
 <Layout title="Work">
-  <div class="tabs tabs-boxed justify-center">
-    {
-      Object.keys(tileHeaders).map((id) => (
-        <a class="tab mx-2" href={`#${id}`}>
-          {tileHeaders[id as TileType]}
-        </a>
-      ))
-    }
-    <a class="mx-2 tab" href={`#${progLangId}`}>{progLangHeader}</a>
-  </div>
   <div class="flex mb-4 flex-wrap justify-center">
     {
       Object.keys(tileHeaders).map((tileType) => (
