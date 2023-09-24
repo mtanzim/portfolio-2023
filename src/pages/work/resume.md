@@ -30,10 +30,10 @@ Technology, music, travel, fitness, video games
 - Key challenges include establishing best practices for building a modern web UI with drag and drop interactions, alongside developing backend APIs and microservices. Frontend technologies include `React`, `Typescript` and `Storybook`, while `Go`, `NodeJS`, `Ruby`, `Kafka`, `AWS`, `Github Actions` and `Kubernetes` are critical on the backend.
 - Mentoring peers on concepts such as functional reactive programming, atomic design, concurrency, and testing
 - Critically analyzing existing systems to improve efficiency and developer experience. A few award winning hackathon efforts include:
-  - Automating flyer curation by prompting `GPT-3.5`, while also providing user intervention with a full stack `NextJS` app
-  - Reduced endpoint latency by 35x through the use of worker pools to fix concurrent `Go` code
-  - Simplifying the system architecture by reverse engineering 10K+ LOC scattered across services in `Typescript`, `Ruby` and `Go` to a single sub 500 LOC `Typescript` package
-  - Architecture simplification and concurrency fixes were promptly taken to production. Curation automation is currently serving as a pioneering example.
+  - Automating flyer curation by prompting `GPT-3.5`, while also providing user intervention with a full stack `NextJS` app; currently serving as a pioneering example
+  - Reduced endpoint latency by 35x through the use of worker pools to fix concurrent `Go` code; promptly taken to production
+  - Simplifying the system architecture by reverse engineering 10K+ LOC scattered across services in `Typescript`, `Ruby` and `Go` to a single sub 500 LOC `Typescript` package; taken to production post design review and adjustments
+
 
 ### Mentor, [CareerFoundry](https://careerfoundry.com/) | Remote, Feb 2022 - Present
 
