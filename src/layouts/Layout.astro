@@ -11,7 +11,7 @@ const { title, hideHeader, badgeText } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html data-theme="dracula" lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -21,6 +21,23 @@ const { title, hideHeader, badgeText } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      // ☝️ This script prevent the FART effect.
+      if (localStorage.getItem("theme") === null) {
+        document.documentElement.setAttribute("data-theme", "light");
+      } else
+        document.documentElement.setAttribute(
+          "data-theme",
+          localStorage.getItem("theme")
+        );
+      // "theme" LocalStorage value is set by the package to remember user preference.
+      // The value is checked and applyed before rendering anything.
+    </script>
+    <script>
+      import { themeChange } from "theme-change";
+      themeChange();
+      // 👆 you could import the CDN directly instead of these two lines
+    </script>
   </head>
   <body>
     <Navigation />
@@ -31,7 +48,9 @@ const { title, hideHeader, badgeText } = Astro.props;
             <div class="flex">
               <h1 class="text-4xl mb-4">{title}</h1>
               {badgeText && (
-                <div class="badge badge-primary badge-outline mx-2">{badgeText}</div>
+                <div class="badge badge-primary badge-outline mx-2">
+                  {badgeText}
+                </div>
               )}
             </div>
             <div class="divider" />
