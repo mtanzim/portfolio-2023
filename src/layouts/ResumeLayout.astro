@@ -1,35 +1,21 @@
 ---
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
+import Layout from "./Layout.astro";
 export interface Props {
   title: string;
 }
 ---
 
-<!DOCTYPE html>
-<html data-theme="dracula" lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Resume</title>
-  </head>
-  <body>
-    <Navigation />
-    <div class="container mx-8 md:mx-44 pb-24">
-      <a href="/work/resume.pdf" download>
-        <button class="btn btn-info my-4">
-          <img class="w-6 h-6" src="/icons/download.svg" />
-        </button>
-      </a>
-      <article class="prose prose-sm m-2 md:m-0">
-        <slot />
-      </article>
-    </div>
-    <Footer />
-  </body>
-</html>
+<Layout title="Resume" hideHeader>
+  <div class="container">
+    <a href="/work/resume.pdf" download>
+      <button class="btn btn-info my-4">
+        <img class="w-6 h-6" src="/icons/download.svg" />
+      </button>
+    </a>
+    <article class="prose prose-sm m-2 md:m-0">
+      <slot />
+    </article>
+  </div>
+</Layout>
