@@ -50,7 +50,7 @@
       return d.size;
     })
 
-    .spiral("rectangular")
+    .spiral("archimedean")
     .on("end", draw);
 
   function draw(words) {
