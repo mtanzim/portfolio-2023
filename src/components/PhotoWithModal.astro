@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+
+const { imageSrc, id, alt } = Astro.props;
+---
+
+<div>
+  <dialog id={`img_modal_${id}`}>
+    <Image
+      src={imageSrc}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      class="rounded-md object-contain max-h-[90vh]"
+    />
+  </dialog>
+  <Image
+    src={imageSrc}
+    alt={alt}
+    loading="lazy"
+    decoding="async"
+    class="rounded-md cursor-pointer"
+    onclick={`img_modal_${id}.showModal()`}
+  />
+</div>
+<style>
+  dialog::backdrop {
+    backdrop-filter: brightness(0.1);
+  }
+</style>

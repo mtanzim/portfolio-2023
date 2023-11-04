@@ -1,0 +1,12 @@
+---
+import PhotoWithModal from "./PhotoWithModal.astro";
+const images: any[] = Astro.props.images;
+---
+
+<div class="mx-24 grid grid-cols-3 gap-8 mb-48">
+  {
+    images.map((image, index) => (
+      <PhotoWithModal id={index} imageSrc={image} alt={index} />
+    ))
+  }
+</div>
