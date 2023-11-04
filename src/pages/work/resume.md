@@ -34,7 +34,6 @@ Technology, music, travel, fitness, video games
   - Reduced endpoint latency by 35x through the use of worker pools to fix concurrent `Go` code; promptly taken to production
   - Simplifying the system architecture by reverse engineering 10K+ LOC scattered across services in `Typescript`, `Ruby` and `Go` to a single sub 500 LOC `Typescript` package; taken to production post design review and adjustments
 
-
 ### Mentor, [CareerFoundry](https://careerfoundry.com/) | Remote, Feb 2022 - Present
 
 - Mentoring the next generation of web developers on soft skills and processes to penetrate and achieve success within the software industry
