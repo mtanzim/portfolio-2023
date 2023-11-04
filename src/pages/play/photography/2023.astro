@@ -1,17 +1,11 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import PhotoGrid from "../../../components/PhotoGrid.astro";
-const images = await Astro.glob("/src/assets/photography/2023/*.jpg").then(
-  (files) => {
-    return files.map((file) => {
-      return file.default;
-    });
-  }
-);
+import { travelImagePaths2023 } from "../../../data/travelImages";
 ---
 
 <Layout title="Photography 2023">
-  <PhotoGrid images={images} />
+  <PhotoGrid imagePaths={travelImagePaths2023} />
 </Layout>
 <style>
   dialog::backdrop {

@@ -7,6 +7,7 @@ import Carousel from "../../components/Carousel";
 import FullCarousel, { FullCarouselImage } from "../../components/FullCarousel";
 import json from "../../data/spotify-artists.json";
 import type { SpotifyArtists } from "../../types/spotify-artists";
+import { travelImagePaths2023 } from "../../data/travelImages";
 
 // Copied, see https://stackoverflow.com/a/2450976/9641551
 // warning: mutates
@@ -117,20 +118,7 @@ const gameTitleSet = new Set<string>();
 gameScreens.forEach((g) => gameTitleSet.add(g.title));
 const gameTitles = Array.from(gameTitleSet).join(", ");
 
-// TODO: move these to a dynamic location/api
-const travelImages: FullCarouselImage[] = [
-  ["/travel/canyonlands.jpg", "Canyonlands NP, Utah"],
-  ["/travel/delicate-arch.jpg", "Delicate Arches trail in Arches NP, Utah"],
-  [
-    "/travel/lisbon-street.jpg",
-    "Few more minutes to the ocean, Lisbon, Portugal",
-  ],
-  ["/travel/lisbon-tram.jpg", "A classic tram, Lisbon, Portugal"],
-  ["/travel/marrakech-street.jpg", "Pedestrians, Marrakech, Morocco"],
-  ["/travel/morocco-rugs.jpg", "Rugs, Marrakech, Morocco"],
-  ["/travel/zion-valley.jpg", "An epic valley, Zion NP, Utah"],
-].map(([url, title], _) => ({
-  title,
+const travelImages: FullCarouselImage[] = travelImagePaths2023.map((url) => ({
   url,
 }));
 

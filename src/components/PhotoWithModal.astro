@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 
 const { imageSrc, id, alt } = Astro.props;
+const size = 800;
 ---
 
 <div>
@@ -12,6 +13,8 @@ const { imageSrc, id, alt } = Astro.props;
       loading="lazy"
       decoding="async"
       class="rounded-md object-contain max-h-[90vh]"
+      width={size}
+      height={size}
     />
   </dialog>
   <Image
@@ -21,6 +24,8 @@ const { imageSrc, id, alt } = Astro.props;
     decoding="async"
     class="rounded-md cursor-pointer"
     onclick={`img_modal_${id}.showModal()`}
+    width={size}
+    height={size}
   />
 </div>
 <style>
