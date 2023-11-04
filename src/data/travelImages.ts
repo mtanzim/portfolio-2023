@@ -1,6 +1,6 @@
-const s3Path = "https://tm-photo-portfolio.s3.amazonaws.com/2023/";
+const s3Path = "https://tm-photo-portfolio.s3.amazonaws.com";
 // TODO: add titles and description to images
-const fileNames = [
+const fileNames2023 = [
   "DSC09717.jpg.webp",
   "DSC09760.jpg.webp",
   "DSC09679.jpg.webp",
@@ -20,4 +20,19 @@ const fileNames = [
   "DSC09526.jpg.webp",
 ];
 
-export const travelImagePaths2023 = fileNames.map((name) => `${s3Path}${name}`);
+const fileNames2022 = [
+  "DSC07446.jpg.webp",
+  "DSC07486.jpg.webp",
+  "DSC07849.jpg.webp",
+  "DSC07870.jpg.webp",
+  "DSC08251.jpg.webp",
+  "DSC08271.jpg.webp",
+];
+
+export const travelImagePaths2023 = fileNames2023.map(
+  (name) => `${s3Path}/2023/${name}`
+);
+
+export const travelImagePaths2022 = fileNames2022.map(
+  (name) => `${s3Path}/2022/${name}`
+);
