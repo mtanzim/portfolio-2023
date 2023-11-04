@@ -12,10 +12,16 @@ const size = 800;
       alt={alt}
       loading="lazy"
       decoding="async"
-      class="rounded-md object-contain max-h-[90vh]"
+      class="rounded-md object-contain max-w-[60vw] max-h-[80vh] m-8"
       width={size}
       height={size}
     />
+    <button
+      onclick={`img_modal_${id}.close()`}
+      class="btn btn-xs absolute bottom-4 right-4"
+    >
+      Close
+    </button>
   </dialog>
   <Image
     src={imageSrc}
