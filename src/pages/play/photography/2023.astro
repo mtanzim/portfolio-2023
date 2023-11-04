@@ -1,0 +1,10 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import PhotoGrid from "../../../components/PhotoGrid.astro";
+import { travelImagePaths2023 } from "../../../data/travelImages";
+---
+
+<Layout title="Photography 2023">
+  <a class="mb-24 badge badge-primary" href="mailto:mtanzim@gmail.com">Email me</a> for inquiries.
+  <PhotoGrid imagePaths={travelImagePaths2023} />
+</Layout>

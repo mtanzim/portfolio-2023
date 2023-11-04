@@ -1,7 +1,5 @@
 export type FullCarouselImage = {
   url: string;
-  title: string;
-  description?: string;
 };
 
 type Props = {
@@ -19,11 +17,11 @@ export default function FullCarousel({ images, sectionPrefix }: Props) {
           <div
             id={genSlideName(idx)}
             className="carousel-item w-full h-full relative"
-            key={image.title}
+            key={image.url}
           >
             <img
               src={image.url}
-              alt={image.title}
+              alt={image.url}
               className="w-full object-contain py-12"
             />
           </div>
@@ -31,12 +29,7 @@ export default function FullCarousel({ images, sectionPrefix }: Props) {
       </div>
       <div className="flex justify-center w-full py-2 gap-2">
         {images.map((img, idx) => (
-          <a
-            href={`#${genSlideName(idx)}`}
-            className="tooltip"
-            data-tip={img.title}
-            key={img.title}
-          >
+          <a href={`#${genSlideName(idx)}`} key={img.url}>
             <button className="btn btn-xs">{idx + 1}</button>
           </a>
         ))}

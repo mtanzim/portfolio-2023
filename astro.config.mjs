@@ -8,4 +8,5 @@ import svelte from "@astrojs/svelte";
 export default defineConfig({
   site: "https://www.mtanzim.com",
   integrations: [tailwind(), react(), svelte()],
+  experimental: { assets: true },
 });
