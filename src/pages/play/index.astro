@@ -7,7 +7,10 @@ import Carousel from "../../components/Carousel";
 import FullCarousel, { FullCarouselImage } from "../../components/FullCarousel";
 import json from "../../data/spotify-artists.json";
 import type { SpotifyArtists } from "../../types/spotify-artists";
-import { travelImagePaths2023 } from "../../data/travelImages";
+import {
+  travelImagePaths2023,
+  travelImagePaths2022,
+} from "../../data/travelImages";
 
 // Copied, see https://stackoverflow.com/a/2450976/9641551
 // warning: mutates
@@ -118,9 +121,11 @@ const gameTitleSet = new Set<string>();
 gameScreens.forEach((g) => gameTitleSet.add(g.title));
 const gameTitles = Array.from(gameTitleSet).join(", ");
 
-const travelImages: FullCarouselImage[] = travelImagePaths2023.map((url) => ({
-  url,
-}));
+const travelImages: FullCarouselImage[] = travelImagePaths2023
+  .concat(travelImagePaths2022)
+  .map((url) => ({
+    url,
+  }));
 
 const topTravelImages = shuffle(travelImages.slice()).slice(0, 5);
 ---

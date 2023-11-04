@@ -1,0 +1,37 @@
+---
+import Layout from "./Layout.astro";
+export interface Props {
+  year: string;
+}
+const { year } = Astro.props;
+const pages = [
+  {
+    href: "/play/photography/2023",
+    label: "2023",
+  },
+  {
+    href: "/play/photography/2022",
+    label: "2022",
+  },
+  {
+    href: "mailto:mtanzim@gmail.com?subject=Inquiries about your photos",
+    label: "Contact",
+  },
+];
+---
+
+<Layout title={`Photography ${year}`}>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      {
+        pages.map((p) => (
+          <li>
+            <a href={p.href}>{p.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="divider"></div>
+  <slot />
+</Layout>
