@@ -1,8 +1,10 @@
 ---
+import PhotoGrid from "../../../components/PhotoGrid.astro";
 import UnderConstruction from "../../../components/UnderConstruction.astro";
+import { travelImagesOlder } from "../../../data/travelImages";
 import PhotographyLayout from "../../../layouts/PhotographyLayout.astro";
 ---
 
 <PhotographyLayout year="">
-  <UnderConstruction />
+  <PhotoGrid imagePaths={travelImagesOlder} />
 </PhotographyLayout>

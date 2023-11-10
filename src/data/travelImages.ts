@@ -30,3 +30,26 @@ export const travelImages2022: FullCarouselImage[] = [
   ["DSC08251.jpg.webp", "Cabot Trail, NS, Canada"],
   ["DSC08271.jpg.webp", "Cabot Trail, NS, Canada"],
 ].map(([filename, title]) => ({ url: `${s3Path}/2022/${filename}`, title }));
+
+export const travelImagesOlder: FullCarouselImage[] = [
+  ["DSC09781.jpg.webp", "Hoi An, Vietnam"],
+  ["DSC08689.jpg.webp", "Don Det, Laos"],
+  ["DSC08254.jpg.webp", "Muang Ngoi Neua, Laos"],
+  ["DSC06815.jpg.webp", "Mui Ne, Vietnam"],
+  ["DSC06404.jpg.webp", "Sapa, Vietnam"],
+  ["DSC00284.jpg.webp", "Mai Chau, Vietnam"],
+  ["DSC07640.jpg.webp", "Chaing Mai, Thailand"],
+  ["DSC03225.jpg.webp", "Taroko Gorge, Taiwan"],
+  ["DSC03553.jpg.webp", "Taipei, Taiwan"],
+  ["DSC02580.jpg.webp", "Jeju Island, South Korea"],
+  ["DSC02661.jpg.webp", "Jeju Island, South Korea"],
+  ["DSC02771.jpg.webp", "Busan, South Korea"],
+  ["DSC04636.jpg.webp", "Porto, Portugal"],
+  ["DSC04894.jpg.webp", "Lisbon, Portugal"],
+  ["DSC05092.jpg.webp", "Berlin, Germany"],
+  ["DSC06260.jpg.webp", "Rome, Italy"],
+  ["DSC06337.jpg.webp", "Rome, Italy"],
+  ["DSC06515.jpg.webp", "Munich, Germany"],
+  ["DSC06579.jpg.webp", "Mittenwald, Germany"],
+  ["DSC02902.jpg.webp", "Toronto, Canada"],
+].map(([filename, title]) => ({ url: `${s3Path}/older/${filename}`, title }));
