@@ -53,7 +53,6 @@ export const sampleQuestions = [
   "Summarize Tanzim's resume in 500 words; focus on software engineering",
   "Summarize Tanzim's contributions to Flipp, CareerFoundry and Moonfare",
   "What are some of Tanzim's hobbies? Elaborate on one of them.",
-  "Where are the travel pictures from?",
 ];
 
 type Message = {

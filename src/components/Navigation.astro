@@ -14,6 +14,10 @@ const pages = [
     label: "Play",
   },
   {
+    href: "/play/photography/2023",
+    label: "Photography",
+  },
+  {
     href: "/chat",
     label: "Chat",
   },
@@ -24,19 +28,13 @@ const pages = [
 ];
 ---
 
-<div class="flex flex-wrap navbar bg-base-100 mb-8">
+<!-- desktop nav bar -->
+<div class="hidden lg:flex flex-wrap navbar bg-base-100 mb-8 lg:visible">
   <div class="flex-1">
     <a href="/" class="btn btn-ghost normal-case text-xl">
       <img src="/favicon-32x32.png" alt="logo" />
       <p class="mx-2">Tanzim Mokammel</p>
     </a>
-    <button
-      class="btn btn-accent btn-outline btn-xs mx-4"
-      data-toggle-theme="dracula,light"
-      data-act-class="ACTIVECLASS"
-    >
-      day n' night
-    </button>
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
@@ -48,5 +46,44 @@ const pages = [
         ))
       }
     </ul>
+    <button
+      class="btn btn-accent btn-outline btn-xs mx-4"
+      data-toggle-theme="dracula,light"
+      data-act-class="ACTIVECLASS"
+    >
+      day n' night
+    </button>
+  </div>
+</div>
+<!-- mobile nav bar -->
+<div class="lg:hidden">
+  <div class="collapse collapse-arrow">
+    <input type="checkbox" />
+    <div class="collapse-title text-xl font-medium">
+      <button class="btn btn-ghost normal-case text-xl">
+        <img src="/favicon-32x32.png" alt="logo" />
+        <p class="mx-2">Tanzim Mokammel</p>
+      </button>
+    </div>
+    <div class="collapse-content">
+      <div class="flex-none">
+        <ul class="menu menu-vertical px-1">
+          {
+            pages.map((p) => (
+              <li>
+                <a href={p.href}>{p.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <button
+        class="btn btn-accent btn-outline btn-xs mx-4 my-4"
+        data-toggle-theme="dracula,light"
+        data-act-class="ACTIVECLASS"
+      >
+        day n' night
+      </button>
+    </div>
   </div>
 </div>
