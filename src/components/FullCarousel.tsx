@@ -1,6 +1,4 @@
-export type FullCarouselImage = {
-  url: string;
-};
+import type { FullCarouselImage } from "../types/images";
 
 type Props = {
   images: FullCarouselImage[];
@@ -30,7 +28,9 @@ export default function FullCarousel({ images, sectionPrefix }: Props) {
       <div className="flex justify-center w-full py-2 gap-2">
         {images.map((img, idx) => (
           <a href={`#${genSlideName(idx)}`} key={img.url}>
-            <button className="btn btn-xs">{idx + 1}</button>
+            <div className="tooltip" data-tip={img.title}>
+              <button className="btn btn-xs">{idx + 1}</button>
+            </div>
           </a>
         ))}
       </div>

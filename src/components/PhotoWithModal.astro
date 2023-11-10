@@ -23,16 +23,19 @@ const size = 800;
       Close
     </button>
   </dialog>
-  <Image
-    src={imageSrc}
-    alt={alt}
-    loading="lazy"
-    decoding="async"
-    class="rounded-md cursor-pointer"
-    onclick={`img_modal_${id}.showModal()`}
-    width={size}
-    height={size}
-  />
+  <div class="md:tooltip md:tooltip-bottom md:tooltip-primary mb-4" data-tip={alt}>
+    <Image
+      src={imageSrc}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      class="rounded-md cursor-pointer"
+      onclick={`img_modal_${id}.showModal()`}
+      width={size}
+      height={size}
+    />
+    <p class="md:hidden mt-2">{alt}</p>
+  </div>
 </div>
 <style>
   dialog::backdrop {

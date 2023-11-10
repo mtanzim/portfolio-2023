@@ -17,16 +17,12 @@ const pages = [
     href: "/play/photography/older",
     label: "Older",
   },
-  {
-    href: "mailto:mtanzim@gmail.com?subject=Inquiries about your photos",
-    label: "Contact",
-  },
 ];
 ---
 
 <Layout title={`Photography ${year}`}>
   <div class="flex-none">
-    <ul class="menu menu-horizontal px-1">
+    <ul class="menu md:menu-horizontal px-1">
       {
         pages.map((p) => (
           <li>
@@ -34,6 +30,13 @@ const pages = [
           </li>
         ))
       }
+      <li>
+        <a
+          class="md:tooltip"
+          data-tip="Get in touch regarding originals and prints"
+          href="mailto:mtanzim@gmail.com?subject=Inquiries about your photos"
+          target="_blank">Contact</a>
+      </li>
     </ul>
   </div>
   <div class="divider"></div>
