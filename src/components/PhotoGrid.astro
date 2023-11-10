@@ -1,5 +1,5 @@
 ---
-import type { FullCarouselImage } from "./FullCarousel";
+import type { FullCarouselImage } from "../types/images";
 import PhotoWithModal from "./PhotoWithModal.astro";
 const imagePaths: FullCarouselImage[] = Astro.props.imagePaths;
 ---
@@ -7,7 +7,6 @@ const imagePaths: FullCarouselImage[] = Astro.props.imagePaths;
 <div class="md:mx-24 grid grid-cols-1 md:grid-cols-2 gap-8 mb-48">
   {
     imagePaths.map((image, index) => {
-      console.log(image);
       return (
         <PhotoWithModal id={index} imageSrc={image.url} alt={image.title} />
       );
