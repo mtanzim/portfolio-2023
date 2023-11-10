@@ -1,5 +1,6 @@
 export type FullCarouselImage = {
   url: string;
+  title?: string;
 };
 
 type Props = {
