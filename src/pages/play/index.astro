@@ -4,7 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 // TODO: move this to a dynamic location/api
 import type { CarouselImage } from "../../components/Carousel";
 import Carousel from "../../components/Carousel";
-import FullCarousel, { FullCarouselImage } from "../../components/FullCarousel";
+import FullCarousel from "../../components/FullCarousel";
 import json from "../../data/spotify-artists.json";
 import type { SpotifyArtists } from "../../types/spotify-artists";
 import {
@@ -12,6 +12,7 @@ import {
   travelImages2022,
   travelImagesOlder,
 } from "../../data/travelImages";
+import type { FullCarouselImage } from "../../types/images";
 
 // Copied, see https://stackoverflow.com/a/2450976/9641551
 // warning: mutates

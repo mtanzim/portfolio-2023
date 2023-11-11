@@ -28,10 +28,15 @@
 </footer>
 
 <script>
-  const buttons = document.querySelectorAll(".goTop");
-  buttons.forEach((b) =>
-    b.addEventListener("click", () =>
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    )
-  );
+  const setupGoTop = () => {
+    const buttons = document.querySelectorAll(".goTop");
+    buttons.forEach((b) =>
+      b.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      )
+    );
+  }
+  setupGoTop();
+  document.addEventListener('astro:after-swap', setupGoTop);
+
 </script>

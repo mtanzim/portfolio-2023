@@ -1,6 +1,22 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import CodingWrapped from "../../components/CodingStats/CodingWrapped.astro";
+import flippImg  from "../../assets/work/flipp.png"
+import cfImg  from "../../assets/work/cf.jpg"
+import moofareImg  from "../../assets/work/moonfare.jpeg"
+import diginexImg  from "../../assets/work/diginex.png"
+import reloImage  from "../../assets/work/relotalent.png"
+import booksImg  from "../../assets/work/books.png"
+import coursesImg  from "../../assets/work/courses.png"
+import sideImg  from "../../assets/work/side.png"
+import resourceCheckoutImg  from "../../assets/work/resource-checkout.png"
+import spotifyImg  from "../../assets/work/spotify-side.png"
+import muscleImg  from "../../assets/work/muscle.png"
+import clockImg  from "../../assets/work/wall-clock.png"
+import profeshImg  from "../../../public/story/berlin/sm-3.jpg"
+import tanzimImg  from "../../assets/tanzim.jpg"
+import podacastImg  from "../../assets/work/podcast.png"
+import { Image } from "astro:assets";
 
 type TileType = "current" | "past" | "study" | "side" | "background";
 interface Tile {
@@ -33,7 +49,7 @@ const tiles: Tile[] = [
     desc: "Helping North Americans shop smarter",
     links: ["https://flipp.com/home/"],
     linkTitles: ["Visit"],
-    imageSrc: "/work/flipp.png",
+    imageSrc: flippImg,
     type: "current",
   },
   {
@@ -43,7 +59,7 @@ const tiles: Tile[] = [
     links: ["https://careerfoundry.com/"],
     linkTitles: ["Visit"],
 
-    imageSrc: "/work/cf.jpg",
+    imageSrc: cfImg,
     type: "current",
   },
   {
@@ -53,7 +69,7 @@ const tiles: Tile[] = [
     links: ["https://moonfare.com/"],
     linkTitles: ["Visit"],
 
-    imageSrc: "/work/moonfare.jpeg",
+    imageSrc: moofareImg,
     type: "past",
   },
   {
@@ -63,7 +79,7 @@ const tiles: Tile[] = [
     links: ["https://www.diginex.com/"],
     linkTitles: ["Visit"],
 
-    imageSrc: "/work/diginex.png",
+    imageSrc: diginexImg,
     type: "past",
   },
   {
@@ -73,7 +89,7 @@ const tiles: Tile[] = [
     links: ["https://www.relotalent.com/salary-calculator"],
     linkTitles: ["Visit"],
 
-    imageSrc: "/work/relotalent.png",
+    imageSrc: reloImage,
     type: "past",
   },
   {
@@ -83,7 +99,7 @@ const tiles: Tile[] = [
     links: ["https://github.com/users/mtanzim/projects/9"],
     linkTitles: ["Visit"],
 
-    imageSrc: "/work/books.png",
+    imageSrc: booksImg,
     type: "study",
   },
   {
@@ -93,7 +109,7 @@ const tiles: Tile[] = [
     links: ["https://github.com/users/mtanzim/projects/4"],
     linkTitles: ["Visit"],
 
-    imageSrc: "/work/courses.png",
+    imageSrc: coursesImg,
     type: "study",
   },
   {
@@ -103,14 +119,14 @@ const tiles: Tile[] = [
     links: ["https://github.com/users/mtanzim/projects/5"],
     linkTitles: ["Visit"],
 
-    imageSrc: "/work/side.png",
+    imageSrc: sideImg,
     type: "study",
   },
   {
     company: "",
     title: "Resource checkout tool",
     desc: "Manage sharing resources with a team",
-    imageSrc: "/work/resource-checkout.png",
+    imageSrc: resourceCheckoutImg,
     links: [
       "https://resource-checkout-v3.vercel.app/",
       "https://github.com/mtanzim/resource-checkout-v3",
@@ -123,7 +139,7 @@ const tiles: Tile[] = [
     company: "",
     title: "Spotify listening habits",
     desc: "See what you've been listening to",
-    imageSrc: "/work/spotify-side.png",
+    imageSrc: spotifyImg,
     links: [
       "https://spotify-personal-ybmvkz22xq-uc.a.run.app",
       "https://github.com/mtanzim/spotify-data",
@@ -136,7 +152,7 @@ const tiles: Tile[] = [
     company: "",
     title: "Strong visualizer",
     desc: "Visualize progress from Strong app csvs",
-    imageSrc: "/work/muscle.png",
+    imageSrc: muscleImg,
     links: [
       "https://vis-strong-go-ghfzoy3ovq-ue.a.run.app/",
       "https://github.com/mtanzim/vis-strong-go",
@@ -148,7 +164,7 @@ const tiles: Tile[] = [
     company: "",
     title: "Wakatime dashboard",
     desc: "Persist wakatime data and provide a visualization dashboard",
-    imageSrc: "/work/wall-clock.png",
+    imageSrc: clockImg,
     links: ["https://github.com/mtanzim/guac"],
     linkTitles: ["Code"],
 
@@ -158,7 +174,7 @@ const tiles: Tile[] = [
     company: "",
     title: "My story",
     desc: "Learn about my career switch to web development",
-    imageSrc: "/tanzim.jpg",
+    imageSrc: tanzimImg,
     links: ["/work/story"],
     linkTitles: ["Visit"],
 
@@ -169,7 +185,7 @@ const tiles: Tile[] = [
     company: "",
     title: "My resume",
     desc: "Get my detailed work history",
-    imageSrc: "/work/story/berlin/3.jpg",
+    imageSrc: profeshImg,
     links: ["/work/resume"],
     linkTitles: ["Visit"],
     type: "background",
@@ -179,7 +195,7 @@ const tiles: Tile[] = [
     company: "",
     title: "Podcast",
     desc: "Listen to a podcast episode where I discuss self studying software engineering, staying productive during long term travel, and the tech scene in Berlin",
-    imageSrc: "/work/podcast.png",
+    imageSrc: podacastImg,
     links: [
       "https://open.spotify.com/episode/5u3gXFNGomUkKimQHE9sgG?si=Op9ZjqG-RcuyWr9Uek2TvA",
     ],
@@ -201,17 +217,17 @@ const progLangId = "languages";
           <h1 id={tileSectionIds[tileType as TileType]} class="text-2xl my-12">
             {tileHeaders[tileType as TileType]}
           </h1>
-          <div class="mb-4 flex flex-wrap mx-auto">
+          <div class="mb-4 flex flex-wrap mx-auto gap-8">
             {tiles
               .filter((t) => t.type === tileType)
               .map((tile) => (
-                <div class="card flex-initial w-64 bg-base-400 shadow-xl m-4 mx-auto">
+                <div class="card flex-initial w-64 bg-base-400 shadow-xl m-4 mx-auto ">
                   <figure>
                     <a
                       target={tile.internal ? "" : "_blank"}
                       href={tile.links[0] ?? "/"}
                     >
-                      <img
+                      <Image
                         class="object-cover h-36 w-36"
                         src={tile.imageSrc}
                         alt={tile.company}
