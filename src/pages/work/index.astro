@@ -217,7 +217,7 @@ const progLangId = "languages";
           <h1 id={tileSectionIds[tileType as TileType]} class="text-2xl my-12">
             {tileHeaders[tileType as TileType]}
           </h1>
-          <div class="mb-4 flex flex-wrap mx-auto">
+          <div class="mb-4 flex flex-wrap mx-auto gap-8">
             {tiles
               .filter((t) => t.type === tileType)
               .map((tile) => (
