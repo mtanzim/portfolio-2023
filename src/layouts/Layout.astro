@@ -12,7 +12,7 @@ const { title, hideHeader, badgeText } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -22,24 +22,31 @@ const { title, hideHeader, badgeText } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <!-- <script is:inline>
+    <script is:inline>
+      const checkTheme = () => {
+      // ☝️ This script prevent the FART effect.
       if (localStorage.getItem("theme") === null) {
-        document.documentElement.setAttribute("data-theme", "dracula");
+        document.documentElement.setAttribute("data-theme", "light");
       } else
-        document.documentElement.setAttribute(
-          "data-theme",
-          localStorage.getItem("theme")
-        );
-    </script>
+      document.documentElement.setAttribute("data-theme",localStorage.getItem("theme"));
+      // "theme" LocalStorage value is set by the package to remember user preference.
+      // The value is checked and applyed before rendering anything.
+      }
+      checkTheme();
+      document.addEventListener('astro:after-swap', checkTheme);
+
+  </script>
     <script>
       import { themeChange } from "theme-change";
       themeChange();
-    </script> -->
+      document.addEventListener('astro:after-swap', themeChange);
+    </script>
+    
     <ViewTransitions />
   </head>
   <body>
     <Navigation />
-    <div class="container mx-auto px-4 mb-24">
+    <div class="container mx-auto px-4 mb-24"  >
       {
         !hideHeader && (
           <>
