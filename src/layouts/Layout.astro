@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
+import { ViewTransitions } from 'astro:transitions';
 export interface Props {
   title: string;
   hideHeader?: boolean;
@@ -21,6 +22,7 @@ const { title, hideHeader, badgeText } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
     <script is:inline>
       if (localStorage.getItem("theme") === null) {
         document.documentElement.setAttribute("data-theme", "dracula");
