@@ -22,8 +22,7 @@ const { title, hideHeader, badgeText } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
-    <script is:inline>
+    <!-- <script is:inline>
       if (localStorage.getItem("theme") === null) {
         document.documentElement.setAttribute("data-theme", "dracula");
       } else
@@ -35,7 +34,8 @@ const { title, hideHeader, badgeText } = Astro.props;
     <script>
       import { themeChange } from "theme-change";
       themeChange();
-    </script>
+    </script> -->
+    <ViewTransitions />
   </head>
   <body>
     <Navigation />
