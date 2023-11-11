@@ -38,7 +38,7 @@ export const travelImagesOlder: FullCarouselImage[] = [
   ["DSC06815.jpg.webp", "Mui Ne, Vietnam"],
   ["DSC06404.jpg.webp", "Sapa, Vietnam"],
   ["DSC00284.jpg.webp", "Mai Chau, Vietnam"],
-  ["DSC07640.jpg.webp", "Chaing Mai, Thailand"],
+  ["DSC07640.jpg.webp", "Chiang Mai, Thailand"],
   ["DSC03225.jpg.webp", "Taroko Gorge, Taiwan"],
   ["DSC03553.jpg.webp", "Taipei, Taiwan"],
   ["DSC02580.jpg.webp", "Jeju Island, South Korea"],
