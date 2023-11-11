@@ -22,26 +22,28 @@ const { title, hideHeader, badgeText } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script>
+      import { themeChange } from "theme-change";
+      themeChange();
+      console.log("this ran too")
+      document.addEventListener('astro:after-swap', themeChange);
+    </script>
     <script is:inline>
       const checkTheme = () => {
-      // ☝️ This script prevent the FART effect.
-      if (localStorage.getItem("theme") === null) {
-        document.documentElement.setAttribute("data-theme", "light");
-      } else
-      document.documentElement.setAttribute("data-theme",localStorage.getItem("theme"));
-      // "theme" LocalStorage value is set by the package to remember user preference.
-      // The value is checked and applyed before rendering anything.
+        // ☝️ This script prevent the FART effect.
+        if (localStorage.getItem("theme") === null) {
+          document.documentElement.setAttribute("data-theme", "light");
+        } else
+        document.documentElement.setAttribute("data-theme",localStorage.getItem("theme"));
+        // "theme" LocalStorage value is set by the package to remember user preference.
+        // The value is checked and applyed before rendering anything.
+        console.log("this ran")
       }
       checkTheme();
       document.addEventListener('astro:after-swap', checkTheme);
   </script>
-    <script>
-      import { themeChange } from "theme-change";
-      themeChange();
-      document.addEventListener('astro:after-swap', themeChange);
-    </script>
-    
-    <ViewTransitions />
+
+  <ViewTransitions />
   </head>
   <body>
     <Navigation />
