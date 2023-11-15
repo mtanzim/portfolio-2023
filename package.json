@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "pretty": "npx prettier --write src/",
-    "move-resume-pdf": "mv src/pages/work/resume.pdf public/work/resume.pdf"
+    "gen-resume-pdf": "npx md-to-pdf --stylesheet src/assets/styles/resume.css src/pages/work/resume.md && mv src/pages/work/resume.pdf public/work/resume.pdf"
   },
   "dependencies": {
     "@astrojs/react": "^3.0.4",
