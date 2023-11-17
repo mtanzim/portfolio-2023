@@ -33,7 +33,7 @@ Problem solving, software design, mentorship, leadership and communication
 - I am working on a greenfield web application enabling Flipp’s retail partners design digital flyers, leading the charge in migrating off print flyers towards a digital solution
 - Key challenges include establishing best practices for building a modern web UI with drag and drop interactions, alongside developing backend APIs and microservices. Frontend technologies include `React`, `Typescript` and `Storybook`, while `Go`, `NodeJS`, `Ruby`, `Kafka`, `AWS`, `Github Actions` and `Kubernetes` are critical on the backend.
 - Mentoring peers on concepts such as functional reactive programming, atomic design, concurrency, and testing
-- Continuously analyzing and improving existing systems: reduced endpoint latency by 35x through concurrent Go code optimization, simplified system architecture by consolidating scattered code across services and languages into a sub-500 LOC TypeScript package, and led award-winning hackathon initiatives such as automating flyer curation with GPT-3.5 integration
+- Continuously analyzing and improving existing systems: reduced endpoint latency by 35x through concurrent Go code optimization, simplified system architecture by consolidating scattered code across services and languages into a sub-500 LOC `Typescript` package, and led award-winning hackathon initiatives such as automating flyer curation with GPT-3.5 integration
 
 ### Mentor, [CareerFoundry](https://careerfoundry.com/) | Remote, Feb 2022 - Present
 
