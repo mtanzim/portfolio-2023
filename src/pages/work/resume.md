@@ -13,7 +13,7 @@ mtanzim@gmail.com | [LinkedIn](https://www.linkedin.com/in/tanzim-mokammel/) | +
 
 ## Technologies
 
-`Typescript` `React` `NextJS` `Storybook` | `NodeJS` `Go` `Ruby` | `SQL` `MongoDB` `Kafka` | `Git` `Docker` `Kubernetes` `AWS` `GitHub Actions`
+`Typescript` `React` `NextJS` `Storybook` | `NodeJS` `Go` | `SQL` `MongoDB` `Kafka` | `Git` `Docker` `Kubernetes` `AWS` `GitHub Actions`
 
 ## Key Skills
 
@@ -35,9 +35,9 @@ Problem solving, software design, mentorship, leadership and communication
 - Mentoring peers on concepts such as functional reactive programming, atomic design, concurrency, and testing
 - Continuously analyzing and improving existing systems: reduced endpoint latency by 35x through concurrent `Go` code optimization, simplified system architecture by consolidating scattered code across services and languages into a sub-500 LOC `Typescript` package, and led award-winning hackathon initiatives such as automating flyer curation with `OpenAI GPT-3.5` integration
 
-### Mentor, [CareerFoundry](https://careerfoundry.com/) | Remote, Feb 2022 - Present
+### Mentor, [CareerFoundry](https://careerfoundry.com/) | Remote, Feb 2022 - May 2023
 
-- Mentoring aspiring web developers in soft skills and industry processes, offering comprehensive guidance, feedback, and support in a MERN stack curriculum
+- Mentored aspiring web developers in soft skills and industry processes, offering comprehensive guidance, feedback, and support in a MERN stack curriculum
 
 ### Full Stack Engineer, [Moonfare](https://www.moonfare.com/) | Berlin, Germany, Jan 2020 - Jan 2021
 
