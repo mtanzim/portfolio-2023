@@ -18,21 +18,20 @@ import tanzimImg  from "../../assets/tanzim.jpg"
 import podacastImg  from "../../assets/work/podcast.png"
 import { Image } from "astro:assets";
 
-type TileType = "current" | "past" | "study" | "side" | "background";
+type TileType = "past" | "study" | "side" | "background";
 interface Tile {
   company: string;
   title: string;
   desc: string;
   links: string[];
   linkTitles: string[];
-  imageSrc: string;
+  imageSrc: ImageMetadata;
   type: TileType;
   internal?: boolean;
 }
 
 const tileHeaders: Record<TileType, string> = {
-  background: "My background",
-  current: "Currently contributing to",
+  background: "Overview",
   past: "Previously worked on",
   study: "Continuously pursuing knowledge",
   side: "Highlighted side projects",
@@ -43,24 +42,16 @@ const tileSectionIds: Record<TileType, string> = Object.fromEntries(
 ) as Record<TileType, string>;
 
 const tiles: Tile[] = [
-  {
-    company: "Flipp",
-    title: "Senior Software Engineer",
-    desc: "Helping North Americans shop smarter",
-    links: ["https://flipp.com/home/"],
-    linkTitles: ["Visit"],
-    imageSrc: flippImg,
-    type: "current",
-  },
+
   {
     company: "Careerfoundry",
     title: "Web development mentor",
-    desc: "Mentoring the next generation of web developers",
+    desc: "Mentored the next generation of web developers",
     links: ["https://careerfoundry.com/"],
     linkTitles: ["Visit"],
 
     imageSrc: cfImg,
-    type: "current",
+    type: "past",
   },
   {
     company: "Moonfare",
@@ -183,7 +174,7 @@ const tiles: Tile[] = [
   },
   {
     company: "",
-    title: "My resume",
+    title: "Resume",
     desc: "Get my detailed work history",
     imageSrc: profeshImg,
     links: ["/work/resume"],
@@ -191,15 +182,25 @@ const tiles: Tile[] = [
     type: "background",
     internal: true,
   },
+
+  {
+    company: "Flipp",
+    title: "Senior software engineer",
+    desc: "Currently, I am helping North Americans shop smarter with Flipp",
+    links: ["https://flipp.com/home/"],
+    linkTitles: ["Learn more"],
+    imageSrc: flippImg,
+    type: "background",
+  },
   {
     company: "",
-    title: "Podcast",
+    title: "Podcast episode",
     desc: "Listen to a podcast episode where I discuss self studying software engineering, staying productive during long term travel, and the tech scene in Berlin",
     imageSrc: podacastImg,
     links: [
       "https://open.spotify.com/episode/5u3gXFNGomUkKimQHE9sgG?si=Op9ZjqG-RcuyWr9Uek2TvA",
     ],
-    linkTitles: ["Visit"],
+    linkTitles: ["Listen"],
 
     type: "background",
   },
