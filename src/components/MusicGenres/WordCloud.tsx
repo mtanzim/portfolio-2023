@@ -1,10 +1,10 @@
-import WordCloud from "react-d3-cloud";
+import WordCloudInner from "react-d3-cloud";
 import type { SpotifyArtists } from "../../types/spotify-artists";
 
 const fillColor = "#3ABFF8";
 const scalingFactor = 300;
 
-export function WordCloudReact({ json }: { json: SpotifyArtists }) {
+export function WordCloud({ json }: { json: SpotifyArtists }) {
   const { items } = json;
   const genres: string[] = items.flatMap((i) => i.genres);
   const genreMap = genres.reduce(
@@ -26,7 +26,7 @@ export function WordCloudReact({ json }: { json: SpotifyArtists }) {
     value,
   }));
   return (
-    <WordCloud
+    <WordCloudInner
       fontSize={(word) => (word.value / maxCount) * scalingFactor}
       font={"Impact"}
       fill={fillColor}

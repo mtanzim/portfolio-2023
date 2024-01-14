@@ -1,5 +1,4 @@
 ---
-import Genres from "../../components/MusicGenres/Genres.svelte";
 import Layout from "../../layouts/Layout.astro";
 // TODO: move this to a dynamic location/api
 import type { CarouselImage } from "../../components/Carousel";
@@ -13,7 +12,7 @@ import {
   travelImagesOlder,
 } from "../../data/travelImages";
 import type { FullCarouselImage } from "../../types/images";
-import { WordCloudReact } from "../../components/MusicGenres/WordCloudReact";
+import { WordCloud } from "../../components/MusicGenres/WordCloud";
 
 // Copied, see https://stackoverflow.com/a/2450976/9641551
 // warning: mutates
@@ -157,7 +156,7 @@ const topTravelImages = shuffle(travelImages.slice()).slice(0, 7);
       a glimpse of my affinity towards musical genres from the last few years:
     </p>
     <div class="my-6">
-      <WordCloudReact json={json as SpotifyArtists} client:only="react" />
+      <WordCloud json={json as SpotifyArtists} client:only="react" />
     </div>
     This is based on my data on Spotify and you can generate a similar one through
     my <a
