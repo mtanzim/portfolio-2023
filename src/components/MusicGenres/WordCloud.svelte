@@ -8,29 +8,14 @@
   // from daisyUI theme
   const fillColor = "#3ABFF8";
   const DIV_ID = "word-cloud";
-
-  const vw = Math.max(document.documentElement.clientWidth || 0);
-  const vh = Math.max(document.documentElement.clientHeight || 0);
-
-  let scalingFactor: number;
-
-  if (vw >= 1440) {
-    scalingFactor = 300;
-  } else if (vw >= 768) {
-    scalingFactor = 200;
-  } else {
-    scalingFactor = 50;
-  }
-
-  const WIDTH = vw * 0.5;
-  const LENGTH = 0.5 * vh;
+  const scalingFactor = 300;
   const MIN_FONT_SIZE = 4;
 
   const words = Object.keys(genreMap);
   const maxCount = Math.max(...Object.values(genreMap));
 
   const layout = cloud()
-    .size([WIDTH, LENGTH])
+    .size([960, 500])
     .words(
       words.map((d) => {
         const size = (genreMap[d] / maxCount) * scalingFactor;
@@ -86,4 +71,6 @@
   });
 </script>
 
-<div class="mx-auto" id={DIV_ID} />
+<div class="content-center border-amber-800 border-solid">
+  <div id={DIV_ID} />
+</div>
