@@ -5,7 +5,7 @@ title: Resume
 
 # Tanzim Mokammel
 
-Experienced senior software engineer with a proven track record in full stack development and a strong focus on problem solving and software design. Proficient in technologies such as `Typescript`, `NodeJS`, `React`, and `Go`, with a background in leading and mentoring development teams. Recognized for contributions in optimizing systems and driving innovative solutions.
+Experienced senior software engineer with a proven track record in full stack development and a strong focus on problem solving and software design. Proficient in technologies such as `Typescript`, `Go`, `NodeJS`, and `React`, with a background in leading and mentoring development teams. Recognized for contributions in optimizing systems and driving innovative solutions.
 
 ## Contact
 
@@ -13,7 +13,7 @@ mtanzim@gmail.com | [LinkedIn](https://www.linkedin.com/in/tanzim-mokammel/) | +
 
 ## Technologies
 
-`Typescript` `Go` `NodeJS` | `React` `NextJS` | `SQL` `MongoDB` `Kafka` | `Git` `Docker` `Kubernetes` `AWS` `GitHub Actions`
+`Typescript` `Go` | `NodeJS` `React` `NextJS` | `SQL` `NoSQL` `Kafka` | `Git` `Docker` `Kubernetes` `AWS` `GitHub Actions`
 
 ## Key Skills
 
