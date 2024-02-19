@@ -1,8 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 // TODO: move this to a dynamic location/api
-import type { CarouselImage } from "../../components/Carousel";
-import Carousel from "../../components/Carousel";
+import type { CarouselClip, CarouselImage } from "../../components/Carousel";
+import Carousel, { VideoCarousel } from "../../components/Carousel";
 import FullCarousel from "../../components/FullCarousel";
 import json from "../../data/spotify-artists.json";
 import type { SpotifyArtists } from "../../types/spotify-artists";
@@ -114,6 +114,25 @@ const gameScreensSeed: CarouselImage[] = [
   },
 ].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
 
+
+const gameClips: CarouselClip[] = [
+  {
+    url: "/game-clips/de-bruyne.webm",
+    title: "FC24",
+    desc: "Sorry Courtois",
+  },
+  {
+    url: "/game-clips/foden.webm",
+    title: "FC24",
+    desc: "Sorry Courtois, again!",
+  },
+  {
+    url: "/game-clips/haaland.webm",
+    title: "FC24",
+    desc: "Why is everyone online Real Madrid?",
+  },
+].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
+
 // TODO: move these to a dynamic location/api
 const len = 3;
 const topAlbumImgs = shuffle<CarouselImage>(topAlbumSeed.slice()).slice(0, len);
@@ -199,5 +218,21 @@ const topTravelImages = shuffle(travelImages.slice()).slice(0, 7);
         </div>
       </div>
     </div>
-  </p>
+    <p class="text-base mt-6">
+      Recently, I upgraded to a PS5 as well, and FC24 has been a great gateway drug into the EPL. Instead of catching real highlights, check out some of my game footage.
+    </p>
+    <div
+    tabindex="0"
+    class="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
+  >
+    <input type="checkbox" />
+
+    <div class="collapse-title text-xl font-medium">
+      Show me the clips!
+    </div>
+    <div class="collapse-content">
+      <div class="my-6 h-1/2 max-w-full">
+        <VideoCarousel clips={gameClips} />
+      </div>
+    </div>
 </Layout>
