@@ -25,7 +25,6 @@ const { title, hideHeader, badgeText } = Astro.props;
     <script>
       import { themeChange } from "theme-change";
       themeChange();
-      console.log("this ran too")
       document.addEventListener('astro:after-swap', themeChange);
     </script>
     <script is:inline>
@@ -37,7 +36,6 @@ const { title, hideHeader, badgeText } = Astro.props;
         document.documentElement.setAttribute("data-theme",localStorage.getItem("theme"));
         // "theme" LocalStorage value is set by the package to remember user preference.
         // The value is checked and applyed before rendering anything.
-        console.log("this ran")
       }
       checkTheme();
       document.addEventListener('astro:after-swap', checkTheme);

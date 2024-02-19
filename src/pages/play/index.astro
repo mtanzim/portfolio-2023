@@ -4,15 +4,15 @@ import Layout from "../../layouts/Layout.astro";
 import type { CarouselImage } from "../../components/Carousel";
 import Carousel from "../../components/Carousel";
 import FullCarousel from "../../components/FullCarousel";
+import { WordCloud } from "../../components/MusicGenres/WordCloud";
 import json from "../../data/spotify-artists.json";
-import type { SpotifyArtists } from "../../types/spotify-artists";
 import {
-  travelImages2023,
-  travelImages2022,
-  travelImagesOlder,
+travelImages2022,
+travelImages2023,
+travelImagesOlder,
 } from "../../data/travelImages";
 import type { FullCarouselImage } from "../../types/images";
-import { WordCloud } from "../../components/MusicGenres/WordCloud";
+import type { SpotifyArtists } from "../../types/spotify-artists";
 
 // Copied, see https://stackoverflow.com/a/2450976/9641551
 // warning: mutates
@@ -36,6 +36,8 @@ function shuffle<T>(array: T[]): T[] {
   return array;
 }
 
+
+const s3Path = "https://tm-photo-portfolio.s3.amazonaws.com/website-assets";
 const topAlbumSeed: CarouselImage[] = [
   {
     url: "/albums/midnights.jpeg",
@@ -66,10 +68,6 @@ const topAlbumSeed: CarouselImage[] = [
     title: "Kacey Musgraves - Golden Hour",
   },
   {
-    url: "/albums/heroes-villains.jpeg",
-    title: "Metro Boomin - Heroes and Villains",
-  },
-  {
     url: "/albums/kaytramine.jpeg",
     title: "Kaytramine - Kaytramine",
   },
@@ -81,7 +79,7 @@ const topAlbumSeed: CarouselImage[] = [
     url: "/albums/sos.jpeg",
     title: "SZA - SOS",
   },
-].map((item) => ({ ...item, alt: item.title }));
+].map((item) => ({...item, url: `${s3Path}${item.url}`, alt: item.title }));
 
 const gameScreensSeed: CarouselImage[] = [
   {
@@ -109,7 +107,15 @@ const gameScreensSeed: CarouselImage[] = [
     title: "Super Mario Bros U",
     desc: "Jack Black is just about to break into song",
   },
-].map((item) => ({ ...item, alt: item.title }));
+  {
+    url: "/game-screens/wonder.jpg",
+    title: "Super Mario Bros Wonder",
+    desc: "This has to be the most fun game ever made!",
+  },
+].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
+
+
+
 
 // TODO: move these to a dynamic location/api
 const len = 3;
@@ -196,5 +202,5 @@ const topTravelImages = shuffle(travelImages.slice()).slice(0, 7);
         </div>
       </div>
     </div>
-  </p>
+
 </Layout>
