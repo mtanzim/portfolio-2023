@@ -34,7 +34,7 @@ Problem solving, software design, mentorship, leadership and communication
 - Key challenges include establishing best practices for building a modern web UI with drag and drop interactions, alongside developing backend APIs and microservices. Frontend technologies include `React`, `Typescript` and `Storybook`, while `Go`, `NodeJS`, `Ruby`, `Kafka`, `AWS`, `Github Actions` and `Kubernetes` are critical on the backend.
 - Mentoring peers on concepts such as functional reactive programming, atomic design, concurrency, and testing
 - Continuously analyzing and improving existing systems: reduced endpoint latency by 35x through concurrent `Go` code optimization, simplified system architecture by consolidating scattered code across services and languages into a sub-500 LOC `Typescript` package
-- On a similar spirit, I have led multiple award-winning hackathon and R&D initiatives. One project enabled automated flyer curation within a full stack `NextJS` app, integrating with OpenAI's `GPT-3.5` large language model (`LLM`). A follow up project enabled semantic search of private product data using retrieval augmented generation (`RAG`); leveraging a locally hosted vector database (`ChromaDB`), and an open source LLM (`mistral:7b`)
+- On a similar spirit, I have led multiple award-winning hackathon and R&D initiatives. One project enabled automated flyer curation within a full stack `NextJS` app, integrating with OpenAI's `GPT-3.5` large language model (`LLM`). A follow up project enabled semantic search of private product data using retrieval augmented generation (`RAG`): leveraging a locally hosted vector database (`ChromaDB`), and an open source LLM (`mistral:7b`)
 
 ### Mentor, [CareerFoundry](https://careerfoundry.com/) | Remote, Feb 2022 - May 2023
 
