@@ -28,34 +28,3 @@ export default function Carousel({ images, customImgClasses }: Props) {
     </div>
   );
 }
-
-export type CarouselClip = {
-  url: string;
-  alt: string;
-  title: string;
-  desc?: string;
-};
-type VideoProps = {
-  clips: CarouselClip[];
-};
-
-export function VideoCarousel({ clips }: VideoProps) {
-  return (
-    <div className="rounded-box">
-      {clips.map((clip: CarouselClip) => (
-        <div className="mb-4 md:mb-0">
-          <p className="ml-4 text-base">{clip.title}</p>
-          <p className="ml-4 text-xs mb-4">{clip.desc ?? ""}</p>
-          <video key={clip.url} controls>
-            <source src={clip.url} type="video/webm" />
-            Sorry, your browser doesn't support embedded videos, but don't
-            worry, you can
-            <a href={clip.url}>download it</a>
-            and watch it with your favorite video player!
-          </video>
-          <div className="divider"></div>
-        </div>
-      ))}
-    </div>
-  );
-}
