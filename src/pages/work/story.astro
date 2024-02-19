@@ -1,7 +1,9 @@
 ---
-import PhotoCard from "../../components/PhotoCard.astro";
 import Layout from "../../layouts/Layout.astro";
-import Carousel, { CarouselImage } from "../../components/Carousel";
+import Carousel, { type CarouselImage } from "../../components/Carousel";
+
+
+const s3Path = "https://tm-photo-portfolio.s3.amazonaws.com/website-assets";
 
 const asiaImages: CarouselImage[] = [
   {
@@ -19,7 +21,7 @@ const asiaImages: CarouselImage[] = [
     title: `Dinner with the Relotalent team and friends`,
     desc: "I really have to thank the Relotalent team for giving me a shot. All I had to do was keenly listen to the issues of Italian politics. Thankfully my Python and SQL skills from a past life came clutch.",
   },
-].map((img) => ({ ...img, alt: img.title }));
+].map((img) => ({ ...img, url: `${s3Path}${img.url}`, alt: img.title }));
 
 const berlinImages: CarouselImage[] = [
   {
@@ -37,7 +39,7 @@ const berlinImages: CarouselImage[] = [
     title: "My first office space in Mindspace, Berlin",
     desc: "Jared Leto is not wrong, the coworking life is much better than cubicles.",
   },
-].map((img) => ({ ...img, alt: img.title }));
+].map((img) => ({ ...img, url: `${s3Path}${img.url}`, alt: img.title }));
 ---
 
 <Layout title="My story">

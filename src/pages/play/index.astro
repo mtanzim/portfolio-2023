@@ -36,6 +36,8 @@ function shuffle<T>(array: T[]): T[] {
   return array;
 }
 
+
+const s3Path = "https://tm-photo-portfolio.s3.amazonaws.com/website-assets";
 const topAlbumSeed: CarouselImage[] = [
   {
     url: "/albums/midnights.jpeg",
@@ -81,7 +83,7 @@ const topAlbumSeed: CarouselImage[] = [
     url: "/albums/sos.jpeg",
     title: "SZA - SOS",
   },
-].map((item) => ({ ...item, alt: item.title }));
+].map((item) => ({...item, url: `${s3Path}${item.url}`, alt: item.title }));
 
 const gameScreensSeed: CarouselImage[] = [
   {
@@ -109,7 +111,7 @@ const gameScreensSeed: CarouselImage[] = [
     title: "Super Mario Bros U",
     desc: "Jack Black is just about to break into song",
   },
-].map((item) => ({ ...item, alt: item.title }));
+].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
 
 // TODO: move these to a dynamic location/api
 const len = 3;
