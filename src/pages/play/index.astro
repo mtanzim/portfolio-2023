@@ -111,6 +111,11 @@ const gameScreensSeed: CarouselImage[] = [
     title: "Super Mario Bros U",
     desc: "Jack Black is just about to break into song",
   },
+  {
+    url: "/game-screens/wonder.jpg",
+    title: "Super Mario Bros Wonder",
+    desc: "This has to be the most fun game ever made!",
+  },
 ].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
 
 // TODO: move these to a dynamic location/api
