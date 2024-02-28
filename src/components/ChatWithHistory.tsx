@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
+
+const END_INDICATOR = "|END STREAM| Sources: ";
+const SOURCE_DELIM = ",";
 
 export async function mockApi(
   _question: string,
@@ -15,6 +18,7 @@ export async function mockApi(
 export async function callAPI(
   question: string,
   cb: (chunk: string) => void,
+  sourcesCb: (sources: string[]) => void,
   history = ""
 ): Promise<void> {
   const myHeaders = new Headers();
@@ -44,6 +48,16 @@ export async function callAPI(
       return;
     }
     const strChunk = new TextDecoder().decode(value);
+    // TODO: feels hacky, investigate better ways to handle this
+    if (strChunk.includes(END_INDICATOR)) {
+      const beginning = strChunk.slice(0, strChunk.indexOf(END_INDICATOR));
+      const sources = strChunk
+        .slice(strChunk.indexOf(END_INDICATOR) + END_INDICATOR.length)
+        .split(SOURCE_DELIM);
+      cb(beginning);
+      sourcesCb(sources);
+      return;
+    }
     cb(strChunk);
   }
 }
@@ -60,6 +74,7 @@ type Message = {
   timeStamp: Date;
   sender: "human" | "bot";
   content: string;
+  sources?: string[];
 };
 
 const MAX_CHARS = 20_000;
@@ -88,9 +103,29 @@ export const ChatWithHistory: React.FC = () => {
     });
   };
 
+  const addSourcesFromBot = (sources: string[]) => {
+    setMessages((cur) => {
+      const last = cur.at(-1);
+      if (last?.sender === "bot") {
+        return cur.slice(0, -1).concat([
+          {
+            ...last,
+            sources,
+          },
+        ]);
+      }
+      return cur;
+    });
+  };
+
   const addToRes = (chunk: string) => {
     !streaming && setStreaming(true);
     addMessageFromBot(chunk);
+  };
+
+  const addToMeta = (sources: string[]) => {
+    !streaming && setStreaming(true);
+    addSourcesFromBot(sources);
   };
 
   const gatherHistory = (messages: Message[]) => {
@@ -112,7 +147,6 @@ export const ChatWithHistory: React.FC = () => {
     setLoading(true);
     setQuery(null);
 
-    console.log({ contentLen: gatherHistory(messages).length });
     if (gatherHistory(messages).length > MAX_CHARS) {
       setMessages([
         {
@@ -155,7 +189,7 @@ export const ChatWithHistory: React.FC = () => {
 
     try {
       const pastMessages = hasHistory ? gatherHistory(messages) : "";
-      await callAPI(submittedQuery, addToRes, pastMessages);
+      await callAPI(submittedQuery, addToRes, addToMeta, pastMessages);
     } catch (err: unknown) {
       console.error(err);
       addMessageFromBot(`Something went wrong, please try again later.`);
@@ -178,19 +212,41 @@ export const ChatWithHistory: React.FC = () => {
               );
             }
             return (
-              <div key={message.id} className="chat chat-start">
-                <div className="chat-bubble max-w-fit">
-                  {message.content === "" ? (
-                    <code className="animate-ping"> ... </code>
-                  ) : (
-                    message.content
-                  )}
-                  {streaming && idx === messages.length - 1 && (
-                    <code className="animate-ping"> | </code>
-                  )}
+              <Fragment key={message.id}>
+                <div className="chat chat-start">
+                  <div className="chat-bubble max-w-fit">
+                    {message.content === "" ? (
+                      <code className="animate-ping"> ... </code>
+                    ) : (
+                      message.content
+                    )}
+
+                    {streaming && idx === messages.length - 1 && (
+                      <code className="animate-ping"> | </code>
+                    )}
+                  </div>
+                  <div className="chat-footer opacity-50"></div>
                 </div>
-                <div className="chat-footer opacity-50"></div>
-              </div>
+                {(message?.sources?.length || 0) > 0 && (
+                  <div className="collapse collapse-arrow">
+                    <input type="checkbox" />
+                    <div className="collapse-title">Sources</div>
+                    <div className="collapse-content flex flex-wrap">
+                      {message.sources?.map((s, idx) => (
+                        <a
+                          className="link link-info mr-2"
+                          key={`${idx}-${s}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={s}
+                        >
+                          {s}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </Fragment>
             );
           })}
         </>
