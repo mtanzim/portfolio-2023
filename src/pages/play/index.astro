@@ -9,6 +9,7 @@ import json from "../../data/spotify-artists.json";
 import {
 travelImages2022,
 travelImages2023,
+travelImages2024,
 travelImagesOlder,
 } from "../../data/travelImages";
 import type { FullCarouselImage } from "../../types/images";
@@ -129,7 +130,8 @@ const gameTitleSet = new Set<string>();
 gameScreens.forEach((g) => gameTitleSet.add(g.title));
 const gameTitles = Array.from(gameTitleSet).join(", ");
 
-const travelImages: FullCarouselImage[] = travelImages2023
+const travelImages: FullCarouselImage[] = travelImages2024
+  .concat(travelImages2023)
   .concat(travelImages2022)
   .concat(travelImagesOlder);
 

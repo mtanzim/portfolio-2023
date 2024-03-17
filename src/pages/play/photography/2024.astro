@@ -1,0 +1,9 @@
+---
+import PhotographyLayout from "../../../layouts/PhotographyLayout.astro";
+import PhotoGrid from "../../../components/PhotoGrid.astro";
+import { travelImages2024 } from "../../../data/travelImages";
+---
+
+<PhotographyLayout year={"2024"}>
+  <PhotoGrid imagePaths={travelImages2024} />
+</PhotographyLayout>
