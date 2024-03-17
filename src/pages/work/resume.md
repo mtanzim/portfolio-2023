@@ -71,4 +71,4 @@ Problem solving, software design, mentorship, leadership and communication
 
 ## Interests
 
-Technology, music, travel, [photography](https://mtanzim.com/play/photography/2023/), fitness, video games
+Technology, music, travel, [photography](https://mtanzim.com/play/photography/2024/), fitness, video games
