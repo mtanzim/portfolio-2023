@@ -27,7 +27,11 @@ Problem solving, software design, mentorship, leadership and communication
 
 ## Work Experience
 
-### Senior Software Engineer, [Flipp](https://flipp.com/home) | Toronto, Canada, Jan 2021 - Present
+### Member of Technical Staff, [Cohere](https://cohere.com/) | Toronto, Canada, Mar 2024 - Present
+
+- Cohere empowers developers and enterprise with large language models (LLM) and retrieval augmented generation (RAG)
+
+### Senior Software Engineer, [Flipp](https://flipp.com/home) | Toronto, Canada, Jan 2021 - Mar 2024
 
 - Flipp helps North American shoppers save money by aggregating deals and flyers
 - I am working on a greenfield web application enabling Flipp’s retail partners design digital flyers, leading the charge in migrating off print flyers towards a digital solution

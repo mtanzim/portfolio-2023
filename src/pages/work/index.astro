@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import CodingWrapped from "../../components/CodingStats/CodingWrapped.astro";
 import flippImg  from "../../assets/work/flipp.png"
+import cohereGif  from "../../assets/work/cohere.gif"
 import cfImg  from "../../assets/work/cf.jpg"
 import moofareImg  from "../../assets/work/moonfare.jpeg"
 import diginexImg  from "../../assets/work/diginex.png"
@@ -42,7 +43,15 @@ const tileSectionIds: Record<TileType, string> = Object.fromEntries(
 ) as Record<TileType, string>;
 
 const tiles: Tile[] = [
-
+  {
+    company: "Flipp",
+    title: "Senior software engineer",
+    desc: "Helped North Americans shop smarter with Flipp",
+    links: ["https://flipp.com/home/"],
+    linkTitles: ["Visit"],
+    imageSrc: flippImg,
+    type: "past",
+  },
   {
     company: "Careerfoundry",
     title: "Web development mentor",
@@ -182,15 +191,16 @@ const tiles: Tile[] = [
     type: "background",
     internal: true,
   },
-
   {
-    company: "Flipp",
-    title: "Senior software engineer",
-    desc: "Currently, I am helping North Americans shop smarter with Flipp",
-    links: ["https://flipp.com/home/"],
-    linkTitles: ["Learn more"],
-    imageSrc: flippImg,
+    company: "Cohere",
+    title: "Member of technical staff",
+    desc: "Currently, I'm helping expose the power of LLMs and RAGs to developers and enterprise customers",
+    imageSrc: cohereGif,
+    links: ["https://cohere.com/"],
+    linkTitles: ["Visit"],
+
     type: "background",
+    internal: true,
   },
   {
     company: "",
