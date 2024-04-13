@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const END_INDICATOR = "|END STREAM| Sources: ";
 const SOURCE_DELIM = ",";
@@ -19,7 +19,8 @@ export async function callAPI(
   question: string,
   cb: (chunk: string) => void,
   sourcesCb: (sources: string[]) => void,
-  history = ""
+  history = "",
+  conversationId?: string
 ): Promise<void> {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -27,6 +28,7 @@ export async function callAPI(
   const raw = JSON.stringify({
     question,
     chatHistory: history,
+    conversationId,
   });
 
   const requestOptions = {
@@ -85,6 +87,11 @@ export const ChatWithHistory: React.FC = () => {
   const [streaming, setStreaming] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [hasHistory, setHasHistory] = useState(false);
+  const [conversationId, setConversationId] = useState<string | undefined>();
+
+  useEffect(() => {
+    setConversationId(crypto.randomUUID());
+  }, []);
 
   const isBusy = loading || streaming;
 
@@ -189,7 +196,13 @@ export const ChatWithHistory: React.FC = () => {
 
     try {
       const pastMessages = hasHistory ? gatherHistory(messages) : "";
-      await callAPI(submittedQuery, addToRes, addToMeta, pastMessages);
+      await callAPI(
+        submittedQuery,
+        addToRes,
+        addToMeta,
+        pastMessages,
+        conversationId
+      );
     } catch (err: unknown) {
       console.error(err);
       addMessageFromBot(`Something went wrong, please try again later.`);
