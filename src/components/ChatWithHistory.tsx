@@ -86,7 +86,6 @@ export const ChatWithHistory: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [streaming, setStreaming] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [hasHistory, setHasHistory] = useState(false);
   const [conversationId, setConversationId] = useState<string | undefined>();
 
   useEffect(() => {
@@ -195,7 +194,7 @@ export const ChatWithHistory: React.FC = () => {
     }
 
     try {
-      const pastMessages = hasHistory ? gatherHistory(messages) : "";
+      const pastMessages = "";
       await callAPI(
         submittedQuery,
         addToRes,
@@ -333,18 +332,6 @@ export const ChatWithHistory: React.FC = () => {
           >
             Clear chat
           </button>
-          <label className=" label cursor-pointer">
-            <span className="label-text">
-              Use session chat history to provide added context for gippity
-            </span>
-            <input
-              type="checkbox"
-              onChange={() => setHasHistory((cur) => !cur)}
-              className="toggle"
-              checked={hasHistory}
-              disabled={isBusy}
-            />
-          </label>
         </div>
       </div>
     </>
