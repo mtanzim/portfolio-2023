@@ -307,18 +307,9 @@ export const ChatWithHistory: React.FC = () => {
           >
             Submit
           </button>
-        </div>
-      </div>
-      <div
-        tabIndex={0}
-        className="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
-      >
-        <input type="checkbox" />
-        <div className="collapse-title text-xl font-medium">Settings</div>
-        <div className="collapse-content">
           <button
             disabled={isBusy || messages.length === 0}
-            className="btn btn-xs btn-outline btn-info mr-2"
+            className="btn btn-outline btn-info mr-2"
             onClick={() => {
               navigator.clipboard.writeText(gatherHistory(messages));
             }}
@@ -327,7 +318,7 @@ export const ChatWithHistory: React.FC = () => {
           </button>
           <button
             disabled={isBusy || messages.length === 0}
-            className="btn btn-xs btn-outline btn-error"
+            className="btn btn-outline btn-error"
             onClick={() => setMessages([])}
           >
             Clear chat
