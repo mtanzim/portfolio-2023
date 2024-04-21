@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const END_INDICATOR = "|END STREAM| Sources: ";
 const SOURCE_DELIM = ",";
@@ -19,7 +19,8 @@ export async function callAPI(
   question: string,
   cb: (chunk: string) => void,
   sourcesCb: (sources: string[]) => void,
-  history = ""
+  history = "",
+  conversationId?: string
 ): Promise<void> {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -27,6 +28,7 @@ export async function callAPI(
   const raw = JSON.stringify({
     question,
     chatHistory: history,
+    conversationId,
   });
 
   const requestOptions = {
@@ -84,7 +86,11 @@ export const ChatWithHistory: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [streaming, setStreaming] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [hasHistory, setHasHistory] = useState(false);
+  const [conversationId, setConversationId] = useState<string | undefined>();
+
+  useEffect(() => {
+    setConversationId(crypto.randomUUID());
+  }, []);
 
   const isBusy = loading || streaming;
 
@@ -188,8 +194,14 @@ export const ChatWithHistory: React.FC = () => {
     }
 
     try {
-      const pastMessages = hasHistory ? gatherHistory(messages) : "";
-      await callAPI(submittedQuery, addToRes, addToMeta, pastMessages);
+      const pastMessages = "";
+      await callAPI(
+        submittedQuery,
+        addToRes,
+        addToMeta,
+        pastMessages,
+        conversationId
+      );
     } catch (err: unknown) {
       console.error(err);
       addMessageFromBot(`Something went wrong, please try again later.`);
@@ -265,7 +277,30 @@ export const ChatWithHistory: React.FC = () => {
               }
             }}
           />
-          <div className="dropdown ml-2">
+          <button
+            disabled={isBusy || !query}
+            className="btn btn-outline my-4 mx-2"
+            onClick={() => onSubmit(query)}
+          >
+            Submit
+          </button>
+          <button
+            disabled={isBusy || messages.length === 0}
+            className="btn btn-outline btn-info mr-2"
+            onClick={() => {
+              navigator.clipboard.writeText(gatherHistory(messages));
+            }}
+          >
+            Copy chat
+          </button>
+          <button
+            disabled={isBusy || messages.length === 0}
+            className="btn btn-outline btn-error"
+            onClick={() => setMessages([])}
+          >
+            Clear chat
+          </button>
+          <div className="dropdown ml-2 text-right">
             <label tabIndex={0} className="btn btn-secondary btn-outline my-4">
               Sample Questions
             </label>
@@ -288,50 +323,6 @@ export const ChatWithHistory: React.FC = () => {
               ))}
             </ul>
           </div>
-          <button
-            disabled={isBusy || !query}
-            className="btn btn-outline my-4 mx-2"
-            onClick={() => onSubmit(query)}
-          >
-            Submit
-          </button>
-        </div>
-      </div>
-      <div
-        tabIndex={0}
-        className="collapse collapse-plus my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8"
-      >
-        <input type="checkbox" />
-        <div className="collapse-title text-xl font-medium">Settings</div>
-        <div className="collapse-content">
-          <button
-            disabled={isBusy || messages.length === 0}
-            className="btn btn-xs btn-outline btn-info mr-2"
-            onClick={() => {
-              navigator.clipboard.writeText(gatherHistory(messages));
-            }}
-          >
-            Copy chat
-          </button>
-          <button
-            disabled={isBusy || messages.length === 0}
-            className="btn btn-xs btn-outline btn-error"
-            onClick={() => setMessages([])}
-          >
-            Clear chat
-          </button>
-          <label className=" label cursor-pointer">
-            <span className="label-text">
-              Use session chat history to provide added context for gippity
-            </span>
-            <input
-              type="checkbox"
-              onChange={() => setHasHistory((cur) => !cur)}
-              className="toggle"
-              checked={hasHistory}
-              disabled={isBusy}
-            />
-          </label>
         </div>
       </div>
     </>
