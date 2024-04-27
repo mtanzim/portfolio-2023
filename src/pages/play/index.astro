@@ -5,7 +5,6 @@ import type { CarouselImage } from "../../components/Carousel";
 import Carousel from "../../components/Carousel";
 import FullCarousel from "../../components/FullCarousel";
 import { WordCloud } from "../../components/MusicGenres/WordCloud";
-import json from "../../data/spotify-artists.json";
 import {
 travelImages2022,
 travelImages2023,
@@ -132,6 +131,9 @@ const travelImages: FullCarouselImage[] = travelImages2024
   .concat(travelImagesOlder);
 
 const topTravelImages = shuffle(travelImages.slice()).slice(0, 7);
+const spotifyData = await fetch("https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/spotify-artists.json")
+.then(res => res.json())
+.catch(console.error)
 ---
 
 <Layout title="Play">
@@ -160,7 +162,7 @@ const topTravelImages = shuffle(travelImages.slice()).slice(0, 7);
       a glimpse of my affinity towards musical genres from the last few years:
     </p>
     <div class="my-6">
-      <WordCloud json={json as SpotifyArtists} client:only="react" />
+      <WordCloud json={spotifyData as SpotifyArtists} client:only="react" />
     </div>
     This is based on my data on Spotify and you can generate a similar one through
     my <a
