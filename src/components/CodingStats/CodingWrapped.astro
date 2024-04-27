@@ -46,17 +46,18 @@ const fetchWithMonths = async (months: number) => {
   return languageData?.percentages;
 };
 
-const colors = await fetch("https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/colors.json")
-  .then(res => res.json())
-  .catch(console.error)
-console.log({colors})
+const colors = await fetch(
+  "https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/colors.json",
+)
+  .then((res) => res.json())
+  .catch(console.error);
 let dataSet;
 try {
   const data = await Promise.all(
     [3, 6, 12].map(async (n) => {
       await new Promise((r) => setTimeout(r, 500));
       return fetchWithMonths(n);
-    })
+    }),
   );
   dataSet = [3, 6, 12].map((n, idx) => ({ months: n, data: data[idx] }));
 } catch (err) {

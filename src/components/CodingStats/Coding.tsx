@@ -1,6 +1,6 @@
 import {
   ArcElement,
-  ChartData,
+  type ChartData,
   Chart as ChartJS,
   Legend,
   Tooltip,

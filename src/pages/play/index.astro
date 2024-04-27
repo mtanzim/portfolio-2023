@@ -6,10 +6,10 @@ import Carousel from "../../components/Carousel";
 import FullCarousel from "../../components/FullCarousel";
 import { WordCloud } from "../../components/MusicGenres/WordCloud";
 import {
-travelImages2022,
-travelImages2023,
-travelImages2024,
-travelImagesOlder,
+  travelImages2022,
+  travelImages2023,
+  travelImages2024,
+  travelImagesOlder,
 } from "../../data/travelImages";
 import type { FullCarouselImage } from "../../types/images";
 import type { SpotifyArtists } from "../../types/spotify-artists";
@@ -35,7 +35,6 @@ function shuffle<T>(array: T[]): T[] {
 
   return array;
 }
-
 
 const s3Path = "https://tm-photo-portfolio.s3.amazonaws.com/website-assets";
 const topAlbumSeed: CarouselImage[] = [
@@ -75,7 +74,7 @@ const topAlbumSeed: CarouselImage[] = [
     url: "/albums/sos.jpeg",
     title: "SZA - SOS",
   },
-].map((item) => ({...item, url: `${s3Path}${item.url}`, alt: item.title }));
+].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
 
 const gameScreensSeed: CarouselImage[] = [
   {
@@ -110,15 +109,12 @@ const gameScreensSeed: CarouselImage[] = [
   },
 ].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
 
-
-
-
 // TODO: move these to a dynamic location/api
 const len = 3;
 const topAlbumImgs = shuffle<CarouselImage>(topAlbumSeed.slice()).slice(0, len);
 const gameScreens = shuffle<CarouselImage>(gameScreensSeed.slice()).slice(
   0,
-  len
+  len,
 );
 
 const gameTitleSet = new Set<string>();
@@ -131,9 +127,11 @@ const travelImages: FullCarouselImage[] = travelImages2024
   .concat(travelImagesOlder);
 
 const topTravelImages = shuffle(travelImages.slice()).slice(0, 7);
-const spotifyData = await fetch("https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/spotify-artists.json")
-.then(res => res.json())
-.catch(console.error)
+const spotifyData = await fetch(
+  "https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/spotify-artists.json",
+)
+  .then((res) => res.json())
+  .catch(console.error);
 ---
 
 <Layout title="Play">
@@ -202,5 +200,5 @@ const spotifyData = await fetch("https://tm-photo-portfolio.s3.amazonaws.com/web
         </div>
       </div>
     </div>
-
+  </p>
 </Layout>

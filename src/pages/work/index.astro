@@ -1,22 +1,22 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import CodingWrapped from "../../components/CodingStats/CodingWrapped.astro";
-import flippImg  from "../../assets/work/flipp.png"
-import cohereImg  from "../../assets/work/cohere.png"
-import cfImg  from "../../assets/work/cf.jpg"
-import moofareImg  from "../../assets/work/moonfare.jpeg"
-import diginexImg  from "../../assets/work/diginex.png"
-import reloImage  from "../../assets/work/relotalent.png"
-import booksImg  from "../../assets/work/books.png"
-import coursesImg  from "../../assets/work/courses.png"
-import sideImg  from "../../assets/work/side.png"
-import resourceCheckoutImg  from "../../assets/work/resource-checkout.png"
-import spotifyImg  from "../../assets/work/spotify-side.png"
-import muscleImg  from "../../assets/work/muscle.png"
-import clockImg  from "../../assets/work/wall-clock.png"
-import profeshImg  from "../../assets/tm-profesh.jpg"
-import tanzimImg  from "../../assets/tanzim.jpg"
-import podacastImg  from "../../assets/work/podcast.png"
+import flippImg from "../../assets/work/flipp.png";
+import cohereImg from "../../assets/work/cohere.png";
+import cfImg from "../../assets/work/cf.jpg";
+import moofareImg from "../../assets/work/moonfare.jpeg";
+import diginexImg from "../../assets/work/diginex.png";
+import reloImage from "../../assets/work/relotalent.png";
+import booksImg from "../../assets/work/books.png";
+import coursesImg from "../../assets/work/courses.png";
+import sideImg from "../../assets/work/side.png";
+import resourceCheckoutImg from "../../assets/work/resource-checkout.png";
+import spotifyImg from "../../assets/work/spotify-side.png";
+import muscleImg from "../../assets/work/muscle.png";
+import clockImg from "../../assets/work/wall-clock.png";
+import profeshImg from "../../assets/tm-profesh.jpg";
+import tanzimImg from "../../assets/tanzim.jpg";
+import podacastImg from "../../assets/work/podcast.png";
 import { Image } from "astro:assets";
 
 type TileType = "past" | "study" | "side" | "background";
@@ -39,7 +39,7 @@ const tileHeaders: Record<TileType, string> = {
 };
 
 const tileSectionIds: Record<TileType, string> = Object.fromEntries(
-  Object.keys(tileHeaders).map((k) => [k as TileType, k])
+  Object.keys(tileHeaders).map((k) => [k as TileType, k]),
 ) as Record<TileType, string>;
 
 const tiles: Tile[] = [

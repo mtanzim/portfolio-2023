@@ -1,7 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 export interface Props {
   title: string;
   hideHeader?: boolean;
@@ -11,7 +11,7 @@ export interface Props {
 const { title, hideHeader, badgeText } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
@@ -25,7 +25,7 @@ const { title, hideHeader, badgeText } = Astro.props;
     <script>
       import { themeChange } from "theme-change";
       themeChange();
-      document.addEventListener('astro:after-swap', themeChange);
+      document.addEventListener("astro:after-swap", themeChange);
     </script>
     <script is:inline>
       const checkTheme = () => {
@@ -33,19 +33,22 @@ const { title, hideHeader, badgeText } = Astro.props;
         if (localStorage.getItem("theme") === null) {
           document.documentElement.setAttribute("data-theme", "light");
         } else
-        document.documentElement.setAttribute("data-theme",localStorage.getItem("theme"));
+          document.documentElement.setAttribute(
+            "data-theme",
+            localStorage.getItem("theme"),
+          );
         // "theme" LocalStorage value is set by the package to remember user preference.
         // The value is checked and applyed before rendering anything.
-      }
+      };
       checkTheme();
-      document.addEventListener('astro:after-swap', checkTheme);
-  </script>
+      document.addEventListener("astro:after-swap", checkTheme);
+    </script>
 
-  <ViewTransitions />
+    <ViewTransitions />
   </head>
   <body>
     <Navigation />
-    <div class="container mx-auto px-4 mb-24"  >
+    <div class="container mx-auto px-4 mb-24">
       {
         !hideHeader && (
           <>

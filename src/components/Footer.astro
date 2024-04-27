@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <footer class="footer mt-36 items-center p-2 fixed bottom-0 bg-accent">
@@ -32,11 +33,10 @@
     const buttons = document.querySelectorAll(".goTop");
     buttons.forEach((b) =>
       b.addEventListener("click", () =>
-        window.scrollTo({ top: 0, behavior: "smooth" })
-      )
+        window.scrollTo({ top: 0, behavior: "smooth" }),
+      ),
     );
-  }
+  };
   setupGoTop();
-  document.addEventListener('astro:after-swap', setupGoTop);
-
+  document.addEventListener("astro:after-swap", setupGoTop);
 </script>
