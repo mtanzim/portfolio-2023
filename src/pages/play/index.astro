@@ -122,7 +122,7 @@ const gameScreensSeed: CarouselImage[] = [
     title: "FC24",
     desc: "Find someone that looks at you the way Pep does <3",
   },
-].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }))
+].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
 // .filter(item => item.title === "FC24")
 
 // TODO: move these to a dynamic location/api
@@ -196,11 +196,10 @@ const spotifyData = await fetch(
     <h1 id="games" class="text-2xl my-6">Video games</h1>
     <p class="text-base mt-6">
       I've grown up with video games! The Switch has been the perfect device in
-      jumping in here and there to satisfy the gaming itch with a busy life, and the PS5
-      is fantastic at home.
-      Here are a few experiences that have kept me entertained in the
-      last couple years. Click on the
-      disclaimer for the screenshots.
+      jumping in here and there to satisfy the gaming itch with a busy life, and
+      the PS5 is fantastic at home. Here are a few experiences that have kept me
+      entertained in the last couple years. Click on the disclaimer for the
+      screenshots.
     </p>
     <div
       tabindex="0"
