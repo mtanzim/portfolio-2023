@@ -16,11 +16,11 @@ export function WordCloud({ json }: { json: SpotifyArtists }) {
       }
       return acc;
     },
-    {}
+    {},
   );
   const maxCount = Math.max(...Object.values(genreMap));
   const genreMapArray: { text: string; value: number }[] = Object.entries(
-    genreMap
+    genreMap,
   ).map(([text, value]) => ({
     text,
     value,

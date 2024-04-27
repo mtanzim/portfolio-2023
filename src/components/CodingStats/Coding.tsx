@@ -1,25 +1,34 @@
 import {
   ArcElement,
-  ChartData,
+  type ChartData,
   Chart as ChartJS,
   Legend,
   Tooltip,
 } from "chart.js";
-import { Pie } from "react-chartjs-2";
-import colors from "../../data/colors.json";
 import { useState } from "react";
+import { Pie } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+type Language = {
+  color: string;
+  url: string;
+};
+
+export type LanguagesColors = {
+  [key: string]: Language;
+};
+
 interface Props {
   topN: number;
+  colors: LanguagesColors;
   dataSet: Array<{
     months: number;
     data: Array<{ language: string; percentage: number }>;
   }>;
 }
 
-export default function Coding({ dataSet, topN }: Props) {
+export default function Coding({ dataSet, topN, colors }: Props) {
   const [curData, setCurData] = useState(dataSet?.[0]);
   if (!curData) {
     return null;

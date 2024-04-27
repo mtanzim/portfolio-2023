@@ -6,7 +6,7 @@ const SOURCE_DELIM = ",";
 export async function mockApi(
   _question: string,
   cb: (chunk: string) => void,
-  _history = ""
+  _history = "",
 ): Promise<void> {
   const lorem = "lorems ipsums ".repeat(10);
   for (const char of lorem) {
@@ -20,7 +20,7 @@ export async function callAPI(
   cb: (chunk: string) => void,
   sourcesCb: (sources: string[]) => void,
   history = "",
-  conversationId?: string
+  conversationId?: string,
 ): Promise<void> {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -189,7 +189,7 @@ export const ChatWithHistory: React.FC = () => {
             content: "",
             timeStamp: new Date(),
           },
-        ])
+        ]),
       );
     }
 
@@ -200,7 +200,7 @@ export const ChatWithHistory: React.FC = () => {
         addToRes,
         addToMeta,
         pastMessages,
-        conversationId
+        conversationId,
       );
     } catch (err: unknown) {
       console.error(err);
