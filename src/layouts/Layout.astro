@@ -22,20 +22,6 @@ const { title, hideHeader, badgeText } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <!-- Google tag (gtag.js) -->
-    <script
-      type="text/partytown"
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-39YT5HLMXZ"></script>
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-39YT5HLMXZ");
-    </script>
     <script>
       import { themeChange } from "theme-change";
       themeChange();
@@ -49,7 +35,7 @@ const { title, hideHeader, badgeText } = Astro.props;
         } else
           document.documentElement.setAttribute(
             "data-theme",
-            localStorage.getItem("theme")
+            localStorage.getItem("theme"),
           );
         // "theme" LocalStorage value is set by the package to remember user preference.
         // The value is checked and applyed before rendering anything.
