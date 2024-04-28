@@ -13,6 +13,7 @@
     "move-resume-pdf": "mv src/pages/work/resume.pdf public/work/resume.pdf"
   },
   "dependencies": {
+    "@astrojs/partytown": "^2.1.0",
     "@astrojs/react": "^3.0.4",
     "@astrojs/tailwind": "^5.0.2",
     "@astrojs/ts-plugin": "^1.3.1",
