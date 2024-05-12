@@ -108,16 +108,6 @@ const gameScreensSeed: CarouselImage[] = [
     desc: "This has to be the most fun game ever made!",
   },
   {
-    url: "/game-screens/b04.jpg",
-    title: "FC24",
-    desc: "Also undefeated online with B04",
-  },
-  {
-    url: "/game-screens/haaland.jpg",
-    title: "FC24",
-    desc: "Haaland has zero struggles scoring in the game",
-  },
-  {
     url: "/game-screens/pep.jpg",
     title: "FC24",
     desc: "Find someone that looks at you the way Pep does <3",
@@ -130,7 +120,7 @@ const len = 3;
 const topAlbumImgs = shuffle<CarouselImage>(topAlbumSeed.slice()).slice(0, len);
 const gameScreens = shuffle<CarouselImage>(gameScreensSeed.slice()).slice(
   0,
-  len,
+  len
 );
 
 const gameTitleSet = new Set<string>();
@@ -144,7 +134,7 @@ const travelImages: FullCarouselImage[] = travelImages2024
 
 const topTravelImages = shuffle(travelImages.slice()).slice(0, 7);
 const spotifyData = await fetch(
-  "https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/spotify-artists.json",
+  "https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/spotify-artists.json"
 )
   .then((res) => res.json())
   .catch(console.error);
