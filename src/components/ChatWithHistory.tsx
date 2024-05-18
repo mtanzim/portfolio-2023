@@ -285,40 +285,40 @@ export const ChatWithHistory: React.FC = () => {
               {sampleQuestions.map((q, idx) => (
                 <button
                   key={idx}
-                  className="btn btn-secondary btn-sm btn-outline m-2 cursor-pointer text-xs text-ellipsis overflow-clip ..."
+                  className="btn btn-secondary  btn-xs btn-outline m-2 cursor-pointer text-xs text-ellipsis overflow-clip ..."
                   disabled={isBusy}
                   onClick={() => {
                     setQuery(q);
                     onSubmit(q);
                   }}
                 >
-                  {q}
+                  <div className="line-clamp-1">{q}</div>
                 </button>
               ))}
             </div>
           </details>
           <button
             disabled={isBusy || !query}
-            className="btn btn-outline my-4 mx-2"
+            className="btn btn-outline btn-primary my-4 mx-2 btn-sm"
             onClick={() => onSubmit(query)}
           >
             Submit
           </button>
           <button
             disabled={isBusy || messages.length === 0}
-            className="btn btn-outline btn-info mr-2"
+            className="btn btn-outline btn-info mr-2 btn-sm"
             onClick={() => {
               navigator.clipboard.writeText(gatherHistory(messages));
             }}
           >
-            Copy chat
+            Copy
           </button>
           <button
             disabled={isBusy || messages.length === 0}
-            className="btn btn-outline btn-error"
+            className="btn btn-outline btn-error btn-sm"
             onClick={() => setMessages([])}
           >
-            Clear chat
+            Clear
           </button>
         </div>
       </div>
