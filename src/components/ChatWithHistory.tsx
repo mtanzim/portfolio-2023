@@ -277,6 +277,26 @@ export const ChatWithHistory: React.FC = () => {
               }
             }}
           />
+          <details className="collapse bg-base-200">
+            <summary className="collapse-title text-md font-medium select-none">
+              Sample questions
+            </summary>
+            <div>
+              {sampleQuestions.map((q, idx) => (
+                <button
+                  key={idx}
+                  className="btn btn-secondary btn-sm btn-outline m-2 cursor-pointer text-xs text-ellipsis overflow-clip ..."
+                  disabled={isBusy}
+                  onClick={() => {
+                    setQuery(q);
+                    onSubmit(q);
+                  }}
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          </details>
           <button
             disabled={isBusy || !query}
             className="btn btn-outline my-4 mx-2"
@@ -300,29 +320,6 @@ export const ChatWithHistory: React.FC = () => {
           >
             Clear chat
           </button>
-          <div className="dropdown ml-2 text-right">
-            <label tabIndex={0} className="btn btn-secondary btn-outline my-4">
-              Sample Questions
-            </label>
-            <ul
-              tabIndex={0}
-              className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box"
-            >
-              {(isBusy ? ["Currently busy..."] : sampleQuestions).map((q) => (
-                <li key={q}>
-                  <button
-                    disabled={isBusy}
-                    onClick={() => {
-                      setQuery(q);
-                      onSubmit(q);
-                    }}
-                  >
-                    {q}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </>
