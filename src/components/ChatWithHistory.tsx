@@ -213,7 +213,10 @@ export const ChatWithHistory: React.FC = () => {
 
   return (
     <>
-      <div className="shadow-xl rounded-2xl bg-base-200 p-8">
+      <div className="mb-4 badge md:badge-lg badge-outline badge-warning my-4">
+        Disclaimer: AI may produce incorrect information
+      </div>
+      <div className="shadow-xl rounded-2xl bg-base-200 p-8 relative">
         <>
           {messages.map((message, idx) => {
             if (message.sender === "human") {
@@ -263,7 +266,7 @@ export const ChatWithHistory: React.FC = () => {
           })}
         </>
         {isBusy && <progress className="progress w-full"></progress>}
-        <div className="">
+        <div className="mb-12">
           <input
             type="text"
             placeholder="Ask gippity a question"
@@ -277,52 +280,54 @@ export const ChatWithHistory: React.FC = () => {
               }
             }}
           />
+          <details className="collapse bg-base-200">
+            <summary className="collapse-title select-none">
+              Sample questions
+            </summary>
+            <div>
+              {sampleQuestions.map((q, idx) => (
+                <button
+                  key={idx}
+                  className="btn btn-secondary  btn-xs btn-outline m-2 cursor-pointer text-xs text-ellipsis overflow-clip ..."
+                  disabled={isBusy}
+                  onClick={() => {
+                    setQuery(q);
+                    onSubmit(q);
+                  }}
+                >
+                  <div className="line-clamp-1">{q}</div>
+                </button>
+              ))}
+            </div>
+          </details>
           <button
             disabled={isBusy || !query}
-            className="btn btn-outline my-4 mx-2"
+            className="btn btn-outline btn-primary my-4 mx-2 btn-sm"
             onClick={() => onSubmit(query)}
           >
             Submit
           </button>
           <button
             disabled={isBusy || messages.length === 0}
-            className="btn btn-outline btn-info mr-2"
+            className="btn btn-outline btn-info mr-2 btn-sm"
             onClick={() => {
               navigator.clipboard.writeText(gatherHistory(messages));
             }}
           >
-            Copy chat
+            Copy
           </button>
           <button
             disabled={isBusy || messages.length === 0}
-            className="btn btn-outline btn-error"
+            className="btn btn-outline btn-error btn-sm"
             onClick={() => setMessages([])}
           >
-            Clear chat
+            Clear
           </button>
-          <div className="dropdown ml-2 text-right">
-            <label tabIndex={0} className="btn btn-secondary btn-outline my-4">
-              Sample Questions
-            </label>
-            <ul
-              tabIndex={0}
-              className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box"
-            >
-              {(isBusy ? ["Currently busy..."] : sampleQuestions).map((q) => (
-                <li key={q}>
-                  <button
-                    disabled={isBusy}
-                    onClick={() => {
-                      setQuery(q);
-                      onSubmit(q);
-                    }}
-                  >
-                    {q}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+        </div>
+        <div className="badge md:badge-lg badge-accent m-2 absolute bottom-4 right-4">
+          <a href="https://cohere.com/" target="_blank">
+            Powered by Cohere
+          </a>
         </div>
       </div>
     </>

@@ -4,17 +4,10 @@ import { ChatWithHistory } from "../../components/ChatWithHistory";
 ---
 
 <Layout title="Chat with AI" badgeText="Beta">
-  <div class="badge md:badge-lg badge-outline badge-warning my-4">
-    Disclaimer: AI may produce incorrect information
-  </div>
-  <div class="badge md:badge-lg badge-outline badge-info my-4 ml-4">
-    <a href="https://cohere.com/" target="_blank"> Powered by Cohere </a>
-  </div>
-  <p class="text-base mb-8">
+  <p class="text-base mb-12">
     You can ask an AI questions about this website and a few affiliated pages.
     Please beware that this is quite experimental and the performance, stability
     and reliability are still being worked on.
   </p>
-
   <ChatWithHistory client:only="react" />
 </Layout>
