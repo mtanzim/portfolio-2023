@@ -213,7 +213,10 @@ export const ChatWithHistory: React.FC = () => {
 
   return (
     <>
-      <div className="shadow-xl rounded-2xl bg-base-200 p-8">
+      <div className="mb-4 badge md:badge-lg badge-outline badge-warning my-4">
+        Disclaimer: AI may produce incorrect information
+      </div>
+      <div className="shadow-xl rounded-2xl bg-base-200 p-8 relative">
         <>
           {messages.map((message, idx) => {
             if (message.sender === "human") {
@@ -263,7 +266,7 @@ export const ChatWithHistory: React.FC = () => {
           })}
         </>
         {isBusy && <progress className="progress w-full"></progress>}
-        <div className="">
+        <div className="mb-12">
           <input
             type="text"
             placeholder="Ask gippity a question"
@@ -278,7 +281,7 @@ export const ChatWithHistory: React.FC = () => {
             }}
           />
           <details className="collapse bg-base-200">
-            <summary className="collapse-title text-md font-medium select-none">
+            <summary className="collapse-title select-none">
               Sample questions
             </summary>
             <div>
@@ -320,6 +323,11 @@ export const ChatWithHistory: React.FC = () => {
           >
             Clear
           </button>
+        </div>
+        <div className="badge md:badge-lg badge-accent m-2 absolute bottom-4 right-4">
+          <a href="https://cohere.com/" target="_blank">
+            Powered by Cohere
+          </a>
         </div>
       </div>
     </>
