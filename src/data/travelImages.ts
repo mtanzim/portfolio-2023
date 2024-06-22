@@ -2,9 +2,11 @@ import type { FullCarouselImage } from "../types/images";
 
 const s3Path = "https://tm-photo-portfolio.s3.amazonaws.com";
 export const travelImages2024: FullCarouselImage[] = [
-  ["DSC00264.jpg.webp", "Old Trafford, Manchester, England"],
-  ["DSC00185.jpg.webp", "London, England"],
   ["DSC00230.jpg.webp", "London, England"],
+  ["DSC00185.jpg.webp", "London, England"],
+  ["howth.webp", "Howth, Ireland"],
+  ["dublin.webp", "Dublin, Ireland"],
+  ["DSC00264.jpg.webp", "Old Trafford, Manchester, England"],
 ].map(([filename, title]) => ({ url: `${s3Path}/2024/${filename}`, title }));
 
 // TODO: add titles and description to images
