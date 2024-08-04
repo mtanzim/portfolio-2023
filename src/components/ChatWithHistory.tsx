@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, type ReactNode } from "react";
 
 const END_INDICATOR = "|END STREAM| Sources: ";
 const SOURCE_DELIM = ",";
@@ -81,7 +81,9 @@ type Message = {
 
 const MAX_CHARS = 20_000;
 
-export const ChatWithHistory: React.FC = () => {
+export const ChatWithHistory: React.FC<{
+  children: ReactNode;
+}> = ({ children }) => {
   const [query, setQuery] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [streaming, setStreaming] = useState(false);
@@ -213,7 +215,12 @@ export const ChatWithHistory: React.FC = () => {
 
   return (
     <div className="p-8 h-[80vh] md:w-[50vw] overflow-y-auto">
-      <p className="text-xl">Chat with an AI</p>
+      <div className="mb-4">
+        <p className="text-xl">Chat with an AI</p>
+        <p className="text-sm">
+          Disclaimer: AI may produce incorrect information
+        </p>
+      </div>
       <>
         {messages.map((message, idx) => {
           if (message.sender === "human") {
@@ -322,6 +329,12 @@ export const ChatWithHistory: React.FC = () => {
           Clear
         </button>
       </div>
+      <div className="badge md:badge-sm badge-accent m-2 absolute bottom-4 left-2">
+        <a href="https://cohere.com/" target="_blank">
+          Powered by Cohere
+        </a>
+      </div>
+      <div className="m-2 absolute bottom-4 right-2">{children}</div>
     </div>
   );
 };

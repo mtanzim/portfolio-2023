@@ -49,7 +49,12 @@ const { title, hideHeader, badgeText } = Astro.props;
   </head>
   <body>
     <dialog id={`chat_modal`}>
-      <ChatWithHistory client:only="react" />
+      <ChatWithHistory client:only="react">
+        <button
+          onclick="chat_modal.close()"
+          class="btn btn-sm btn-circle btn-outline">X</button
+        >
+      </ChatWithHistory>
     </dialog>
     <Navigation />
     <div class="container mx-auto px-4 mb-24">
@@ -73,10 +78,10 @@ const { title, hideHeader, badgeText } = Astro.props;
       </div>
     </div>
     <Footer />
+    <style>
+      dialog::backdrop {
+        backdrop-filter: brightness(0.1);
+      }
+    </style>
   </body>
 </html>
-<style>
-  dialog::backdrop {
-    backdrop-filter: brightness(0.1);
-  }
-</style>
