@@ -1,5 +1,4 @@
 ---
-import { ChatWithHistory } from "./ChatWithHistory";
 
 // TODO: hamburger menu for mobile
 const pages = [
@@ -19,10 +18,7 @@ const pages = [
     href: "/play/photography/2024",
     label: "Photography",
   },
-  // {
-  //   href: "/chat",
-  //   label: "Chat",
-  // },
+
   {
     href: "/blog",
     label: "Blog",
@@ -32,9 +28,7 @@ const pages = [
 
 <!-- desktop nav bar -->
 <>
-  <dialog id={`chat_modal`}>
-    <ChatWithHistory client:only="react" />
-  </dialog>
+
   <div class="hidden lg:flex flex-wrap navbar bg-base-100 mb-8 lg:visible">
     <div class="flex-1">
       <a href="/" class="btn btn-ghost normal-case text-xl">
@@ -51,9 +45,6 @@ const pages = [
             </li>
           ))
         }
-        <li>
-          <button onclick={`chat_modal.showModal()`}>Chat</button>
-        </li>
       </ul>
       <button
         class="btn btn-accent btn-outline btn-xs mx-4"
@@ -100,8 +91,4 @@ const pages = [
     </div>
   </div>
 </>
-<style>
-  dialog::backdrop {
-    backdrop-filter: brightness(0.1);
-  }
-</style>
+

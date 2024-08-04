@@ -212,7 +212,7 @@ export const ChatWithHistory: React.FC = () => {
   };
 
   return (
-    <div className="p-8 h-[80vh] overflow-y-auto">
+    <div className="p-8 h-[80vh] md:w-[50vw] overflow-y-auto">
       <p className="text-xl">Chat with an AI</p>
       <>
         {messages.map((message, idx) => {
@@ -277,6 +277,27 @@ export const ChatWithHistory: React.FC = () => {
             }
           }}
         />
+        <div className="collapse collapse-arrow">
+          <input type="checkbox" />
+          <div className="collapse-title text-md font-medium">
+            Sample questions
+          </div>
+          <div className="collapse-content">
+            {sampleQuestions.map((q, idx) => (
+              <button
+                key={idx}
+                className="btn btn-secondary  btn-xs btn-outline m-2 cursor-pointer text-xs text-ellipsis overflow-clip ..."
+                disabled={isBusy}
+                onClick={() => {
+                  setQuery(q);
+                  onSubmit(q);
+                }}
+              >
+                <div className="line-clamp-1">{q}</div>
+              </button>
+            ))}
+          </div>
+        </div>
         <button
           disabled={isBusy || !query}
           className="btn btn-outline btn-primary my-4 mx-2 btn-sm"

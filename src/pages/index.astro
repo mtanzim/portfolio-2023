@@ -18,9 +18,10 @@ import { Image } from "astro:assets";
           >.
         </p>
         <p class="py-2">
-          You can also ask a <a class="badge badge-info" href={"/chat"}
-            >chatbot</a
-          > questions about this website.
+          You can also ask a <button
+            class="badge badge-info"
+            onclick={`chat_modal.showModal()`}>chatbot</button
+          >questions about this website.
         </p>
       </div>
       <div class="divider lg:divider-horizontal"></div>
