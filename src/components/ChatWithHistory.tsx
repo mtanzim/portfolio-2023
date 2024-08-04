@@ -212,7 +212,8 @@ export const ChatWithHistory: React.FC = () => {
   };
 
   return (
-    <div className="shadow-xl rounded-2xl p-8m h-[756px] overflow-y-auto">
+    <div className="p-8 h-[80vh] overflow-y-auto">
+      <p className="text-xl">Chat with an AI</p>
       <>
         {messages.map((message, idx) => {
           if (message.sender === "human") {
