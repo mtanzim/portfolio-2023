@@ -215,10 +215,19 @@ export const ChatWithHistory: React.FC<{
 
   return (
     <div className="p-8 h-[80vh] md:w-[50vw] overflow-y-auto">
-      <div className="mb-4">
+      <div className="mb-6">
         <p className="text-xl">Chat with an AI</p>
-        <p className="text-sm">
-          Disclaimer: AI may produce incorrect information
+
+        <a
+          className="badge md:badge-sm badge-accent"
+          href="https://cohere.com/"
+          target="_blank"
+        >
+          Powered by Cohere
+        </a>
+        <p className="text-sm mt-2 text-warning">
+          Disclaimer: AI may produce incorrect information. Please double check
+          original resources.
         </p>
       </div>
       <>
@@ -293,7 +302,7 @@ export const ChatWithHistory: React.FC<{
             {sampleQuestions.map((q, idx) => (
               <button
                 key={idx}
-                className="btn btn-secondary  btn-xs btn-outline m-2 cursor-pointer text-xs text-ellipsis overflow-clip ..."
+                className="btn btn-secondary btn-xs btn-outline m-2 cursor-pointer text-xs text-ellipsis overflow-clip ..."
                 disabled={isBusy}
                 onClick={() => {
                   setQuery(q);
@@ -329,12 +338,8 @@ export const ChatWithHistory: React.FC<{
           Clear
         </button>
       </div>
-      <div className="badge md:badge-sm badge-accent m-2 absolute bottom-4 left-2">
-        <a href="https://cohere.com/" target="_blank">
-          Powered by Cohere
-        </a>
-      </div>
-      <div className="m-2 absolute bottom-4 right-2">{children}</div>
+
+      <div className="m-2 absolute bottom-4 right-4">{children}</div>
     </div>
   );
 };
