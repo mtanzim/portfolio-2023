@@ -223,7 +223,13 @@ export const ChatWithHistory: React.FC<{
   };
 
   return (
-    <div className="p-8 h-[80vh] md:w-[50vw] overflow-y-auto">
+    <div
+      className="p-8 h-[80vh] md:w-[50vw] overflow-y-auto"
+      // TODO: might not work for all browsers
+      style={{
+        scrollbarWidth: "none",
+      }}
+    >
       <div className="mb-6">
         <p className="text-xl">Chat with an AI</p>
 
