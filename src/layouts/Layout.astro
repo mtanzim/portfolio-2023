@@ -1,4 +1,5 @@
 ---
+import { ChatWithHistory } from "../components/ChatWithHistory";
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 import { ViewTransitions } from "astro:transitions";
@@ -35,7 +36,7 @@ const { title, hideHeader, badgeText } = Astro.props;
         } else
           document.documentElement.setAttribute(
             "data-theme",
-            localStorage.getItem("theme"),
+            localStorage.getItem("theme")
           );
         // "theme" LocalStorage value is set by the package to remember user preference.
         // The value is checked and applyed before rendering anything.
@@ -47,6 +48,14 @@ const { title, hideHeader, badgeText } = Astro.props;
     <ViewTransitions />
   </head>
   <body>
+    <dialog id={`chat_modal`}>
+      <ChatWithHistory client:only="react">
+        <button
+          onclick="chat_modal.close()"
+          class="btn btn-sm btn-circle btn-outline">X</button
+        >
+      </ChatWithHistory>
+    </dialog>
     <Navigation />
     <div class="container mx-auto px-4 mb-24">
       {
@@ -69,5 +78,10 @@ const { title, hideHeader, badgeText } = Astro.props;
       </div>
     </div>
     <Footer />
+    <style>
+      dialog::backdrop {
+        backdrop-filter: brightness(0.1);
+      }
+    </style>
   </body>
 </html>

@@ -1,4 +1,5 @@
 ---
+
 // TODO: hamburger menu for mobile
 const pages = [
   {
@@ -17,10 +18,7 @@ const pages = [
     href: "/play/photography/2024",
     label: "Photography",
   },
-  {
-    href: "/chat",
-    label: "Chat",
-  },
+
   {
     href: "/blog",
     label: "Blog",
@@ -29,56 +27,27 @@ const pages = [
 ---
 
 <!-- desktop nav bar -->
-<div class="hidden lg:flex flex-wrap navbar bg-base-100 mb-8 lg:visible">
-  <div class="flex-1">
-    <a href="/" class="btn btn-ghost normal-case text-xl">
-      <img src="/favicon-32x32.png" alt="logo" />
-      <p class="mx-2">Tanzim Mokammel</p>
-    </a>
-  </div>
-  <div class="flex-none">
-    <ul class="menu menu-horizontal px-1">
-      {
-        pages.map((p) => (
-          <li>
-            <a href={p.href}>{p.label}</a>
-          </li>
-        ))
-      }
-    </ul>
-    <button
-      class="btn btn-accent btn-outline btn-xs mx-4"
-      data-toggle-theme="dracula,light"
-      data-act-class="ACTIVECLASS"
-    >
-      Light/Dark
-    </button>
-  </div>
-</div>
-<!-- mobile nav bar -->
-<div class="lg:hidden mb-4">
-  <div class="collapse collapse-arrow">
-    <input type="checkbox" />
-    <div class="collapse-title">
-      <button class="btn btn-ghost normal-case text-xl">
+<>
+
+  <div class="hidden lg:flex flex-wrap navbar bg-base-100 mb-8 lg:visible">
+    <div class="flex-1">
+      <a href="/" class="btn btn-ghost normal-case text-xl">
         <img src="/favicon-32x32.png" alt="logo" />
         <p class="mx-2">Tanzim Mokammel</p>
-      </button>
+      </a>
     </div>
-    <div class="collapse-content">
-      <div class="flex-none">
-        <ul class="menu menu-vertical px-1">
-          {
-            pages.map((p) => (
-              <li>
-                <a href={p.href}>{p.label}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        {
+          pages.map((p) => (
+            <li>
+              <a href={p.href}>{p.label}</a>
+            </li>
+          ))
+        }
+      </ul>
       <button
-        class="btn btn-accent btn-outline btn-xs mx-4 my-4"
+        class="btn btn-accent btn-outline btn-xs mx-4"
         data-toggle-theme="dracula,light"
         data-act-class="ACTIVECLASS"
       >
@@ -86,4 +55,40 @@ const pages = [
       </button>
     </div>
   </div>
-</div>
+  <!-- mobile nav bar -->
+  <div class="lg:hidden mb-4">
+    <div class="collapse collapse-arrow">
+      <input type="checkbox" />
+      <div class="collapse-title">
+        <button class="btn btn-ghost normal-case text-xl">
+          <img src="/favicon-32x32.png" alt="logo" />
+          <p class="mx-2">Tanzim Mokammel</p>
+        </button>
+      </div>
+      <div class="collapse-content">
+        <div class="flex-none">
+          <ul class="menu menu-vertical px-1">
+            {
+              pages.map((p) => (
+                <li>
+                  <a href={p.href}>{p.label}</a>
+                </li>
+              ))
+            }
+            <li>
+              <button onclick={`chat_modal.showModal()`}>Chat</button>
+            </li>
+          </ul>
+        </div>
+        <button
+          class="btn btn-accent btn-outline btn-xs mx-4 my-4"
+          data-toggle-theme="dracula,light"
+          data-act-class="ACTIVECLASS"
+        >
+          Light/Dark
+        </button>
+      </div>
+    </div>
+  </div>
+</>
+

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, type ReactNode } from "react";
 
 const END_INDICATOR = "|END STREAM| Sources: ";
 const SOURCE_DELIM = ",";
@@ -81,7 +81,9 @@ type Message = {
 
 const MAX_CHARS = 20_000;
 
-export const ChatWithHistory: React.FC = () => {
+export const ChatWithHistory: React.FC<{
+  children: ReactNode;
+}> = ({ children }) => {
   const [query, setQuery] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [streaming, setStreaming] = useState(false);
@@ -212,124 +214,132 @@ export const ChatWithHistory: React.FC = () => {
   };
 
   return (
-    <>
-      <div className="mb-4 badge md:badge-lg badge-outline badge-warning my-4">
-        Disclaimer: AI may produce incorrect information
-      </div>
-      <div className="shadow-xl rounded-2xl bg-base-200 p-8 relative">
-        <>
-          {messages.map((message, idx) => {
-            if (message.sender === "human") {
-              return (
-                <div key={message.id} className="chat chat-end">
-                  <div className="chat-bubble">{message.content}</div>
-                </div>
-              );
-            }
-            return (
-              <Fragment key={message.id}>
-                <div className="chat chat-start">
-                  <div className="chat-bubble max-w-fit">
-                    {message.content === "" ? (
-                      <code className="animate-ping"> ... </code>
-                    ) : (
-                      message.content
-                    )}
+    <div className="p-8 h-[80vh] md:w-[50vw] overflow-y-auto">
+      <div className="mb-6">
+        <p className="text-xl">Chat with an AI</p>
 
-                    {streaming && idx === messages.length - 1 && (
-                      <code className="animate-ping"> | </code>
-                    )}
-                  </div>
-                  <div className="chat-footer opacity-50"></div>
-                </div>
-                {(message?.sources?.length || 0) > 0 && (
-                  <div className="collapse collapse-arrow">
-                    <input type="checkbox" />
-                    <div className="collapse-title">Sources</div>
-                    <div className="collapse-content flex flex-wrap">
-                      {message.sources?.map((s, idx) => (
-                        <a
-                          className="link link-info mr-2"
-                          key={`${idx}-${s}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={s}
-                        >
-                          {s}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </Fragment>
-            );
-          })}
-        </>
-        {isBusy && <progress className="progress w-full"></progress>}
-        <div className="mb-12">
-          <input
-            type="text"
-            placeholder="Ask gippity a question"
-            className="input input-bordered w-full my-4"
-            disabled={isBusy}
-            value={query || ""}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                onSubmit(query);
-              }
-            }}
-          />
-          <details className="collapse bg-base-200">
-            <summary className="collapse-title select-none">
-              Sample questions
-            </summary>
-            <div>
-              {sampleQuestions.map((q, idx) => (
-                <button
-                  key={idx}
-                  className="btn btn-secondary  btn-xs btn-outline m-2 cursor-pointer text-xs text-ellipsis overflow-clip ..."
-                  disabled={isBusy}
-                  onClick={() => {
-                    setQuery(q);
-                    onSubmit(q);
-                  }}
-                >
-                  <div className="line-clamp-1">{q}</div>
-                </button>
-              ))}
-            </div>
-          </details>
-          <button
-            disabled={isBusy || !query}
-            className="btn btn-outline btn-primary my-4 mx-2 btn-sm"
-            onClick={() => onSubmit(query)}
-          >
-            Submit
-          </button>
-          <button
-            disabled={isBusy || messages.length === 0}
-            className="btn btn-outline btn-info mr-2 btn-sm"
-            onClick={() => {
-              navigator.clipboard.writeText(gatherHistory(messages));
-            }}
-          >
-            Copy
-          </button>
-          <button
-            disabled={isBusy || messages.length === 0}
-            className="btn btn-outline btn-error btn-sm"
-            onClick={() => setMessages([])}
-          >
-            Clear
-          </button>
-        </div>
-        <div className="badge md:badge-lg badge-accent m-2 absolute bottom-4 right-4">
-          <a href="https://cohere.com/" target="_blank">
-            Powered by Cohere
-          </a>
-        </div>
+        <a
+          className="badge md:badge-sm badge-accent"
+          href="https://cohere.com/"
+          target="_blank"
+        >
+          Powered by Cohere
+        </a>
+        <p className="text-sm mt-2 text-warning">
+          Disclaimer: AI may produce incorrect information. Please double check
+          original resources.
+        </p>
       </div>
-    </>
+      <>
+        {messages.map((message, idx) => {
+          if (message.sender === "human") {
+            return (
+              <div key={message.id} className="chat chat-end">
+                <div className="chat-bubble">{message.content}</div>
+              </div>
+            );
+          }
+          return (
+            <Fragment key={message.id}>
+              <div className="chat chat-start">
+                <div className="chat-bubble max-w-fit">
+                  {message.content === "" ? (
+                    <code className="animate-ping"> ... </code>
+                  ) : (
+                    message.content
+                  )}
+
+                  {streaming && idx === messages.length - 1 && (
+                    <code className="animate-ping"> | </code>
+                  )}
+                </div>
+                <div className="chat-footer opacity-50"></div>
+              </div>
+              {(message?.sources?.length || 0) > 0 && (
+                <div className="collapse collapse-arrow">
+                  <input type="checkbox" />
+                  <div className="collapse-title">Sources</div>
+                  <div className="collapse-content flex flex-wrap">
+                    {message.sources?.map((s, idx) => (
+                      <a
+                        className="link link-info mr-2"
+                        key={`${idx}-${s}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={s}
+                      >
+                        {s}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </Fragment>
+          );
+        })}
+      </>
+      {isBusy && <progress className="progress w-full"></progress>}
+      <div className="mb-12">
+        <input
+          type="text"
+          placeholder="Ask gippity a question"
+          className="input input-bordered w-full my-4"
+          disabled={isBusy}
+          value={query || ""}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onSubmit(query);
+            }
+          }}
+        />
+        <div className="collapse collapse-arrow">
+          <input type="checkbox" />
+          <div className="collapse-title text-md font-medium">
+            Sample questions
+          </div>
+          <div className="collapse-content">
+            {sampleQuestions.map((q, idx) => (
+              <button
+                key={idx}
+                className="btn btn-secondary btn-xs btn-outline m-2 cursor-pointer text-xs text-ellipsis overflow-clip ..."
+                disabled={isBusy}
+                onClick={() => {
+                  setQuery(q);
+                  onSubmit(q);
+                }}
+              >
+                <div className="line-clamp-1">{q}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+        <button
+          disabled={isBusy || !query}
+          className="btn btn-outline btn-primary my-4 mx-2 btn-sm"
+          onClick={() => onSubmit(query)}
+        >
+          Submit
+        </button>
+        <button
+          disabled={isBusy || messages.length === 0}
+          className="btn btn-outline btn-info mr-2 btn-sm"
+          onClick={() => {
+            navigator.clipboard.writeText(gatherHistory(messages));
+          }}
+        >
+          Copy
+        </button>
+        <button
+          disabled={isBusy || messages.length === 0}
+          className="btn btn-outline btn-error btn-sm"
+          onClick={() => setMessages([])}
+        >
+          Clear
+        </button>
+      </div>
+
+      <div className="m-2 absolute bottom-4 right-4">{children}</div>
+    </div>
   );
 };
