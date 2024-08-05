@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 
 const END_INDICATOR = "|END STREAM| Sources: ";
 const SOURCE_DELIM = ",";
@@ -89,6 +89,15 @@ export const ChatWithHistory: React.FC<{
   const [streaming, setStreaming] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [conversationId, setConversationId] = useState<string | undefined>();
+  const messagesEndRef = useRef<null | HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   useEffect(() => {
     setConversationId(crypto.randomUUID());
@@ -230,7 +239,7 @@ export const ChatWithHistory: React.FC<{
           original resources.
         </p>
       </div>
-      <>
+      <div>
         {messages.map((message, idx) => {
           if (message.sender === "human") {
             return (
@@ -277,7 +286,8 @@ export const ChatWithHistory: React.FC<{
             </Fragment>
           );
         })}
-      </>
+        <div ref={messagesEndRef}></div>
+      </div>
       {isBusy && <progress className="progress w-full"></progress>}
       <div className="mb-12">
         <input
@@ -339,7 +349,7 @@ export const ChatWithHistory: React.FC<{
         </button>
       </div>
 
-      <div className="m-2 absolute bottom-4 right-4">{children}</div>
+      <div className="m-2 absolute bottom-8 right-8">{children}</div>
     </div>
   );
 };
