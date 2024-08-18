@@ -1,4 +1,6 @@
 ---
+import { Lightbulb, BotMessageSquare } from "lucide-react";
+
 // TODO: hamburger menu for mobile
 const pages = [
   {
@@ -43,18 +45,16 @@ const pages = [
           ))
         }
       </ul>
-      <button
-        class="btn btn-info btn-outline btn-xs my-4"
-        onclick={`chat_modal.showModal()`}>Ask an AI</button
-      >
-      <button
-        class="btn btn-accent btn-outline btn-xs mx-2"
-        data-toggle-theme="dracula,light"
-        data-act-class="ACTIVECLASS"
-      >
-        Light/Dark
-      </button>
     </div>
+    <span onclick={`chat_modal.showModal()`}
+      ><BotMessageSquare size={24} className="mx-4" /></span
+    >
+    <Lightbulb
+      data-toggle-theme="dracula,light"
+      data-act-class="ACTIVECLASS"
+      className="mx-4"
+      size={24}
+    />
   </div>
   <!-- mobile nav bar -->
   <div class="lg:hidden mb-4">
@@ -67,6 +67,17 @@ const pages = [
         </button>
       </div>
       <div class="collapse-content">
+        <div class="flex my-4">
+          <span onclick={`chat_modal.showModal()`}
+            ><BotMessageSquare size={26} className="mx-4" /></span
+          >
+          <Lightbulb
+            data-toggle-theme="dracula,light"
+            data-act-class="ACTIVECLASS"
+            className="mx-2"
+            size={26}
+          />
+        </div>
         <div class="flex-none">
           <ul class="menu menu-vertical px-1">
             {
@@ -78,17 +89,6 @@ const pages = [
             }
           </ul>
         </div>
-        <button
-          class="btn btn-info btn-xs my-4 mx-4"
-          onclick={`chat_modal.showModal()`}>Ask an AI</button
-        >
-        <button
-          class="btn btn-accent btn-xs my-4"
-          data-toggle-theme="dracula,light"
-          data-act-class="ACTIVECLASS"
-        >
-          Light/Dark
-        </button>
       </div>
     </div>
   </div>
