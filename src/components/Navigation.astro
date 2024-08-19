@@ -1,5 +1,5 @@
 ---
-import { Lightbulb, BotMessageSquare } from "lucide-react";
+import { SunMoon, BotMessageSquare } from "lucide-react";
 
 // TODO: hamburger menu for mobile
 const pages = [
@@ -46,15 +46,20 @@ const pages = [
         }
       </ul>
     </div>
-    <span onclick={`chat_modal.showModal()`}
-      ><BotMessageSquare size={24} className="mx-4" /></span
-    >
-    <Lightbulb
-      data-toggle-theme="dracula,light"
-      data-act-class="ACTIVECLASS"
-      className="mx-4"
-      size={24}
-    />
+    <div class="flex">
+      <button
+        class="btn btn-ghost btn-accent"
+        onclick={`chat_modal.showModal()`}
+        ><BotMessageSquare size={24} /></button
+      >
+      <button
+        data-act-class="ACTIVECLASS"
+        data-toggle-theme="dracula,light"
+        class="btn btn-ghost btn-accent"
+      >
+        <SunMoon size={24} />
+      </button>
+    </div>
   </div>
   <!-- mobile nav bar -->
   <div class="lg:hidden mb-4">
@@ -68,15 +73,18 @@ const pages = [
       </div>
       <div class="collapse-content">
         <div class="flex my-4">
-          <span onclick={`chat_modal.showModal()`}
-            ><BotMessageSquare size={26} className="mx-4" /></span
+          <button
+            class="btn btn-ghost btn-accent"
+            onclick={`chat_modal.showModal()`}
+            ><BotMessageSquare size={24} /></button
           >
-          <Lightbulb
-            data-toggle-theme="dracula,light"
+          <button
             data-act-class="ACTIVECLASS"
-            className="mx-2"
-            size={26}
-          />
+            data-toggle-theme="dracula,light"
+            class="btn btn-ghost btn-accent"
+          >
+            <SunMoon size={24} />
+          </button>
         </div>
         <div class="flex-none">
           <ul class="menu menu-vertical px-1">
