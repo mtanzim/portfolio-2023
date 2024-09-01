@@ -1,4 +1,11 @@
-import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  Fragment,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 
 const END_INDICATOR = "|END STREAM| Sources: ";
 const SOURCE_DELIM = ",";
@@ -42,26 +49,31 @@ export async function callAPI(
       ? "http://127.0.0.1:8787/"
       : "https://personal-portfolio-chat-worker.mtanzim.workers.dev";
 
-  const res = await fetch(url, requestOptions);
-  const reader = res.body?.getReader();
-  while (reader) {
-    const { done, value } = await reader?.read();
-    if (done) {
-      return;
-    }
-    const strChunk = new TextDecoder().decode(value);
-    // TODO: feels hacky, investigate better ways to handle this
-    if (strChunk.includes(END_INDICATOR)) {
-      const beginning = strChunk.slice(0, strChunk.indexOf(END_INDICATOR));
-      const sources = strChunk
-        .slice(strChunk.indexOf(END_INDICATOR) + END_INDICATOR.length)
-        .split(SOURCE_DELIM);
-      cb(beginning);
-      sourcesCb(sources);
-      return;
-    }
-    cb(strChunk);
-  }
+  console.log(url);
+  return fetch(url, requestOptions)
+    .then((res) => res.body)
+    .then(async (body) => {
+      const reader = body?.getReader();
+      while (reader) {
+        const { done, value } = await reader?.read();
+        if (done) {
+          return;
+        }
+        const strChunk = new TextDecoder().decode(value);
+        // TODO: feels hacky, investigate better ways to handle this
+        if (strChunk.includes(END_INDICATOR)) {
+          const beginning = strChunk.slice(0, strChunk.indexOf(END_INDICATOR));
+          const sources = strChunk
+            .slice(strChunk.indexOf(END_INDICATOR) + END_INDICATOR.length)
+            .split(SOURCE_DELIM);
+          cb(beginning);
+          sourcesCb(sources);
+          return;
+        }
+        console.log(strChunk);
+        cb(strChunk);
+      }
+    });
 }
 
 export const sampleQuestions = [
@@ -81,6 +93,9 @@ type Message = {
 
 const MAX_CHARS = 20_000;
 
+const CHAT_STORAGE_KEY = "ai-chat";
+const CHAT_CONVO_ID_KEY = "ai-convo-key";
+
 export const ChatWithHistory: React.FC<{
   children: ReactNode;
 }> = ({ children }) => {
@@ -95,12 +110,35 @@ export const ChatWithHistory: React.FC<{
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const setNewConvoId = () => {
+    const newConvoId = window?.crypto.randomUUID();
+    window?.localStorage?.setItem(CHAT_CONVO_ID_KEY, newConvoId);
+    setConversationId(newConvoId);
+  };
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem(CHAT_STORAGE_KEY);
+    if (saved) {
+      const savedMessages = JSON.parse(saved);
+      setMessages(savedMessages);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(messages));
+  }, [messages]);
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
   useEffect(() => {
-    setConversationId(crypto.randomUUID());
+    const prevConvoId = window?.localStorage?.getItem(CHAT_CONVO_ID_KEY);
+    if (prevConvoId) {
+      setConversationId(prevConvoId);
+      return;
+    }
+    setNewConvoId();
   }, []);
 
   const isBusy = loading || streaming;
@@ -240,6 +278,7 @@ export const ChatWithHistory: React.FC<{
         >
           Powered by Cohere
         </a>
+        <p className="text-sm mt-2">Ask questions related to this website.</p>
         <p className="text-sm mt-2 text-warning">
           Disclaimer: AI may produce incorrect information. Please double check
           original resources.
@@ -349,7 +388,10 @@ export const ChatWithHistory: React.FC<{
         <button
           disabled={isBusy || messages.length === 0}
           className="btn btn-outline btn-error btn-sm"
-          onClick={() => setMessages([])}
+          onClick={() => {
+            setMessages([]);
+            setNewConvoId();
+          }}
         >
           Clear
         </button>
