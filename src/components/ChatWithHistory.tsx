@@ -49,7 +49,6 @@ export async function callAPI(
       ? "http://127.0.0.1:8787/"
       : "https://personal-portfolio-chat-worker.mtanzim.workers.dev";
 
-  console.log(url);
   return fetch(url, requestOptions)
     .then((res) => res.body)
     .then(async (body) => {
@@ -70,7 +69,6 @@ export async function callAPI(
           sourcesCb(sources);
           return;
         }
-        console.log(strChunk);
         cb(strChunk);
       }
     });
