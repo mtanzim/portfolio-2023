@@ -111,11 +111,6 @@ const gameScreensSeed: CarouselImage[] = [
     title: "Super Mario Bros Wonder",
     desc: "This has to be the most fun game ever made!",
   },
-  {
-    url: "/game-screens/pep.jpg",
-    title: "FC24",
-    desc: "Find someone that looks at you the way Pep does <3",
-  },
 ].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
 // .filter(item => item.title === "FC24")
 
