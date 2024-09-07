@@ -39,6 +39,14 @@ function shuffle<T>(array: T[]): T[] {
 const s3Path = "https://tm-photo-portfolio.s3.amazonaws.com/website-assets";
 const topAlbumSeed: CarouselImage[] = [
   {
+    url: "/albums/hmhas.jpeg",
+    title: "Billie Eilish - Hit Me Hard and Soft",
+  },
+  {
+    url: "/albums/brat.jpeg",
+    title: "Charli XCX - Brat",
+  },
+  {
     url: "/albums/call-me.jpeg",
     title: "Tyler the Creator - Call Me If You Get Lost",
   },
@@ -61,10 +69,6 @@ const topAlbumSeed: CarouselImage[] = [
   {
     url: "/albums/golden-hour.webp",
     title: "Kacey Musgraves - Golden Hour",
-  },
-  {
-    url: "/albums/kaytramine.jpeg",
-    title: "Kaytramine - Kaytramine",
   },
   {
     url: "/albums/mylo-xyloto.jpeg",
@@ -106,11 +110,6 @@ const gameScreensSeed: CarouselImage[] = [
     url: "/game-screens/wonder.jpg",
     title: "Super Mario Bros Wonder",
     desc: "This has to be the most fun game ever made!",
-  },
-  {
-    url: "/game-screens/pep.jpg",
-    title: "FC24",
-    desc: "Find someone that looks at you the way Pep does <3",
   },
 ].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
 // .filter(item => item.title === "FC24")
