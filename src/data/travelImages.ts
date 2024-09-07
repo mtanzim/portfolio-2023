@@ -7,6 +7,8 @@ export const travelImages2024: FullCarouselImage[] = [
   ["howth.webp", "Howth, Ireland"],
   ["dublin.webp", "Dublin, Ireland"],
   ["DSC00264.jpg.webp", "Old Trafford, Manchester, England"],
+  ["nl-gm-2.webp", "Gros Morne NP, Newfoundland, Canada"],
+  ["nl-gm-3.webp", "Gros Morne NP, Newfoundland, Canada"],
 ].map(([filename, title]) => ({ url: `${s3Path}/2024/${filename}`, title }));
 
 // TODO: add titles and description to images
