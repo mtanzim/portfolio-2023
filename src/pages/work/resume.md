@@ -13,23 +13,23 @@ mtanzim@gmail.com | [LinkedIn](https://www.linkedin.com/in/tanzim-mokammel/) | +
 
 ## Technologies
 
-`Typescript` `Go` | `NodeJS` `React` `NextJS` | `SQL` `NoSQL` `Kafka` | `Git` `Docker` `Kubernetes` `AWS` `GitHub Actions`
+`Typescript` `Go` `Python` | `NodeJS` `React` `NextJS` | `SQL` `NoSQL` `Kafka` | `Git` `Docker` `Kubernetes` `AWS`
 
 ## Key Skills
 
 Problem solving, software design, mentorship, leadership and communication
 
-<!-- - **Problem Solving:** Implemented solutions to reduce endpoint latency by 35x through worker pools in Go code.
-- **Leadership:** Led a team of engineers in developing system-level test programs, contributing to over $900,000 in company savings.
-- **Communication:** Presented innovative solutions in hackathons, and rallied them to production; including automating flyer curation with GPT-3.5 integration.
-- **Software Architecture:** Simplified system architecture by reverse engineering 10K+ LOC to a sub-500 LOC TypeScript package.
-- **Mentorship:** Successfully mentored peers on full stack development, functional reactive programming, atomic design, concurrency, and testing, and SQL -->
-
 ## Work Experience
 
 ### Member of Technical Staff, [Cohere](https://cohere.com/) | Toronto, Canada, Mar 2024 - Present
 
-- Cohere empowers developers and enterprise with large language models (LLM) and retrieval augmented generation (RAG)
+- Cohere empowers developers and enterprise with large language models (LLM)
+- I am developing an application to enable enterprise customers to leverage retrieval augmented generation (RAG) on their data sources, including email, messaging, and distributed drives. This involves using Cohere's solutions for embeddings, chat, and search.
+- The key challenges I am addressing include creating scalable backends for data ingestion, indexing, and retrieval, and integrating them seamlessly with a modern UI for chat, data management, and search functionalities
+- I am also contributing to the development of essential features for Cohere's self-serve platform, including payments, billing, playground, and onboarding processes.
+- My primary focus is on the backend, utilizing `Go`, `Python`, `Postgres`, `Redis`, `Kubernetes`, `GCP`, and `AWS`. I work extensively with REST and gRPC APIs and ensure scalability using queue-based technologies.
+- For versatility and maintaining frontend competence, I occasionally build full-stack features using `NextJS` and `Typescript`
+- As a mentor within the team, I provide guidance on best practices for software design, testing, and documentation. I emphasize building quickly while ensuring quality and scalability.
 
 ### Senior Software Engineer, [Flipp](https://flipp.com/home) | Toronto, Canada, Jan 2021 - Mar 2024
 
@@ -55,10 +55,7 @@ Problem solving, software design, mentorship, leadership and communication
 
 ### Full Stack Engineer, [Diginex](https://www.diginex.com/) | Berlin, Germany, Dec 2018 - Dec 2019
 
-- Diginex pioneers blockchain based tools for governments and corporations, working with institutions such as the UN and Microsoft
-- I helped develop a cryptocurrency trading platform that aggregates price data and allows algorithmic and manual trading across exchanges
-- I worked on internal tools for backtesting arbitrage models using the Bellman-Ford algorithm, load testing, and supporting financial data transfer protocols
-- Our tech stack and design principles focused on supporting data streams, analytics, and visualization: `Python`, `Pandas`, `Postgres`, and `Redis` on the backend, `React` with `RxJS` on the frontend, and `AWS` for encryption and user authentication
+- At Diginex, a blockchain technology company, I developed a cryptocurrency trading platform for algorithmic and manual trading, and worked on internal tools for backtesting arbitrage models, load testing, and supporting financial data transfer protocols. I utilized `Python`, `Pandas`, `Postgres`, and `AWS` in the backend, and `React` with `RxJS` on the frontend.
 
 ### Contract Backend Engineer, [ReloTalent](https://relotalent.com) | Hanoi, Vietnam, Mar 2018 - May 2018
 
