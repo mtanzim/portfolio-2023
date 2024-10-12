@@ -5,11 +5,11 @@ title: Resume
 
 # Tanzim Mokammel
 
-Experienced senior software engineer with a proven track record in full stack development and a strong focus on problem solving and software design. Proficient in technologies such as `Typescript`, `Go`, `NodeJS`, and `React`, with a background in leading and mentoring development teams. Recognized for contributions in optimizing systems and driving innovative solutions.
-
-## Contact
-
 mtanzim@gmail.com | [LinkedIn](https://www.linkedin.com/in/tanzim-mokammel/) | +1 416-660-5498 | Toronto, ON | [Website](https://www.mtanzim.com)
+
+Experienced senior software engineer with a proven track record in full stack development and a strong focus on problem solving and software design. Proficient in technologies such as `Typescript`, `Go`, `Python`, `NodeJS`, and `React`, with a background in leading and mentoring development teams. Recognized for contributions in optimizing systems and driving innovative solutions.
+
+Interests include technology, music, travel, [photography](https://mtanzim.com/play/photography/2024/), fitness, video games.
 
 ## Technologies
 
@@ -24,12 +24,12 @@ Problem solving, software design, mentorship, leadership and communication
 ### Member of Technical Staff, [Cohere](https://cohere.com/) | Toronto, Canada, Mar 2024 - Present
 
 - Cohere empowers developers and enterprise with large language models (LLM)
-- I am developing an application to enable enterprise customers to leverage retrieval augmented generation (RAG) on their data sources, including email, messaging, and distributed drives. This involves using Cohere's solutions for embeddings, chat, and search.
-- The key challenges I am addressing include creating scalable backends for data ingestion, indexing, and retrieval, and integrating them seamlessly with a modern UI for chat, data management, and search functionalities
-- I am also contributing to the development of essential features for Cohere's self-serve platform, including payments, billing, playground, and onboarding processes.
-- My primary focus is on the backend, utilizing `Go`, `Python`, `Postgres`, `Redis`, `Kubernetes`, `GCP`, and `AWS`. I work extensively with REST and gRPC APIs and ensure scalability using queue-based technologies.
-- For versatility and maintaining frontend competence, I occasionally build full-stack features using `NextJS` and `Typescript`
-- As a mentor within the team, I provide guidance on best practices for software design, testing, and documentation. I emphasize building quickly while ensuring quality and scalability.
+- I am developing an application to enable enterprise customers to leverage retrieval augmented generation (RAG) on their data sources, including email, messaging, and distributed drives
+- Key challenges include creating scalable backends for data ingestion, indexing, and retrieval, and integrating them seamlessly with a modern UI for chat, data management, and search functionalities
+- I am also developing essential features for Cohere's self-serve platform, including billing, playground, and onboarding processes
+- My primary focus is on the backend, utilizing `Go`, `Python`, `Postgres`, `Redis`, `Kubernetes`, `GCP`, and `AWS`
+- For versatility and maintaining frontend competence, I am also developing full-stack features using `NextJS` and `Typescript`
+- As a mentor, I provide guidance on best practices for system design, software design, testing, and documentation
 
 ### Senior Software Engineer, [Flipp](https://flipp.com/home) | Toronto, Canada, Jan 2021 - Mar 2024
 
@@ -47,11 +47,8 @@ Problem solving, software design, mentorship, leadership and communication
 ### Full Stack Engineer, [Moonfare](https://www.moonfare.com/) | Berlin, Germany, Jan 2020 - Jan 2021
 
 - Moonfare makes investing in private equity easy, currently managing over €2.5 billion in assets
-- Developed new features for Moonfare’s core web application and taking on the technical challenges to scale the business for a growing client base
-- Challenges include designing database models, microservices, and user interfaces in addition to refactoring pre-existing software to improve performance and reduce tech debt
-- In one case, I improved endpoint latency by 89% by optimizing asynchronous functions, database queries, and search algorithms
-- Mentored fellow developers in algorithms, software design and database management through code reviews, documentation, and educational sessions
-- Developed using a `Typescript` based tech stack with `NodeJS`, `React`, and `MySQL`
+- I played a key role in developing new features and scaling the core web application to support business growth while refactoring to enhance performance and reduce technical debt; in one case endpoint latency was improved 89% through database and algorithm optimizations
+- Mentored developers through code reviews and educational sessions
 
 ### Full Stack Engineer, [Diginex](https://www.diginex.com/) | Berlin, Germany, Dec 2018 - Dec 2019
 
@@ -69,7 +66,3 @@ Problem solving, software design, mentorship, leadership and communication
 
 - Master of Engineering, Electrical Engineering | University of Toronto, Canada, June 2015
 - Bachelor of Applied Science with Honors, Electrical Engineering | University of Toronto, Canada, June 2012
-
-## Interests
-
-Technology, music, travel, [photography](https://mtanzim.com/play/photography/2024/), fitness, video games
