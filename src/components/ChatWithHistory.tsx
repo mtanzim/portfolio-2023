@@ -108,8 +108,9 @@ export const ChatWithHistory: React.FC<{
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // NOTE: randomUUID unavailable in http
   const setNewConvoId = () => {
-    const newConvoId = window?.crypto.randomUUID();
+    const newConvoId = window?.crypto?.randomUUID();
     window?.localStorage?.setItem(CHAT_CONVO_ID_KEY, newConvoId);
     setConversationId(newConvoId);
   };
