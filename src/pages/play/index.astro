@@ -119,7 +119,7 @@ const len = 3;
 const topAlbumImgs = shuffle<CarouselImage>(topAlbumSeed.slice()).slice(0, len);
 const gameScreens = shuffle<CarouselImage>(gameScreensSeed.slice()).slice(
   0,
-  len
+  len,
 );
 
 const gameTitleSet = new Set<string>();
@@ -133,7 +133,7 @@ const travelImages: FullCarouselImage[] = travelImages2024
 
 const topTravelImages = shuffle(travelImages.slice()).slice(0, 7);
 const spotifyData = await fetch(
-  "https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/spotify-artists.json"
+  "https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/spotify-artists.json",
 )
   .then((res) => res.json())
   .catch(console.error);

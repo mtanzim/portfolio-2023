@@ -35,8 +35,8 @@
     const buttons = document.querySelectorAll(".goTop");
     buttons.forEach((b) =>
       b.addEventListener("click", () =>
-        window.scrollTo({ top: 0, behavior: "smooth" })
-      )
+        window.scrollTo({ top: 0, behavior: "smooth" }),
+      ),
     );
   };
   setupGoTop();

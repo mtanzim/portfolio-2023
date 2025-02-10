@@ -47,7 +47,7 @@ export default function Coding({ dataSet, topN, colors }: Props) {
   };
   return (
     <div className="mb-4">
-      <div className="tabs justify-center mb-12 mt-4">
+      <div className="tabs tabs-bordered justify-center mb-12 mt-4">
         {options.map((month) => (
           <button
             key={month}

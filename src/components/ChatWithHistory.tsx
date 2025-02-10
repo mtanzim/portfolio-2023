@@ -277,7 +277,9 @@ export const ChatWithHistory: React.FC<{
         >
           Powered by Cohere
         </a>
-        <p className="text-sm mt-2">Ask an AI questions related to this website.</p>
+        <p className="text-sm mt-2">
+          Ask an AI questions related to this website.
+        </p>
         <p className="text-sm mt-2 text-warning">
           Disclaimer: AI may produce incorrect information. Please double check
           original resources.
