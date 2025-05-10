@@ -8,9 +8,9 @@ import moofareImg from "../../assets/work/moonfare.jpeg";
 import diginexImg from "../../assets/work/diginex.png";
 import reloImage from "../../assets/work/relotalent.png";
 import booksImg from "../../assets/work/books.png";
+import moneyImg from "../../assets/work/money.png";
 import coursesImg from "../../assets/work/courses.png";
 import sideImg from "../../assets/work/side.png";
-import resourceCheckoutImg from "../../assets/work/resource-checkout.png";
 import spotifyImg from "../../assets/work/spotify-side.png";
 import muscleImg from "../../assets/work/muscle.png";
 import clockImg from "../../assets/work/wall-clock.png";
@@ -39,7 +39,7 @@ const tileHeaders: Record<TileType, string> = {
 };
 
 const tileSectionIds: Record<TileType, string> = Object.fromEntries(
-  Object.keys(tileHeaders).map((k) => [k as TileType, k]),
+  Object.keys(tileHeaders).map((k) => [k as TileType, k])
 ) as Record<TileType, string>;
 
 const tiles: Tile[] = [
@@ -124,11 +124,21 @@ const tiles: Tile[] = [
   },
   {
     company: "",
+    title: "Expense csv parser",
+    desc: "Categorize, track and visualize expenses from bank CSV exports",
+    imageSrc: moneyImg,
+    links: ["https://github.com/mtanzim/cc-csv-parser"],
+    linkTitles: ["Code"],
+
+    type: "side",
+  },
+  {
+    company: "",
     title: "Spotify listening habits",
     desc: "See what you've been listening to",
     imageSrc: spotifyImg,
     links: [
-      "https://spotify-personal-ybmvkz22xq-uc.a.run.app",
+      "https://spotify.data.mtanzim.com/",
       "https://github.com/mtanzim/spotify-data",
     ],
     linkTitles: ["App", "Code"],
@@ -141,7 +151,7 @@ const tiles: Tile[] = [
     desc: "Visualize progress from Strong app csvs",
     imageSrc: muscleImg,
     links: [
-      "https://vis-strong-go-ghfzoy3ovq-ue.a.run.app/",
+      "http://strong.data.mtanzim.com/",
       "https://github.com/mtanzim/vis-strong-go",
     ],
     linkTitles: ["App", "Code"],
@@ -150,7 +160,7 @@ const tiles: Tile[] = [
   {
     company: "",
     title: "Wakatime dashboard",
-    desc: "Persist wakatime data and provide a visualization dashboard",
+    desc: "Persist Wakatime data and provide a visualization dashboard",
     imageSrc: clockImg,
     links: ["https://github.com/mtanzim/guac"],
     linkTitles: ["Code"],
