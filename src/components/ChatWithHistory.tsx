@@ -6,7 +6,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-
+import Markdown from "react-markdown";
 const END_INDICATOR = "|END STREAM| Sources: ";
 const SOURCE_DELIM = ",";
 
@@ -301,7 +301,7 @@ export const ChatWithHistory: React.FC<{
                   {message.content === "" ? (
                     <code className="animate-ping"> ... </code>
                   ) : (
-                    message.content
+                    <Markdown>{message.content}</Markdown>
                   )}
 
                   {streaming && idx === messages.length - 1 && (
