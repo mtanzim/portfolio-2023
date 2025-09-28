@@ -39,7 +39,7 @@ const tileHeaders: Record<TileType, string> = {
 };
 
 const tileSectionIds: Record<TileType, string> = Object.fromEntries(
-  Object.keys(tileHeaders).map((k) => [k as TileType, k])
+  Object.keys(tileHeaders).map((k) => [k as TileType, k]),
 ) as Record<TileType, string>;
 
 const tiles: Tile[] = [
