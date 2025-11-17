@@ -82,6 +82,11 @@ const topAlbumSeed: CarouselImage[] = [
 
 const gameScreensSeed: CarouselImage[] = [
   {
+    url: "/game-screens/silksong-soar.jpg",
+    title: "Silksong",
+    desc: "Only masochists can enjoy this game",
+  },
+  {
     url: "/game-screens/hk-moth.jpg",
     title: "Hollow Knight",
     desc: "One day I will beat this darned moth",
@@ -97,11 +102,6 @@ const gameScreensSeed: CarouselImage[] = [
     desc: "Self acceptance, how beautiful",
   },
   {
-    url: "/game-screens/celeste-torture.jpg",
-    title: "Celeste",
-    desc: "This is how you reward me after the torture?",
-  },
-  {
     url: "/game-screens/bowser.jpg",
     title: "Super Mario Bros U",
     desc: "Jack Black is just about to break into song",
@@ -112,7 +112,6 @@ const gameScreensSeed: CarouselImage[] = [
     desc: "This has to be the most fun game ever made!",
   },
 ].map((item) => ({ ...item, url: `${s3Path}${item.url}`, alt: item.title }));
-// .filter(item => item.title === "FC24")
 
 // TODO: move these to a dynamic location/api
 const len = 3;

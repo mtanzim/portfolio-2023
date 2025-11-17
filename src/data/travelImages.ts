@@ -1,6 +1,16 @@
 import type { FullCarouselImage } from "../types/images";
 
 const s3Path = "https://tm-photo-portfolio.s3.amazonaws.com";
+
+export const travelImages2025: FullCarouselImage[] = [
+  ["0H4A2519.jpeg.webp", "Dhaka, Bangladesh"],
+  ["0H4A2732.jpeg.webp", "Dhaka, Bangladesh"],
+  ["0H4A2026.jpeg.webp", "Bogra, Bangladesh"],
+  ["0H4A2435.jpeg.webp", "Dhaka, Bangladesh"],
+  ["DSC00659.jpeg.webp", "Vienna, Austria"],
+  ["IMG_1506.jpeg.webp", "Scarborough, Ontario"],
+].map(([filename, title]) => ({ url: `${s3Path}/2025/${filename}`, title }));
+
 export const travelImages2024: FullCarouselImage[] = [
   ["DSC00230.jpg.webp", "London, England"],
   ["DSC00185.jpg.webp", "London, England"],
