@@ -118,7 +118,7 @@ const len = 3;
 const topAlbumImgs = shuffle<CarouselImage>(topAlbumSeed.slice()).slice(0, len);
 const gameScreens = shuffle<CarouselImage>(gameScreensSeed.slice()).slice(
   0,
-  len
+  len,
 );
 
 const gameTitleSet = new Set<string>();
@@ -132,7 +132,7 @@ const travelImages: FullCarouselImage[] = travelImages2024
 
 const topTravelImages = shuffle(travelImages.slice()).slice(0, 7);
 const spotifyData = await fetch(
-  "https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/spotify-artists.json"
+  "https://tm-photo-portfolio.s3.amazonaws.com/website-assets/data/spotify-artists.json",
 )
   .then((res) => res.json())
   .catch(console.error);
@@ -184,9 +184,9 @@ const spotifyData = await fetch(
     <h1 id="games" class="text-2xl my-6">Video games</h1>
     <p class="text-base mt-6">
       I've grown up with video games, and it's been an on-and-off relationship
-      with them throughout my life. Currently, I'm in the "on" phase. Here are a few
-      experiences that have kept me entertained over the past couple of years. Click
-      on the disclaimer to view the screenshots.
+      with them throughout my life. Currently, I'm in the "on" phase. Here are a
+      few experiences that have kept me entertained over the past couple of
+      years. Click on the disclaimer to view the screenshots.
     </p>
     <div
       tabindex="0"
