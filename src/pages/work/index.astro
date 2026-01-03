@@ -39,7 +39,7 @@ const tileHeaders: Record<TileType, string> = {
 };
 
 const tileSectionIds: Record<TileType, string> = Object.fromEntries(
-  Object.keys(tileHeaders).map((k) => [k as TileType, k])
+  Object.keys(tileHeaders).map((k) => [k as TileType, k]),
 ) as Record<TileType, string>;
 
 const tiles: Tile[] = [
@@ -285,8 +285,8 @@ const tiles: Tile[] = [
                   </div>
                 </figure>
                 <div class="card-body items-center text-center p-4">
-                  <h3 class="font-semibold text-base">{tile.company}</h3>
-                  <p class="text-sm opacity-70">{tile.title}</p>
+                  <h3 class="font-semibold text-base">{tile.title}</h3>
+                  <p class="text-sm opacity-70">{tile.desc}</p>
                   <div class="card-actions justify-center mt-2" />
                 </div>
               </a>
