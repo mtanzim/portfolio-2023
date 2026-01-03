@@ -228,28 +228,23 @@ const tiles: Tile[] = [
           tiles
             .filter((t) => t.type === "background")
             .map((tile) => (
-              <a
-                class="card hover:shadow-lg transition-shadow duration-300"
-                target={tile.internal ? "" : "_blank"}
-                href={tile.links[0] ?? "/"}
-              >
-                <figure class="px-4 pt-4">
-                  <div class="avatar">
-                    <div class="w-24 rounded-xl">
-                      <Image
-                        class="object-cover"
-                        src={tile.imageSrc}
-                        alt={tile.title}
-                      />
-                    </div>
-                  </div>
-                </figure>
+              <div class="card hover:shadow-lg transition-shadow duration-300">
+                <a
+                  target={tile.internal ? "" : "_blank"}
+                  href={tile.links[0] ?? "/"}
+                >
+                  <Image
+                    class="w-full h-48 object-cover rounded-t-2xl"
+                    src={tile.imageSrc}
+                    alt={tile.title}
+                  />
+                </a>
                 <div class="card-body items-center text-center p-4">
                   <h3 class="font-semibold text-base">{tile.title}</h3>
                   <p class="text-sm opacity-70">{tile.desc}</p>
                   <div class="card-actions justify-center mt-2" />
                 </div>
-              </a>
+              </div>
             ))
         }
       </div>
@@ -268,28 +263,23 @@ const tiles: Tile[] = [
           tiles
             .filter((t) => t.type === "past")
             .map((tile) => (
-              <a
-                class="card hover:shadow-lg transition-shadow duration-300"
-                target={tile.internal ? "" : "_blank"}
-                href={tile.links[0] ?? "/"}
-              >
-                <figure class="px-4 pt-4">
-                  <div class="avatar">
-                    <div class="w-24 rounded-xl">
-                      <Image
-                        class="object-cover"
-                        src={tile.imageSrc}
-                        alt={tile.company || tile.title}
-                      />
-                    </div>
-                  </div>
-                </figure>
+              <div class="card hover:shadow-lg transition-shadow duration-300">
+                <a
+                  target={tile.internal ? "" : "_blank"}
+                  href={tile.links[0] ?? "/"}
+                >
+                  <Image
+                    class="w-full h-48 object-cover rounded-t-2xl"
+                    src={tile.imageSrc}
+                    alt={tile.company || tile.title}
+                  />
+                </a>
                 <div class="card-body items-center text-center p-4">
                   <h3 class="font-semibold text-base">{tile.title}</h3>
                   <p class="text-sm opacity-70">{tile.desc}</p>
                   <div class="card-actions justify-center mt-2" />
                 </div>
-              </a>
+              </div>
             ))
         }
       </div>
@@ -306,28 +296,23 @@ const tiles: Tile[] = [
           tiles
             .filter((t) => t.type === "study")
             .map((tile) => (
-              <a
-                class="card hover:shadow-lg transition-shadow duration-300"
-                target={tile.internal ? "" : "_blank"}
-                href={tile.links[0] ?? "/"}
-              >
-                <figure class="px-4 pt-4">
-                  <div class="avatar">
-                    <div class="w-24 rounded-xl">
-                      <Image
-                        class="object-cover"
-                        src={tile.imageSrc}
-                        alt={tile.title}
-                      />
-                    </div>
-                  </div>
-                </figure>
+              <div class="card hover:shadow-lg transition-shadow duration-300">
+                <a
+                  target={tile.internal ? "" : "_blank"}
+                  href={tile.links[0] ?? "/"}
+                >
+                  <Image
+                    class="w-full h-48 object-cover rounded-t-2xl"
+                    src={tile.imageSrc}
+                    alt={tile.title}
+                  />
+                </a>
                 <div class="card-body items-center text-center p-4">
                   <h3 class="font-semibold text-base">{tile.title}</h3>
                   <p class="text-sm opacity-70">{tile.desc}</p>
                   <div class="card-actions justify-center mt-2" />
                 </div>
-              </a>
+              </div>
             ))
         }
       </div>
@@ -344,26 +329,31 @@ const tiles: Tile[] = [
           tiles
             .filter((t) => t.type === "side")
             .map((tile) => (
-              <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-                <figure class="px-4 pt-4">
-                  <a
-                    target={tile.internal ? "" : "_blank"}
-                    href={tile.links[0] ?? "/"}
-                    class="avatar"
-                  >
-                    <div class="w-24 rounded-xl">
-                      <Image
-                        class="object-cover"
-                        src={tile.imageSrc}
-                        alt={tile.title}
-                      />
-                    </div>
-                  </a>
-                </figure>
+              <div class="card hover:shadow-lg transition-shadow duration-300">
+                <a
+                  target={tile.internal ? "" : "_blank"}
+                  href={tile.links[0] ?? "/"}
+                >
+                  <Image
+                    class="w-full h-48 object-cover rounded-t-2xl"
+                    src={tile.imageSrc}
+                    alt={tile.title}
+                  />
+                </a>
                 <div class="card-body items-center text-center p-4">
                   <h3 class="font-semibold text-base">{tile.title}</h3>
                   <p class="text-sm opacity-70">{tile.desc}</p>
-                  <div class="card-actions justify-center mt-2" />
+                  <div class="card-actions justify-center mt-2">
+                    {tile.links.map((link, idx) => (
+                      <a
+                        target={tile.internal ? "" : "_blank"}
+                        href={link}
+                        class="badge badge-outline badge-neutral"
+                      >
+                        {tile.linkTitles?.[idx] || "Visit"}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))
