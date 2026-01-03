@@ -218,68 +218,225 @@ const progLangId = "languages";
 ---
 
 <Layout title="Work">
-  <div class="flex mb-4 flex-wrap justify-center">
-    {
-      Object.keys(tileHeaders).map((tileType) => (
-        <div class="flex flex-col p-2 my-6">
-          <h1 id={tileSectionIds[tileType as TileType]} class="text-2xl my-12">
-            {tileHeaders[tileType as TileType]}
-          </h1>
-          <div class="mb-4 flex flex-wrap mx-auto gap-8">
-            {tiles
-              .filter((t) => t.type === tileType)
-              .map((tile) => (
-                <div class="card flex-initial w-64 bg-base-400 shadow-xl m-4 mx-auto ">
-                  <figure>
-                    <a
-                      target={tile.internal ? "" : "_blank"}
-                      href={tile.links[0] ?? "/"}
-                    >
+  <p class="text-base">
+    <h1 id="overview" class="text-2xl my-6">Overview</h1>
+    <p class="text-base mt-6">
+      Currently, I'm helping expose the power of LLMs and RAGs to developers and
+      enterprise customers at Cohere. Learn more about my career journey, listen
+      to a podcast episode, or check out my detailed resume:
+    </p>
+    <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          tiles
+            .filter((t) => t.type === "background")
+            .map((tile) => (
+              <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+                <figure class="px-4 pt-4">
+                  <a
+                    target={tile.internal ? "" : "_blank"}
+                    href={tile.links[0] ?? "/"}
+                    class="avatar"
+                  >
+                    <div class="w-24 rounded-xl">
                       <Image
-                        class="object-cover h-36 w-36"
+                        class="object-cover"
                         src={tile.imageSrc}
-                        alt={tile.company}
+                        alt={tile.title}
                       />
-                    </a>
-                  </figure>
-                  <div class="card-body">
-                    <h2 class="card-title">{tile.title}</h2>
-                    <p>{tile.desc}</p>
-                    <div class="card-actions justify-end">
-                      {tile.links.map((link, idx) => (
-                        <a target={tile.internal ? "" : "_blank"} href={link}>
-                          <div
-                            class={`badge badge-${
-                              idx === 0 ? "secondary" : "info"
-                            } badge-lg`}
-                          >
-                            {tile.linkTitles?.[idx] || "Visit"}
-                          </div>
-                        </a>
-                      ))}
                     </div>
+                  </a>
+                </figure>
+                <div class="card-body items-center text-center p-4">
+                  <h3 class="font-semibold text-sm">{tile.title}</h3>
+                  <p class="text-xs opacity-70">{tile.desc}</p>
+                  <div class="card-actions justify-center mt-2">
+                    {tile.links.map((link, idx) => (
+                      <a
+                        target={tile.internal ? "" : "_blank"}
+                        href={link}
+                        class={`badge ${
+                          idx === 0 ? "badge-secondary" : "badge-info"
+                        }`}
+                      >
+                        {tile.linkTitles?.[idx] || "Visit"}
+                      </a>
+                    ))}
                   </div>
                 </div>
-              ))}
-          </div>
-        </div>
-      ))
-    }
-    {
-      (
-        <div class="flex flex-col p-2 my-6 w-full mx-auto">
-          <h1 id={progLangId} class="text-2xl my-12">
-            {progLangHeader}
-          </h1>
-          {import.meta.env.MODE === "development" ? (
-            <p class="text-6xl">
+              </div>
+            ))
+        }
+      </div>
+    </div>
+
+    <h1 id="past" class="text-2xl my-6">Previously worked on</h1>
+    <p class="text-base mt-6">
+      I've had the privilege to work with amazing teams and companies throughout
+      my career. Here are some highlights:
+    </p>
+    <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        {
+          tiles
+            .filter((t) => t.type === "past")
+            .map((tile) => (
+              <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+                <figure class="px-4 pt-4">
+                  <a
+                    target={tile.internal ? "" : "_blank"}
+                    href={tile.links[0] ?? "/"}
+                    class="avatar"
+                  >
+                    <div class="w-24 rounded-xl">
+                      <Image
+                        class="object-cover"
+                        src={tile.imageSrc}
+                        alt={tile.company || tile.title}
+                      />
+                    </div>
+                  </a>
+                </figure>
+                <div class="card-body items-center text-center p-4">
+                  <h3 class="font-semibold text-sm">{tile.company}</h3>
+                  <p class="text-xs opacity-70">{tile.title}</p>
+                  <div class="card-actions justify-center mt-2">
+                    {tile.links.map((link, idx) => (
+                      <a
+                        target={tile.internal ? "" : "_blank"}
+                        href={link}
+                        class={`badge ${
+                          idx === 0 ? "badge-secondary" : "badge-info"
+                        }`}
+                      >
+                        {tile.linkTitles?.[idx] || "Visit"}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))
+        }
+      </div>
+    </div>
+
+    <h1 id="study" class="text-2xl my-6">Continuously pursuing knowledge</h1>
+    <p class="text-base mt-6">
+      I'm always learning and exploring new technologies and concepts through
+      books, online courses, and hands-on projects:
+    </p>
+    <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          tiles
+            .filter((t) => t.type === "study")
+            .map((tile) => (
+              <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+                <figure class="px-4 pt-4">
+                  <a
+                    target={tile.internal ? "" : "_blank"}
+                    href={tile.links[0] ?? "/"}
+                    class="avatar"
+                  >
+                    <div class="w-24 rounded-xl">
+                      <Image
+                        class="object-cover"
+                        src={tile.imageSrc}
+                        alt={tile.title}
+                      />
+                    </div>
+                  </a>
+                </figure>
+                <div class="card-body items-center text-center p-4">
+                  <h3 class="font-semibold text-sm">{tile.title}</h3>
+                  <p class="text-xs opacity-70">{tile.desc}</p>
+                  <div class="card-actions justify-center mt-2">
+                    {tile.links.map((link, idx) => (
+                      <a
+                        target={tile.internal ? "" : "_blank"}
+                        href={link}
+                        class={`badge ${
+                          idx === 0 ? "badge-secondary" : "badge-info"
+                        }`}
+                      >
+                        {tile.linkTitles?.[idx] || "Visit"}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))
+        }
+      </div>
+    </div>
+
+    <h1 id="side" class="text-2xl my-6">Highlighted side projects</h1>
+    <p class="text-base mt-6">
+      I enjoy building side projects to explore new technologies and solve
+      interesting problems. Here are a few projects I'm proud of:
+    </p>
+    <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          tiles
+            .filter((t) => t.type === "side")
+            .map((tile) => (
+              <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+                <figure class="px-4 pt-4">
+                  <a
+                    target={tile.internal ? "" : "_blank"}
+                    href={tile.links[0] ?? "/"}
+                    class="avatar"
+                  >
+                    <div class="w-24 rounded-xl">
+                      <Image
+                        class="object-cover"
+                        src={tile.imageSrc}
+                        alt={tile.title}
+                      />
+                    </div>
+                  </a>
+                </figure>
+                <div class="card-body items-center text-center p-4">
+                  <h3 class="font-semibold text-sm">{tile.title}</h3>
+                  <p class="text-xs opacity-70">{tile.desc}</p>
+                  <div class="card-actions justify-center mt-2">
+                    {tile.links.map((link, idx) => (
+                      <a
+                        target={tile.internal ? "" : "_blank"}
+                        href={link}
+                        class={`badge ${
+                          idx === 0 ? "badge-secondary" : "badge-info"
+                        }`}
+                      >
+                        {tile.linkTitles?.[idx] || "Visit"}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))
+        }
+      </div>
+    </div>
+
+    <h1 id="languages" class="text-2xl my-6">Languages in current use</h1>
+    <p class="text-base mt-6">
+      Following is a glimpse of the programming languages I've been using over
+      the last few months based on data from Wakatime:
+    </p>
+    <div class="my-6">
+      {
+        import.meta.env.MODE === "development" ? (
+          <div class="alert alert-info">
+            <span>
               Guac will go here but lets not blow up my cheap serverless setup
-            </p>
-          ) : (
-            <CodingWrapped />
-          )}
-        </div>
-      )
-    }
-  </div>
+            </span>
+          </div>
+        ) : (
+          <CodingWrapped />
+        )
+      }
+    </div>
+  </p>
 </Layout>
