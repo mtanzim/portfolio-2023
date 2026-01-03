@@ -29,6 +29,7 @@ interface Tile {
   imageSrc: ImageMetadata;
   type: TileType;
   internal?: boolean;
+  isImage?: boolean;
 }
 
 const tileHeaders: Record<TileType, string> = {
@@ -51,6 +52,7 @@ const tiles: Tile[] = [
     linkTitles: ["Visit"],
     imageSrc: flippImg,
     type: "past",
+    isImage: true,
   },
   {
     company: "Careerfoundry",
@@ -61,6 +63,7 @@ const tiles: Tile[] = [
 
     imageSrc: cfImg,
     type: "past",
+    isImage: true,
   },
   {
     company: "Moonfare",
@@ -71,6 +74,7 @@ const tiles: Tile[] = [
 
     imageSrc: moofareImg,
     type: "past",
+    isImage: true,
   },
   {
     company: "Diginex",
@@ -81,6 +85,7 @@ const tiles: Tile[] = [
 
     imageSrc: diginexImg,
     type: "past",
+    isImage: true,
   },
   {
     company: "Relotalent",
@@ -91,6 +96,7 @@ const tiles: Tile[] = [
 
     imageSrc: reloImage,
     type: "past",
+    isImage: true,
   },
   {
     company: "",
@@ -118,7 +124,6 @@ const tiles: Tile[] = [
     desc: "Projects to explore new tools, techniques or for fun",
     links: ["https://github.com/users/mtanzim/projects/5"],
     linkTitles: ["Visit"],
-
     imageSrc: sideImg,
     type: "study",
   },
@@ -174,9 +179,9 @@ const tiles: Tile[] = [
     imageSrc: tanzimImg,
     links: ["/work/story"],
     linkTitles: ["Visit"],
-
     type: "background",
     internal: true,
+    isImage: true,
   },
   {
     company: "",
@@ -187,6 +192,7 @@ const tiles: Tile[] = [
     linkTitles: ["Visit"],
     type: "background",
     internal: true,
+    isImage: true,
   },
   {
     company: "Cohere",
@@ -198,6 +204,7 @@ const tiles: Tile[] = [
 
     type: "background",
     internal: true,
+    isImage: true,
   },
   {
     company: "",
@@ -210,6 +217,7 @@ const tiles: Tile[] = [
     linkTitles: ["Listen"],
 
     type: "background",
+    isImage: true,
   },
 ];
 ---
@@ -234,7 +242,7 @@ const tiles: Tile[] = [
                   href={tile.links[0] ?? "/"}
                 >
                   <Image
-                    class="w-full h-48 object-cover rounded-t-2xl"
+                    class={`w-full h-48 ${tile.isImage ? "object-cover" : "object-contain"} rounded-t-2xl`}
                     src={tile.imageSrc}
                     alt={tile.title}
                   />
@@ -269,7 +277,7 @@ const tiles: Tile[] = [
                   href={tile.links[0] ?? "/"}
                 >
                   <Image
-                    class="w-full h-48 object-cover rounded-t-2xl"
+                    class={`w-full h-48 ${tile.isImage ? "object-cover" : "object-contain"} rounded-t-2xl`}
                     src={tile.imageSrc}
                     alt={tile.company || tile.title}
                   />
@@ -302,7 +310,7 @@ const tiles: Tile[] = [
                   href={tile.links[0] ?? "/"}
                 >
                   <Image
-                    class="w-full h-48 object-cover rounded-t-2xl"
+                    class={`w-full h-48 ${tile.isImage ? "object-cover" : "object-contain"} rounded-t-2xl`}
                     src={tile.imageSrc}
                     alt={tile.title}
                   />
@@ -335,7 +343,7 @@ const tiles: Tile[] = [
                   href={tile.links[0] ?? "/"}
                 >
                   <Image
-                    class="w-full h-48 object-cover rounded-t-2xl"
+                    class={`w-full h-48 ${tile.isImage ? "object-cover" : "object-contain"} rounded-t-2xl`}
                     src={tile.imageSrc}
                     alt={tile.title}
                   />
@@ -343,17 +351,7 @@ const tiles: Tile[] = [
                 <div class="card-body items-center text-center p-4">
                   <h3 class="font-semibold text-base">{tile.title}</h3>
                   <p class="text-sm opacity-70">{tile.desc}</p>
-                  <div class="card-actions justify-center mt-2">
-                    {tile.links.map((link, idx) => (
-                      <a
-                        target={tile.internal ? "" : "_blank"}
-                        href={link}
-                        class="badge badge-outline badge-neutral"
-                      >
-                        {tile.linkTitles?.[idx] || "Visit"}
-                      </a>
-                    ))}
-                  </div>
+                  <div class="card-actions justify-center mt-2" />
                 </div>
               </div>
             ))
