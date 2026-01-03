@@ -226,12 +226,12 @@ const progLangId = "languages";
       to a podcast episode, or check out my detailed resume:
     </p>
     <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
         {
           tiles
             .filter((t) => t.type === "background")
             .map((tile) => (
-              <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+              <div class="card">
                 <figure class="px-4 pt-4">
                   <a
                     target={tile.internal ? "" : "_blank"}
@@ -251,7 +251,7 @@ const progLangId = "languages";
                   <h3 class="font-semibold text-sm">{tile.title}</h3>
                   <p class="text-xs opacity-70">{tile.desc}</p>
                   <div class="card-actions justify-center mt-2">
-                    {tile.links.map((link, idx) => (
+                    {/* {tile.links.map((link, idx) => (
                       <a
                         target={tile.internal ? "" : "_blank"}
                         href={link}
@@ -261,7 +261,7 @@ const progLangId = "languages";
                       >
                         {tile.linkTitles?.[idx] || "Visit"}
                       </a>
-                    ))}
+                    ))} */}
                   </div>
                 </div>
               </div>
@@ -281,7 +281,7 @@ const progLangId = "languages";
           tiles
             .filter((t) => t.type === "past")
             .map((tile) => (
-              <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+              <div class="card">
                 <figure class="px-4 pt-4">
                   <a
                     target={tile.internal ? "" : "_blank"}
@@ -301,17 +301,6 @@ const progLangId = "languages";
                   <h3 class="font-semibold text-sm">{tile.company}</h3>
                   <p class="text-xs opacity-70">{tile.title}</p>
                   <div class="card-actions justify-center mt-2">
-                    {tile.links.map((link, idx) => (
-                      <a
-                        target={tile.internal ? "" : "_blank"}
-                        href={link}
-                        class={`badge ${
-                          idx === 0 ? "badge-secondary" : "badge-info"
-                        }`}
-                      >
-                        {tile.linkTitles?.[idx] || "Visit"}
-                      </a>
-                    ))}
                   </div>
                 </div>
               </div>
@@ -331,7 +320,7 @@ const progLangId = "languages";
           tiles
             .filter((t) => t.type === "study")
             .map((tile) => (
-              <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+              <div class="card">
                 <figure class="px-4 pt-4">
                   <a
                     target={tile.internal ? "" : "_blank"}
@@ -351,17 +340,6 @@ const progLangId = "languages";
                   <h3 class="font-semibold text-sm">{tile.title}</h3>
                   <p class="text-xs opacity-70">{tile.desc}</p>
                   <div class="card-actions justify-center mt-2">
-                    {tile.links.map((link, idx) => (
-                      <a
-                        target={tile.internal ? "" : "_blank"}
-                        href={link}
-                        class={`badge ${
-                          idx === 0 ? "badge-secondary" : "badge-info"
-                        }`}
-                      >
-                        {tile.linkTitles?.[idx] || "Visit"}
-                      </a>
-                    ))}
                   </div>
                 </div>
               </div>
@@ -381,7 +359,7 @@ const progLangId = "languages";
           tiles
             .filter((t) => t.type === "side")
             .map((tile) => (
-              <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+              <div class="card">
                 <figure class="px-4 pt-4">
                   <a
                     target={tile.internal ? "" : "_blank"}
