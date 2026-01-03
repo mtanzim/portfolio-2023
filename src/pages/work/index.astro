@@ -39,7 +39,7 @@ const tileHeaders: Record<TileType, string> = {
 };
 
 const tileSectionIds: Record<TileType, string> = Object.fromEntries(
-  Object.keys(tileHeaders).map((k) => [k as TileType, k]),
+  Object.keys(tileHeaders).map((k) => [k as TileType, k])
 ) as Record<TileType, string>;
 
 const tiles: Tile[] = [
@@ -212,9 +212,6 @@ const tiles: Tile[] = [
     type: "background",
   },
 ];
-
-const progLangHeader = "Languages in current use";
-const progLangId = "languages";
 ---
 
 <Layout title="Work">
@@ -231,13 +228,13 @@ const progLangId = "languages";
           tiles
             .filter((t) => t.type === "background")
             .map((tile) => (
-              <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+              <a
+                class="card hover:shadow-lg transition-shadow duration-300"
+                target={tile.internal ? "" : "_blank"}
+                href={tile.links[0] ?? "/"}
+              >
                 <figure class="px-4 pt-4">
-                  <a
-                    target={tile.internal ? "" : "_blank"}
-                    href={tile.links[0] ?? "/"}
-                    class="avatar"
-                  >
+                  <div class="avatar">
                     <div class="w-24 rounded-xl">
                       <Image
                         class="object-cover"
@@ -245,26 +242,14 @@ const progLangId = "languages";
                         alt={tile.title}
                       />
                     </div>
-                  </a>
+                  </div>
                 </figure>
                 <div class="card-body items-center text-center p-4">
-                  <h3 class="font-semibold text-sm">{tile.title}</h3>
-                  <p class="text-xs opacity-70">{tile.desc}</p>
-                  <div class="card-actions justify-center mt-2">
-                    {/* {tile.links.map((link, idx) => (
-                      <a
-                        target={tile.internal ? "" : "_blank"}
-                        href={link}
-                        class={`badge ${
-                          idx === 0 ? "badge-secondary" : "badge-info"
-                        }`}
-                      >
-                        {tile.linkTitles?.[idx] || "Visit"}
-                      </a>
-                    ))} */}
-                  </div>
+                  <h3 class="font-semibold text-base">{tile.title}</h3>
+                  <p class="text-sm opacity-70">{tile.desc}</p>
+                  <div class="card-actions justify-center mt-2" />
                 </div>
-              </div>
+              </a>
             ))
         }
       </div>
@@ -276,18 +261,20 @@ const progLangId = "languages";
       my career. Here are some highlights:
     </p>
     <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
+      >
         {
           tiles
             .filter((t) => t.type === "past")
             .map((tile) => (
-              <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+              <a
+                class="card hover:shadow-lg transition-shadow duration-300"
+                target={tile.internal ? "" : "_blank"}
+                href={tile.links[0] ?? "/"}
+              >
                 <figure class="px-4 pt-4">
-                  <a
-                    target={tile.internal ? "" : "_blank"}
-                    href={tile.links[0] ?? "/"}
-                    class="avatar"
-                  >
+                  <div class="avatar">
                     <div class="w-24 rounded-xl">
                       <Image
                         class="object-cover"
@@ -295,15 +282,14 @@ const progLangId = "languages";
                         alt={tile.company || tile.title}
                       />
                     </div>
-                  </a>
+                  </div>
                 </figure>
                 <div class="card-body items-center text-center p-4">
-                  <h3 class="font-semibold text-sm">{tile.company}</h3>
-                  <p class="text-xs opacity-70">{tile.title}</p>
-                  <div class="card-actions justify-center mt-2">
-                  </div>
+                  <h3 class="font-semibold text-base">{tile.company}</h3>
+                  <p class="text-sm opacity-70">{tile.title}</p>
+                  <div class="card-actions justify-center mt-2" />
                 </div>
-              </div>
+              </a>
             ))
         }
       </div>
@@ -320,13 +306,13 @@ const progLangId = "languages";
           tiles
             .filter((t) => t.type === "study")
             .map((tile) => (
-              <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+              <a
+                class="card hover:shadow-lg transition-shadow duration-300"
+                target={tile.internal ? "" : "_blank"}
+                href={tile.links[0] ?? "/"}
+              >
                 <figure class="px-4 pt-4">
-                  <a
-                    target={tile.internal ? "" : "_blank"}
-                    href={tile.links[0] ?? "/"}
-                    class="avatar"
-                  >
+                  <div class="avatar">
                     <div class="w-24 rounded-xl">
                       <Image
                         class="object-cover"
@@ -334,15 +320,14 @@ const progLangId = "languages";
                         alt={tile.title}
                       />
                     </div>
-                  </a>
+                  </div>
                 </figure>
                 <div class="card-body items-center text-center p-4">
-                  <h3 class="font-semibold text-sm">{tile.title}</h3>
-                  <p class="text-xs opacity-70">{tile.desc}</p>
-                  <div class="card-actions justify-center mt-2">
-                  </div>
+                  <h3 class="font-semibold text-base">{tile.title}</h3>
+                  <p class="text-sm opacity-70">{tile.desc}</p>
+                  <div class="card-actions justify-center mt-2" />
                 </div>
-              </div>
+              </a>
             ))
         }
       </div>
@@ -376,21 +361,9 @@ const progLangId = "languages";
                   </a>
                 </figure>
                 <div class="card-body items-center text-center p-4">
-                  <h3 class="font-semibold text-sm">{tile.title}</h3>
-                  <p class="text-xs opacity-70">{tile.desc}</p>
-                  <div class="card-actions justify-center mt-2">
-                    {tile.links.map((link, idx) => (
-                      <a
-                        target={tile.internal ? "" : "_blank"}
-                        href={link}
-                        class={`badge ${
-                          idx === 0 ? "badge-secondary" : "badge-info"
-                        }`}
-                      >
-                        {tile.linkTitles?.[idx] || "Visit"}
-                      </a>
-                    ))}
-                  </div>
+                  <h3 class="font-semibold text-base">{tile.title}</h3>
+                  <p class="text-sm opacity-70">{tile.desc}</p>
+                  <div class="card-actions justify-center mt-2" />
                 </div>
               </div>
             ))
