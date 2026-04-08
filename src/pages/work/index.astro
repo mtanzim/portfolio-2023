@@ -17,6 +17,7 @@ import clockImg from "../../assets/work/wall-clock.png";
 import profeshImg from "../../assets/tm-profesh.jpg";
 import tanzimImg from "../../assets/tanzim.jpg";
 import podacastImg from "../../assets/work/podcast.png";
+import tribuneImg from "../../assets/work/tribune.png";
 import { Image } from "astro:assets";
 
 type TileType = "past" | "study" | "side" | "background";
@@ -208,6 +209,19 @@ const tiles: Tile[] = [
   },
   {
     company: "",
+    title: "Pycascades 2026 Conference talk",
+    desc: "Check out my talk on Queues, Tasks and Distributed State Management at Pycascades 2026 with co-speaker Chantelle",
+    imageSrc: tribuneImg,
+    links: [
+      "https://www.youtube.com/live/CCv4y0B4M84?si=BI3Li4OHGY-Ff_6r&t=9605",
+    ],
+    linkTitles: ["Watch"],
+
+    type: "background",
+    isImage: true,
+  },
+  {
+    company: "",
     title: "Podcast episode",
     desc: "Listen to a podcast episode where I discuss self studying software engineering, staying productive during long term travel, and the tech scene in Berlin",
     imageSrc: podacastImg,
@@ -230,7 +244,7 @@ const tiles: Tile[] = [
       out my detailed resume:
     </p>
     <div class="my-6 h-1/2 max-w-full shadow-xl rounded-2xl bg-base-200 p-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
         {
           tiles
             .filter((t) => t.type === "background")
