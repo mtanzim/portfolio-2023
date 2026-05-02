@@ -1,5 +1,5 @@
 ---
-import { SunMoon, BotMessageSquare } from "lucide-react";
+import { SunMoon } from "lucide-react";
 
 // TODO: hamburger menu for mobile
 const pages = [
@@ -48,11 +48,6 @@ const pages = [
     </div>
     <div class="flex">
       <button
-        class="btn btn-ghost btn-accent"
-        onclick={`chat_modal.showModal()`}
-        ><BotMessageSquare size={24} /></button
-      >
-      <button
         data-act-class="ACTIVECLASS"
         data-toggle-theme="pastel,dim"
         class="btn btn-ghost btn-accent"
@@ -73,11 +68,6 @@ const pages = [
       </div>
       <div class="collapse-content">
         <div class="flex my-4">
-          <button
-            class="btn btn-ghost btn-accent"
-            onclick={`chat_modal.showModal()`}
-            ><BotMessageSquare size={24} /></button
-          >
           <button
             data-act-class="ACTIVECLASS"
             data-toggle-theme="pastel,dim"
