@@ -1,5 +1,4 @@
 ---
-import { ChatWithHistory } from "../components/ChatWithHistory";
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 import { ViewTransitions } from "astro:transitions";
@@ -43,14 +42,6 @@ const { title, hideHeader, badgeText } = Astro.props;
     <ViewTransitions />
   </head>
   <body>
-    <dialog id={`chat_modal`}>
-      <ChatWithHistory client:only="react">
-        <button
-          onclick="chat_modal.close()"
-          class="btn btn-sm btn-circle btn-outline">X</button
-        >
-      </ChatWithHistory>
-    </dialog>
     <Navigation />
     <div class="container mx-auto px-4 mb-24">
       {
